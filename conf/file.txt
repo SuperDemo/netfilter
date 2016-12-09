@@ -1,0 +1,1 @@
+<action>drop</action><direction><=></direction><sourceip></sourceip><targetip></targetip><content_flag>all</content_flag><content></content><titlecontent></titlecontent>

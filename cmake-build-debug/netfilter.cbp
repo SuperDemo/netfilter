@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="netfilter"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="netfilter">
+				<Option output="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/netfilter.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/../lib/../include/w32api"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include/c++/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 netfilter"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="netfilter/fast">
+				<Option output="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/netfilter.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/../lib/../include/w32api"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/include/c++/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 netfilter/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/client/client.c">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/conf/data.txt">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/conf/file.txt">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/conf/netfilter.conf">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/Makefile">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/alarmDetection.c">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/alarmDetection.h">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/communication.c">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/communication.h">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/dealConf.c">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/dealConf.h">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/log.h">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/makes.sh">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/netFilter.c">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/src/netFilter.h">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/threadTest/Makefile">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/threadTest/kthread.c">
+			<Option target="netfilter"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Users/yingzi/ClionProjects/netfilter/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
