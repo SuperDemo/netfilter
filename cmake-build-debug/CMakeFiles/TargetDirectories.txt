@@ -1,3 +1,3 @@
-/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/netfilter.dir
+/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/netfilter.dir

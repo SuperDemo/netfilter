@@ -1,6 +1,6 @@
-The system is: CYGWIN - 2.5.1(0.297/5/3) - x86_64
+The system is: Linux - 3.10.0-327.el7.x86_64 - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: /usr/bin/cc 
+Compiler: /bin/cc 
 Build flags: 
 Id flags: 
 
@@ -8,12 +8,12 @@ The output was:
 0
 
 
-Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/3.6.2/CompilerIdC/a.exe"
+The C compiler identification is GNU, found in "/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/3.6.2/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: /usr/bin/c++.exe 
+Compiler: /bin/c++ 
 Build flags: 
 Id flags: 
 
@@ -21,166 +21,131 @@ The output was:
 0
 
 
-Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/3.6.2/CompilerIdCXX/a.exe"
+The CXX compiler identification is GNU, found in "/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/3.6.2/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_cc5ba/fast"
-/usr/bin/make -f CMakeFiles/cmTC_cc5ba.dir/build.make CMakeFiles/cmTC_cc5ba.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_cc5ba.dir/testCCompiler.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_cc5ba.dir/testCCompiler.c.o   -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_cc5ba.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_cc5ba.dir/link.txt --verbose=1
-/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_cc5ba.dir/testCCompiler.c.o  -o cmTC_cc5ba.exe -Wl,--out-implib,libcmTC_cc5ba.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_3510e/fast"
+/bin/gmake -f CMakeFiles/cmTC_3510e.dir/build.make CMakeFiles/cmTC_3510e.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_3510e.dir/testCCompiler.c.o
+/bin/cc     -o CMakeFiles/cmTC_3510e.dir/testCCompiler.c.o   -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_3510e
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3510e.dir/link.txt --verbose=1
+/bin/cc       CMakeFiles/cmTC_3510e.dir/testCCompiler.c.o  -o cmTC_3510e 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_454fa/fast"
-/usr/bin/make -f CMakeFiles/cmTC_454fa.dir/build.make CMakeFiles/cmTC_454fa.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o   -c /cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/share/cmake-3.6.2/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_454fa.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_454fa.dir/link.txt --verbose=1
-/usr/bin/cc     -Wl,--enable-auto-import -v CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o  -o cmTC_454fa.exe -Wl,--out-implib,libcmTC_454fa.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
-Using built-in specs.
-COLLECT_GCC=/usr/bin/cc
-COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe
-Target: x86_64-pc-cygwin
-Configured with: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=x86_64-pc-cygwin --host=x86_64-pc-cygwin --target=x86_64-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-tune=generic --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible
-Thread model: posix
-gcc version 5.3.0 (GCC) 
-COMPILER_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/bin/
-LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib/:/usr/lib/../lib/:/lib/../lib/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_454fa.exe' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccdKXqOX.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id -m i386pep --wrap _Znwm --wrap _Znam --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwmRKSt9nothrow_t --wrap _ZnamRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --tsaware -o cmTC_454fa.exe /usr/lib/../lib/crt0.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0 -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib -L/usr/lib/../lib -L/lib/../lib -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o --out-implib libcmTC_454fa.dll.a --major-image-version 0 --minor-image-version 0 -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/../lib/default-manifest.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtend.o
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_f114c/fast"
+/bin/gmake -f CMakeFiles/cmTC_f114c.dir/build.make CMakeFiles/cmTC_f114c.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o
+/bin/cc     -o CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o   -c /home/chenkuan/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_f114c
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f114c.dir/link.txt --verbose=1
+/bin/cc      -v CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o  -o cmTC_f114c  
+使用内建 specs。
+COLLECT_GCC=/bin/cc
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
+目标：x86_64-redhat-linux
+配置为：../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux
+线程模型：posix
+gcc 版本 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_f114c' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_f114c /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
 Parsed C implicit link information from above output:
-  link line regex: [^( *|.*[/\])(ld\.exe|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp]
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make.exe" "cmTC_454fa/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_454fa.dir/build.make CMakeFiles/cmTC_454fa.dir/build]
-  ignore line: [make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o   -c /cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/share/cmake-3.6.2/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_454fa.exe]
-  ignore line: [/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_454fa.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -Wl,--enable-auto-import -v CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o  -o cmTC_454fa.exe -Wl,--out-implib,libcmTC_454fa.dll.a -Wl,--major-image-version,0,--minor-image-version,0  ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/bin/cc]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe]
-  ignore line: [Target: x86_64-pc-cygwin]
-  ignore line: [Configured with: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=x86_64-pc-cygwin --host=x86_64-pc-cygwin --target=x86_64-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-tune=generic --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible]
-  ignore line: [Thread model: posix]
-  ignore line: [gcc version 5.3.0 (GCC) ]
-  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/bin/]
-  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib/:/usr/lib/../lib/:/lib/../lib/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_454fa.exe' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccdKXqOX.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id -m i386pep --wrap _Znwm --wrap _Znam --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwmRKSt9nothrow_t --wrap _ZnamRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --tsaware -o cmTC_454fa.exe /usr/lib/../lib/crt0.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0 -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib -L/usr/lib/../lib -L/lib/../lib -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o --out-implib libcmTC_454fa.dll.a --major-image-version 0 --minor-image-version 0 -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/../lib/default-manifest.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtend.o]
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/collect2.exe] ==> ignore
-    arg [-plugin] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/cyglto_plugin.dll] ==> ignore
-    arg [-plugin-opt=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccdKXqOX.res] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lcygwin] ==> ignore
-    arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
-    arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
-    arg [-plugin-opt=-pass-through=-luser32] ==> ignore
-    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+  ignore line: [Run Build Command:"/bin/gmake" "cmTC_f114c/fast"]
+  ignore line: [/bin/gmake -f CMakeFiles/cmTC_f114c.dir/build.make CMakeFiles/cmTC_f114c.dir/build]
+  ignore line: [gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”]
+  ignore line: [Building C object CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/bin/cc     -o CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o   -c /home/chenkuan/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_f114c]
+  ignore line: [/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f114c.dir/link.txt --verbose=1]
+  ignore line: [/bin/cc      -v CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o  -o cmTC_f114c  ]
+  ignore line: [使用内建 specs。]
+  ignore line: [COLLECT_GCC=/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper]
+  ignore line: [目标：x86_64-redhat-linux]
+  ignore line: [配置为：../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux]
+  ignore line: [线程模型：posix]
+  ignore line: [gcc 版本 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_f114c' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_f114c /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2] ==> ignore
     arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
     arg [-m] ==> ignore
-    arg [i386pep] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_Znwm] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_Znam] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdlPv] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdaPv] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZnwmRKSt9nothrow_t] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZnamRKSt9nothrow_t] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdlPvRKSt9nothrow_t] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdaPvRKSt9nothrow_t] ==> ignore
-    arg [-Bdynamic] ==> ignore
-    arg [--dll-search-prefix=cyg] ==> ignore
-    arg [--tsaware] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_454fa.exe] ==> ignore
-    arg [/usr/lib/../lib/crt0.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtbegin.o] ==> ignore
-    arg [-L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0] ==> dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0]
-    arg [-L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib] ==> dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib]
-    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
-    arg [-L/lib/../lib] ==> dir [/lib/../lib]
-    arg [-L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib] ==> dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib]
-    arg [-L/usr/lib/w32api] ==> dir [/usr/lib/w32api]
-    arg [--enable-auto-import] ==> ignore
-    arg [CMakeFiles/cmTC_454fa.dir/CMakeCCompilerABI.c.o] ==> ignore
-    arg [--out-implib] ==> ignore
-    arg [libcmTC_454fa.dll.a] ==> ignore
-    arg [--major-image-version] ==> ignore
-    arg [0] ==> ignore
-    arg [--minor-image-version] ==> ignore
-    arg [0] ==> ignore
-    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [cmTC_f114c] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..]
+    arg [CMakeFiles/cmTC_f114c.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
-    arg [-lcygwin] ==> lib [cygwin]
-    arg [-ladvapi32] ==> lib [advapi32]
-    arg [-lshell32] ==> lib [shell32]
-    arg [-luser32] ==> lib [user32]
-    arg [-lkernel32] ==> lib [kernel32]
+    arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
     arg [-lgcc] ==> lib [gcc]
-    arg [/usr/lib/../lib/default-manifest.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtend.o] ==> ignore
-  remove lib [gcc_s]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o] ==> ignore
   remove lib [gcc]
   remove lib [gcc_s]
   remove lib [gcc]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0] ==> [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib] ==> [/usr/x86_64-pc-cygwin/lib]
-  collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
-  collapse library dir [/lib/../lib] ==> [/lib]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib] ==> [/usr/x86_64-pc-cygwin/lib]
-  collapse library dir [/usr/lib/w32api] ==> [/usr/lib/w32api]
-  implicit libs: [cygwin;advapi32;shell32;user32;kernel32]
-  implicit dirs: [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0;/usr/x86_64-pc-cygwin/lib;/usr/lib;/lib;/usr/lib/w32api]
+  remove lib [gcc_s]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> [/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.8.5;/usr/lib64;/lib64;/usr/lib]
   implicit fwks: []
 
 
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_1502e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1502e.dir/build.make CMakeFiles/cmTC_1502e.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1502e.dir/feature_tests.c.o
-/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_1502e.dir/feature_tests.c.o   -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_1502e.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_1502e.dir/link.txt --verbose=1
-/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_1502e.dir/feature_tests.c.o  -o cmTC_1502e.exe -Wl,--out-implib,libcmTC_1502e.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_83383/fast"
+/bin/gmake -f CMakeFiles/cmTC_83383.dir/build.make CMakeFiles/cmTC_83383.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_83383.dir/feature_tests.c.o
+/bin/cc    -std=c11 -o CMakeFiles/cmTC_83383.dir/feature_tests.c.o   -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_83383
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83383.dir/link.txt --verbose=1
+/bin/cc       CMakeFiles/cmTC_83383.dir/feature_tests.c.o  -o cmTC_83383 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -190,17 +155,17 @@ make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cma
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_2b595/fast"
-/usr/bin/make -f CMakeFiles/cmTC_2b595.dir/build.make CMakeFiles/cmTC_2b595.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_2b595.dir/feature_tests.c.o
-/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_2b595.dir/feature_tests.c.o   -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_2b595.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_2b595.dir/link.txt --verbose=1
-/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_2b595.dir/feature_tests.c.o  -o cmTC_2b595.exe -Wl,--out-implib,libcmTC_2b595.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_7f333/fast"
+/bin/gmake -f CMakeFiles/cmTC_7f333.dir/build.make CMakeFiles/cmTC_7f333.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_7f333.dir/feature_tests.c.o
+/bin/cc    -std=c99 -o CMakeFiles/cmTC_7f333.dir/feature_tests.c.o   -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_7f333
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7f333.dir/link.txt --verbose=1
+/bin/cc       CMakeFiles/cmTC_7f333.dir/feature_tests.c.o  -o cmTC_7f333 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -210,17 +175,17 @@ make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cma
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_24ec8/fast"
-/usr/bin/make -f CMakeFiles/cmTC_24ec8.dir/build.make CMakeFiles/cmTC_24ec8.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_24ec8.dir/feature_tests.c.o
-/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_24ec8.dir/feature_tests.c.o   -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_24ec8.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_24ec8.dir/link.txt --verbose=1
-/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_24ec8.dir/feature_tests.c.o  -o cmTC_24ec8.exe -Wl,--out-implib,libcmTC_24ec8.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_b2b74/fast"
+/bin/gmake -f CMakeFiles/cmTC_b2b74.dir/build.make CMakeFiles/cmTC_b2b74.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_b2b74.dir/feature_tests.c.o
+/bin/cc    -std=c90 -o CMakeFiles/cmTC_b2b74.dir/feature_tests.c.o   -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_b2b74
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b2b74.dir/link.txt --verbose=1
+/bin/cc       CMakeFiles/cmTC_b2b74.dir/feature_tests.c.o  -o cmTC_b2b74 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -228,183 +193,145 @@ make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cma
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_6d1b4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6d1b4.dir/build.make CMakeFiles/cmTC_6d1b4.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_6d1b4.dir/testCXXCompiler.cxx.o
-/usr/bin/c++.exe      -o CMakeFiles/cmTC_6d1b4.dir/testCXXCompiler.cxx.o -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_6d1b4.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_6d1b4.dir/link.txt --verbose=1
-/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_6d1b4.dir/testCXXCompiler.cxx.o  -o cmTC_6d1b4.exe -Wl,--out-implib,libcmTC_6d1b4.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_00aba/fast"
+/bin/gmake -f CMakeFiles/cmTC_00aba.dir/build.make CMakeFiles/cmTC_00aba.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building CXX object CMakeFiles/cmTC_00aba.dir/testCXXCompiler.cxx.o
+/bin/c++      -o CMakeFiles/cmTC_00aba.dir/testCXXCompiler.cxx.o -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_00aba
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_00aba.dir/link.txt --verbose=1
+/bin/c++        CMakeFiles/cmTC_00aba.dir/testCXXCompiler.cxx.o  -o cmTC_00aba 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_f1a37/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f1a37.dir/build.make CMakeFiles/cmTC_f1a37.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++.exe      -o CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o -c /cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/share/cmake-3.6.2/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_f1a37.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_f1a37.dir/link.txt --verbose=1
-/usr/bin/c++.exe     -Wl,--enable-auto-import -v CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_f1a37.exe -Wl,--out-implib,libcmTC_f1a37.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
-Using built-in specs.
-COLLECT_GCC=/usr/bin/c++
-COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe
-Target: x86_64-pc-cygwin
-Configured with: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=x86_64-pc-cygwin --host=x86_64-pc-cygwin --target=x86_64-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-tune=generic --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible
-Thread model: posix
-gcc version 5.3.0 (GCC) 
-COMPILER_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/bin/
-LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib/:/usr/lib/../lib/:/lib/../lib/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_f1a37.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccKpx9KK.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id -m i386pep --wrap _Znwm --wrap _Znam --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwmRKSt9nothrow_t --wrap _ZnamRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --tsaware -o cmTC_f1a37.exe /usr/lib/../lib/crt0.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0 -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib -L/usr/lib/../lib -L/lib/../lib -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o --out-implib libcmTC_f1a37.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/../lib/default-manifest.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtend.o
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_bdf9a/fast"
+/bin/gmake -f CMakeFiles/cmTC_bdf9a.dir/build.make CMakeFiles/cmTC_bdf9a.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building CXX object CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o
+/bin/c++      -o CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o -c /home/chenkuan/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_bdf9a
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bdf9a.dir/link.txt --verbose=1
+/bin/c++       -v CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_bdf9a  
+使用内建 specs。
+COLLECT_GCC=/bin/c++
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
+目标：x86_64-redhat-linux
+配置为：../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux
+线程模型：posix
+gcc 版本 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_bdf9a' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_bdf9a /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
 Parsed CXX implicit link information from above output:
-  link line regex: [^( *|.*[/\])(ld\.exe|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp]
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make.exe" "cmTC_f1a37/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_f1a37.dir/build.make CMakeFiles/cmTC_f1a37.dir/build]
-  ignore line: [make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++.exe      -o CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o -c /cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/share/cmake-3.6.2/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_f1a37.exe]
-  ignore line: [/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_f1a37.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++.exe     -Wl,--enable-auto-import -v CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_f1a37.exe -Wl,--out-implib,libcmTC_f1a37.dll.a -Wl,--major-image-version,0,--minor-image-version,0  ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/bin/c++]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe]
-  ignore line: [Target: x86_64-pc-cygwin]
-  ignore line: [Configured with: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-5.x86_64/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=x86_64-pc-cygwin --host=x86_64-pc-cygwin --target=x86_64-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-tune=generic --enable-languages=ada,c,c++,fortran,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible]
-  ignore line: [Thread model: posix]
-  ignore line: [gcc version 5.3.0 (GCC) ]
-  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/bin/]
-  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib/:/usr/lib/../lib/:/lib/../lib/:/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_f1a37.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccKpx9KK.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id -m i386pep --wrap _Znwm --wrap _Znam --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwmRKSt9nothrow_t --wrap _ZnamRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --tsaware -o cmTC_f1a37.exe /usr/lib/../lib/crt0.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0 -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib -L/usr/lib/../lib -L/lib/../lib -L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o --out-implib libcmTC_f1a37.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/../lib/default-manifest.o /usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtend.o]
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/collect2.exe] ==> ignore
-    arg [-plugin] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/cyglto_plugin.dll] ==> ignore
-    arg [-plugin-opt=/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccKpx9KK.res] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lcygwin] ==> ignore
-    arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
-    arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
-    arg [-plugin-opt=-pass-through=-luser32] ==> ignore
-    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+  ignore line: [Run Build Command:"/bin/gmake" "cmTC_bdf9a/fast"]
+  ignore line: [/bin/gmake -f CMakeFiles/cmTC_bdf9a.dir/build.make CMakeFiles/cmTC_bdf9a.dir/build]
+  ignore line: [gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”]
+  ignore line: [Building CXX object CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/bin/c++      -o CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o -c /home/chenkuan/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_bdf9a]
+  ignore line: [/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bdf9a.dir/link.txt --verbose=1]
+  ignore line: [/bin/c++       -v CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_bdf9a  ]
+  ignore line: [使用内建 specs。]
+  ignore line: [COLLECT_GCC=/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper]
+  ignore line: [目标：x86_64-redhat-linux]
+  ignore line: [配置为：../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux]
+  ignore line: [线程模型：posix]
+  ignore line: [gcc 版本 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_bdf9a' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_bdf9a /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2] ==> ignore
     arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
     arg [-m] ==> ignore
-    arg [i386pep] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_Znwm] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_Znam] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdlPv] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdaPv] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZnwmRKSt9nothrow_t] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZnamRKSt9nothrow_t] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdlPvRKSt9nothrow_t] ==> ignore
-    arg [--wrap] ==> ignore
-    arg [_ZdaPvRKSt9nothrow_t] ==> ignore
-    arg [-Bdynamic] ==> ignore
-    arg [--dll-search-prefix=cyg] ==> ignore
-    arg [--tsaware] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_f1a37.exe] ==> ignore
-    arg [/usr/lib/../lib/crt0.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtbegin.o] ==> ignore
-    arg [-L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0] ==> dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0]
-    arg [-L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib] ==> dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib]
-    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
-    arg [-L/lib/../lib] ==> dir [/lib/../lib]
-    arg [-L/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib] ==> dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib]
-    arg [-L/usr/lib/w32api] ==> dir [/usr/lib/w32api]
-    arg [--enable-auto-import] ==> ignore
-    arg [CMakeFiles/cmTC_f1a37.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
-    arg [--out-implib] ==> ignore
-    arg [libcmTC_f1a37.dll.a] ==> ignore
-    arg [--major-image-version] ==> ignore
-    arg [0] ==> ignore
-    arg [--minor-image-version] ==> ignore
-    arg [0] ==> ignore
+    arg [cmTC_bdf9a] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..]
+    arg [CMakeFiles/cmTC_bdf9a.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
     arg [-lgcc] ==> lib [gcc]
-    arg [-lcygwin] ==> lib [cygwin]
-    arg [-ladvapi32] ==> lib [advapi32]
-    arg [-lshell32] ==> lib [shell32]
-    arg [-luser32] ==> lib [user32]
-    arg [-lkernel32] ==> lib [kernel32]
+    arg [-lc] ==> lib [c]
     arg [-lgcc_s] ==> lib [gcc_s]
     arg [-lgcc] ==> lib [gcc]
-    arg [/usr/lib/../lib/default-manifest.o] ==> ignore
-    arg [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o] ==> ignore
   remove lib [gcc_s]
   remove lib [gcc]
   remove lib [gcc_s]
   remove lib [gcc]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0] ==> [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib/../lib] ==> [/usr/x86_64-pc-cygwin/lib]
-  collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
-  collapse library dir [/lib/../lib] ==> [/lib]
-  collapse library dir [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0/../../../../x86_64-pc-cygwin/lib] ==> [/usr/x86_64-pc-cygwin/lib]
-  collapse library dir [/usr/lib/w32api] ==> [/usr/lib/w32api]
-  implicit libs: [stdc++;cygwin;advapi32;shell32;user32;kernel32]
-  implicit dirs: [/usr/lib/gcc/x86_64-pc-cygwin/5.3.0;/usr/x86_64-pc-cygwin/lib;/usr/lib;/lib;/usr/lib/w32api]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> [/usr/lib]
+  implicit libs: [stdc++;m;c]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.8.5;/usr/lib64;/lib64;/usr/lib]
   implicit fwks: []
 
 
 
 
-Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Detecting CXX [-std=c++1y] compiler features compiled with the following output:
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_a6648/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a6648.dir/build.make CMakeFiles/cmTC_a6648.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_a6648.dir/feature_tests.cxx.o
-/usr/bin/c++.exe     -std=c++14 -o CMakeFiles/cmTC_a6648.dir/feature_tests.cxx.o -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_a6648.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_a6648.dir/link.txt --verbose=1
-/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_a6648.dir/feature_tests.cxx.o  -o cmTC_a6648.exe -Wl,--out-implib,libcmTC_a6648.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_40901/fast"
+/bin/gmake -f CMakeFiles/cmTC_40901.dir/build.make CMakeFiles/cmTC_40901.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building CXX object CMakeFiles/cmTC_40901.dir/feature_tests.cxx.o
+/bin/c++     -std=c++1y -o CMakeFiles/cmTC_40901.dir/feature_tests.cxx.o -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_40901
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_40901.dir/link.txt --verbose=1
+/bin/c++        CMakeFiles/cmTC_40901.dir/feature_tests.cxx.o  -o cmTC_40901 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
-    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
     Feature record: CXX_FEATURE:1cxx_alias_templates
     Feature record: CXX_FEATURE:1cxx_alignas
     Feature record: CXX_FEATURE:1cxx_alignof
     Feature record: CXX_FEATURE:1cxx_attributes
-    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
     Feature record: CXX_FEATURE:1cxx_auto_type
-    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_binary_literals
     Feature record: CXX_FEATURE:1cxx_constexpr
-    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
     Feature record: CXX_FEATURE:1cxx_decltype
-    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
     Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
     Feature record: CXX_FEATURE:1cxx_default_function_template_args
     Feature record: CXX_FEATURE:1cxx_defaulted_functions
     Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
     Feature record: CXX_FEATURE:1cxx_delegating_constructors
     Feature record: CXX_FEATURE:1cxx_deleted_functions
-    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_digit_separators
     Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
     Feature record: CXX_FEATURE:1cxx_explicit_conversions
     Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
@@ -412,11 +339,11 @@ make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cma
     Feature record: CXX_FEATURE:1cxx_final
     Feature record: CXX_FEATURE:1cxx_func_identifier
     Feature record: CXX_FEATURE:1cxx_generalized_initializers
-    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
     Feature record: CXX_FEATURE:1cxx_inheriting_constructors
     Feature record: CXX_FEATURE:1cxx_inline_namespaces
     Feature record: CXX_FEATURE:1cxx_lambdas
-    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
     Feature record: CXX_FEATURE:1cxx_local_type_template_args
     Feature record: CXX_FEATURE:1cxx_long_long_type
     Feature record: CXX_FEATURE:1cxx_noexcept
@@ -426,8 +353,8 @@ make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cma
     Feature record: CXX_FEATURE:1cxx_range_for
     Feature record: CXX_FEATURE:1cxx_raw_string_literals
     Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
-    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
-    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
     Feature record: CXX_FEATURE:1cxx_right_angle_brackets
     Feature record: CXX_FEATURE:1cxx_rvalue_references
     Feature record: CXX_FEATURE:1cxx_sizeof_member
@@ -440,23 +367,23 @@ make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cma
     Feature record: CXX_FEATURE:1cxx_uniform_initialization
     Feature record: CXX_FEATURE:1cxx_unrestricted_unions
     Feature record: CXX_FEATURE:1cxx_user_literals
-    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variable_templates
     Feature record: CXX_FEATURE:1cxx_variadic_macros
     Feature record: CXX_FEATURE:1cxx_variadic_templates
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_11f51/fast"
-/usr/bin/make -f CMakeFiles/cmTC_11f51.dir/build.make CMakeFiles/cmTC_11f51.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_11f51.dir/feature_tests.cxx.o
-/usr/bin/c++.exe     -std=c++11 -o CMakeFiles/cmTC_11f51.dir/feature_tests.cxx.o -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_11f51.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_11f51.dir/link.txt --verbose=1
-/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_11f51.dir/feature_tests.cxx.o  -o cmTC_11f51.exe -Wl,--out-implib,libcmTC_11f51.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_52f92/fast"
+/bin/gmake -f CMakeFiles/cmTC_52f92.dir/build.make CMakeFiles/cmTC_52f92.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building CXX object CMakeFiles/cmTC_52f92.dir/feature_tests.cxx.o
+/bin/c++     -std=c++11 -o CMakeFiles/cmTC_52f92.dir/feature_tests.cxx.o -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_52f92
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52f92.dir/link.txt --verbose=1
+/bin/c++        CMakeFiles/cmTC_52f92.dir/feature_tests.cxx.o  -o cmTC_52f92 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -519,17 +446,17 @@ make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cma
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make.exe" "cmTC_fff50/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fff50.dir/build.make CMakeFiles/cmTC_fff50.dir/build
-make[1]: Entering directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_fff50.dir/feature_tests.cxx.o
-/usr/bin/c++.exe     -std=c++98 -o CMakeFiles/cmTC_fff50.dir/feature_tests.cxx.o -c /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_fff50.exe
-/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_fff50.dir/link.txt --verbose=1
-/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_fff50.dir/feature_tests.cxx.o  -o cmTC_fff50.exe -Wl,--out-implib,libcmTC_fff50.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-make[1]: Leaving directory '/cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/bin/gmake" "cmTC_66f3a/fast"
+/bin/gmake -f CMakeFiles/cmTC_66f3a.dir/build.make CMakeFiles/cmTC_66f3a.dir/build
+gmake[1]: 进入目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
+Building CXX object CMakeFiles/cmTC_66f3a.dir/feature_tests.cxx.o
+/bin/c++     -std=c++98 -o CMakeFiles/cmTC_66f3a.dir/feature_tests.cxx.o -c /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_66f3a
+/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66f3a.dir/link.txt --verbose=1
+/bin/c++        CMakeFiles/cmTC_66f3a.dir/feature_tests.cxx.o  -o cmTC_66f3a 
+gmake[1]: 离开目录“/home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/CMakeTmp”
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

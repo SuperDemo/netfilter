@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe
+CMAKE_COMMAND = /home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E remove -f
+RM = /home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/d/Users/yingzi/ClionProjects/netfilter
+CMAKE_SOURCE_DIR = /home/chenkuan/ClionProjects/netfilter
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug
+CMAKE_BINARY_DIR = /home/chenkuan/ClionProjects/netfilter/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -70,7 +70,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/cygdrive/c/Users/yingzi/.CLion2016.3/system/cygwin_cmake/bin/cmake.exe -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/chenkuan/Downloads/clion-2016.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Users/yingzi/ClionProjects/netfilter/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chenkuan/ClionProjects/netfilter/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,168 +123,6 @@ netfilter/fast:
 	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/build
 .PHONY : netfilter/fast
 
-client/client.o: client/client.c.o
-
-.PHONY : client/client.o
-
-# target to build an object file
-client/client.c.o:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/client/client.c.o
-.PHONY : client/client.c.o
-
-client/client.i: client/client.c.i
-
-.PHONY : client/client.i
-
-# target to preprocess a source file
-client/client.c.i:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/client/client.c.i
-.PHONY : client/client.c.i
-
-client/client.s: client/client.c.s
-
-.PHONY : client/client.s
-
-# target to generate assembly for a file
-client/client.c.s:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/client/client.c.s
-.PHONY : client/client.c.s
-
-src/alarmDetection.o: src/alarmDetection.c.o
-
-.PHONY : src/alarmDetection.o
-
-# target to build an object file
-src/alarmDetection.c.o:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/alarmDetection.c.o
-.PHONY : src/alarmDetection.c.o
-
-src/alarmDetection.i: src/alarmDetection.c.i
-
-.PHONY : src/alarmDetection.i
-
-# target to preprocess a source file
-src/alarmDetection.c.i:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/alarmDetection.c.i
-.PHONY : src/alarmDetection.c.i
-
-src/alarmDetection.s: src/alarmDetection.c.s
-
-.PHONY : src/alarmDetection.s
-
-# target to generate assembly for a file
-src/alarmDetection.c.s:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/alarmDetection.c.s
-.PHONY : src/alarmDetection.c.s
-
-src/communication.o: src/communication.c.o
-
-.PHONY : src/communication.o
-
-# target to build an object file
-src/communication.c.o:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/communication.c.o
-.PHONY : src/communication.c.o
-
-src/communication.i: src/communication.c.i
-
-.PHONY : src/communication.i
-
-# target to preprocess a source file
-src/communication.c.i:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/communication.c.i
-.PHONY : src/communication.c.i
-
-src/communication.s: src/communication.c.s
-
-.PHONY : src/communication.s
-
-# target to generate assembly for a file
-src/communication.c.s:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/communication.c.s
-.PHONY : src/communication.c.s
-
-src/dealConf.o: src/dealConf.c.o
-
-.PHONY : src/dealConf.o
-
-# target to build an object file
-src/dealConf.c.o:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/dealConf.c.o
-.PHONY : src/dealConf.c.o
-
-src/dealConf.i: src/dealConf.c.i
-
-.PHONY : src/dealConf.i
-
-# target to preprocess a source file
-src/dealConf.c.i:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/dealConf.c.i
-.PHONY : src/dealConf.c.i
-
-src/dealConf.s: src/dealConf.c.s
-
-.PHONY : src/dealConf.s
-
-# target to generate assembly for a file
-src/dealConf.c.s:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/dealConf.c.s
-.PHONY : src/dealConf.c.s
-
-src/netFilter.o: src/netFilter.c.o
-
-.PHONY : src/netFilter.o
-
-# target to build an object file
-src/netFilter.c.o:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/netFilter.c.o
-.PHONY : src/netFilter.c.o
-
-src/netFilter.i: src/netFilter.c.i
-
-.PHONY : src/netFilter.i
-
-# target to preprocess a source file
-src/netFilter.c.i:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/netFilter.c.i
-.PHONY : src/netFilter.c.i
-
-src/netFilter.s: src/netFilter.c.s
-
-.PHONY : src/netFilter.s
-
-# target to generate assembly for a file
-src/netFilter.c.s:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/src/netFilter.c.s
-.PHONY : src/netFilter.c.s
-
-threadTest/kthread.o: threadTest/kthread.c.o
-
-.PHONY : threadTest/kthread.o
-
-# target to build an object file
-threadTest/kthread.c.o:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/threadTest/kthread.c.o
-.PHONY : threadTest/kthread.c.o
-
-threadTest/kthread.i: threadTest/kthread.c.i
-
-.PHONY : threadTest/kthread.i
-
-# target to preprocess a source file
-threadTest/kthread.c.i:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/threadTest/kthread.c.i
-.PHONY : threadTest/kthread.c.i
-
-threadTest/kthread.s: threadTest/kthread.c.s
-
-.PHONY : threadTest/kthread.s
-
-# target to generate assembly for a file
-threadTest/kthread.c.s:
-	$(MAKE) -f CMakeFiles/netfilter.dir/build.make CMakeFiles/netfilter.dir/threadTest/kthread.c.s
-.PHONY : threadTest/kthread.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -294,24 +132,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... netfilter"
-	@echo "... client/client.o"
-	@echo "... client/client.i"
-	@echo "... client/client.s"
-	@echo "... src/alarmDetection.o"
-	@echo "... src/alarmDetection.i"
-	@echo "... src/alarmDetection.s"
-	@echo "... src/communication.o"
-	@echo "... src/communication.i"
-	@echo "... src/communication.s"
-	@echo "... src/dealConf.o"
-	@echo "... src/dealConf.i"
-	@echo "... src/dealConf.s"
-	@echo "... src/netFilter.o"
-	@echo "... src/netFilter.i"
-	@echo "... src/netFilter.s"
-	@echo "... threadTest/kthread.o"
-	@echo "... threadTest/kthread.i"
-	@echo "... threadTest/kthread.s"
 .PHONY : help
 
 
