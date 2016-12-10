@@ -39,9 +39,6 @@ char *readConf(void) {
     return data;
 }
 
-
-
-
 int isLegal(char* data){
 
     if (!data || strlen(data) < MINAL_SIZE){
@@ -131,4 +128,44 @@ void extract(char* dest, char* content, char* data, int minlen){
     dest[end - start] = '\0';
 
     kfree(new_content);
+}
+
+char *in_ntoa(char *sip, __u32 in) {
+
+    unsigned char *p = (char *) &in;
+    char str[10];
+    int i;
+
+    strcpy(sip, "\"");
+    for (i = 0; i < 3; i++) {
+        strcat(sip, char2string(str, *(p + i)));
+        strcat(sip, ".");
+    }
+    strcat(sip, char2string(str, *(p + 3)));
+    strcat(sip, "\"");
+
+    return sip;
+}
+
+char *char2string(char *str, unsigned char c) {
+    int num;
+    num = (int) c;
+
+    if (num >= 100) {
+        str[0] = num / 100 + '0';
+        num %= 100;
+        str[1] = num / 10 + '0';
+        num %= 10;
+        str[2] = num + '0';
+        str[3] = '\0';
+    } else if (num >= 10) {
+        str[0] = num / 10 + '0';
+        num %= 10;
+        str[1] = num + '0';
+        str[2] = '\0';
+    } else {
+        str[0] = num + '0';
+        str[1] = '\0';
+    }
+    return str;
 }

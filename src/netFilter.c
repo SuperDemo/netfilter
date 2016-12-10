@@ -27,7 +27,7 @@ static struct nf_hook_ops nfho_single;
 
 ////#define PORT 25
 //#define SIZE 9 //dependence2中的给定事件集合buffer[]大小
-//#define MIN_SIZE 96 //符合给定schema的最小数据包长度
+#define MIN_SIZE 96 //符合给定schema的最小数据包长度
 //
 //
 ////钩子函数声明
@@ -45,7 +45,7 @@ char isapi[50];
 char content[50];
 char action[50];
 char sourceip[50];
-char target[50];
+char targetip[50];
 //
 //
 ////alarmDetection
@@ -85,78 +85,81 @@ char target[50];
 //}
 //
 //
+
+
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
 
-    if (!skb)
-        return NF_ACCEPT;
+    char *data; //ip layer data
 
-    struct iphdr *iph;
+    struct iphdr *iph;  //ip layer
     int ip_head_len;
+    int ip_body_len;
+    char sip[100], dip[100];
 
-//    char *data = NULL;
+    struct tcphdr *tcphead; //tcp layer
+    int tcp_head_len;
+    int tcp_body_len;
+
+    struct udphdr *udphead; //udp layer
+    int udp_head_len;
+    int udp_body_len;
+
 //    char message[50]; //记录message
 //    char title[50]; //记录抽象事件==主题
 //
-//    unsigned int data_len = 0;
-//    struct tcphdr *tcphead = NULL;
-//    struct udphdr *udphead = NULL;
-//    int tcp_udp_len = 0;
 //
 //    int i = 0; //循环计数变量
 //    struct completion cmpl;
 
-    iph = ip_hdr(skb);
-    if (!iph)
-        return NF_ACCEPT;
+    if (!skb) return NF_ACCEPT;
+    data = skb->data;
+    if (!data) return NF_ACCEPT;
 
+    //iph = ip_hdr(skb);
+    iph = (struct iphdr *) data;
     ip_head_len = iph->ihl * 4;
-    DEBUG("ip head len=:%d\n", ip_head_len);
-    return NF_ACCEPT;
+    ip_body_len = iph->tot_len - ip_head_len;
 
-//    if (iph->saddr != in_aton(sourceip)
-//        || iph->daddr != in_aton(target)) {
-//        return NF_ACCEPT;
-//    }
-//
-//    switch (iph->protocol) {
-//        case IPPROTO_TCP: {
-//            //获取tcp头，并计算其长度
-//            tcphead = (struct tcphdr *) (skb->data + ip_head_len);
-//            tcp_udp_len = tcphead->doff * 4;
-//
-//            data = skb->data + tcp_udp_len
-//                   + ip_head_len;
-//            data_len = ntohs(iph->tot_len)
-//                       - ip_head_len - tcp_udp_len;
-//
-//            //data长度小于最小要求长度，直接通过
-//            if (strlen(data) < MIN_SIZE) {
-//
-//                return NF_ACCEPT;
-//            }
-//
-//            break;
-//        }
-//        case IPPROTO_UDP: {
-//            //获取udp头部，并计算其长度
-//            udphead = (struct udphdr *) (skb->data + ip_head_len);
-//
-//            data = (unsigned char *) udphead
-//                   + sizeof(struct udphdr);
-//            data_len = udphead->len
-//                       - sizeof(struct udphdr);
-//
-//            //printk("data is:%s\n", data);
-//
-//            break;
-//        }
-//        default: {
-//
-//            return NF_ACCEPT;
-//        }
-//    }
-//
+    if (iph->saddr != in_aton(sourceip)
+        || iph->daddr != in_aton(targetip)) {
+        //DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+        return NF_ACCEPT;
+    }
+
+    data += ip_head_len;
+
+    DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+
+    switch (iph->protocol) {
+        case IPPROTO_TCP: {
+            //获取tcp头，并计算其长度
+            tcphead = (struct tcphdr *) data;
+            tcp_head_len = tcphead->doff * 4;
+            tcp_body_len = ip_body_len - tcp_head_len;
+            INFO("tcp_head_len=%d,tcp_body_len=%d\n", tcp_head_len, tcp_body_len);
+
+            //tcp body长度小于最小要求长度，直接通过
+            if (tcp_body_len < MIN_SIZE)
+                return NF_ACCEPT;
+            break;
+        }
+        case IPPROTO_UDP: {
+            //获取udp头部，并计算其长度
+            udphead = (struct udphdr *) data;
+            udp_head_len = sizeof(struct udphdr);
+            udp_body_len = udphead->len - udp_head_len;
+            INFO("udp_head_len=%d,udp_body_len=%d\n", udp_head_len, udp_body_len);
+            break;
+        }
+        default: {
+            DEBUG("proto=%d,IPPROTO_TCP=%d,IPPROTO_UDP=%d\n", iph->protocol, IPPROTO_TCP, IPPROTO_UDP);
+            return NF_ACCEPT;
+        }
+    }
+
+    return NF_ACCEPT;
+}
 //    if (isLegal(data)) {
 //        extractTitle(title, data);
 //
@@ -412,7 +415,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //    }
 //
 //    return NF_ACCEPT;
-}
+//}
 
 static int __init init(void){
 
@@ -433,7 +436,7 @@ static int __init init(void){
     extract(content_flag, "content_flag", readFileData, 0);
     extract(content, "content", readFileData, 0);
     extract(sourceip, "sourceip", readFileData, 0);
-    extract(target, "targetip", readFileData, 0);
+    extract(targetip, "targetip", readFileData, 0);
     extract(action, "action", readFileData, 0);
     extract(titlecontent, "titlecontent", readFileData, 0);
     extract(isapi, "isapi", readFileData, 0);
@@ -446,7 +449,7 @@ static int __init init(void){
                   "content_flag:%s, "
                   "content:%s, "
                   "isapi:%s\n",
-          titlecontent, direction, sourceip, target, action, content_flag, content, isapi);
+          titlecontent, direction, sourceip, targetip, action, content_flag, content, isapi);
 
     nfho_single.hook = (nf_hookfn*)hook_func;   //bound hook function
     nfho_single.hooknum = NF_INET_PRE_ROUTING;  //pre routing
@@ -468,8 +471,11 @@ static void __exit fini(void){
 
     INFO("移除netfilter模块！\n");
 
-    if (strcmp(direction, "=>")){   //如果选择单向拦截
+    if (strcmp(direction, "=>") == 0) {   //如果选择单向拦截
+        DEBUG("单向拦截\n");
         nf_unregister_hook(&nfho_single);
+    } else if (strcmp(direction, "<=>") == 0) {
+        DEBUG("双向拦截\n");
     }
 
 }
