@@ -3,6 +3,6 @@ project(netfilter)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES test)
+set(SOURCE_FILES gittest)
 
 add_executable(netfilter ${SOURCE_FILES})
