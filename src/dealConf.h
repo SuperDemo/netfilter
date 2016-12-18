@@ -1,3 +1,8 @@
+/**
+ * dealConf主要用来提供配置读取、数据包合法检查与提取、ip格式转换等功能
+ * @return
+ */
+
 
 char* readConf(void);
 
