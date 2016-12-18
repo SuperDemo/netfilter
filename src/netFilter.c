@@ -73,9 +73,19 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     if (iph->saddr != in_aton(sourceip)
         || iph->daddr != in_aton(targetip)) {
-        //DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+
         return NF_ACCEPT;
     }
+
+    //DEBUG("%s ---> %s\n", in_ntoa(sip, in_aton(sourceip)), in_ntoa(dip, in_aton(targetip)));
+    DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+
+//    if (iph->saddr == in_aton(sourceip)) {
+//        DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+//        DEBUG("%x ---> %x\n", iph->saddr, iph->daddr);
+//        DEBUG("%x ---> %x\n", in_aton(sourceip), in_aton(targetip));
+//    }
+    //return NF_ACCEPT;
 
     data += ip_head_len;
 
@@ -206,7 +216,7 @@ static int __init init(void){
     nfho_single.pf = PF_INET;
     nfho_single.priority = NF_IP_PRI_FILTER;
 
-    if (strcmp(direction, "=>") == 0){  //如果选择单向拦截
+    if (strcmp(direction, "=>") == 0) {  //如果选择单向拦截net_device
         DEBUG("单向拦截\n");
         nf_register_hook(&nfho_single);
     }
