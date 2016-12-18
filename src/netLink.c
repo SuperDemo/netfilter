@@ -12,12 +12,13 @@
 
 #include "log.h"
 #include "netLink.h"
-  
-#define NETLINK_TEST 20
+
+#define NETLINK_TEST 20 // 自定义的netlink协议号
 #define MAX_MSGSIZE 1024
 
 static struct sock *nl_sk;  // 内核套接字
 static struct netlink_kernel_cfg cfg;   // netlink内核配置参数
+static int pid;    // 客户端pid
 
 int createNetlink(void) {
     // 在内核中创建netlink，当用户态传来消息时触发绑定的接收消息函数
@@ -58,7 +59,6 @@ void recvMsgNetlink(struct sk_buff *skb) {
 
     struct nlmsghdr *nlh;   // 指向netlink消息首部的指针
     char str[100];  // 存放消息的缓冲区
-    int pid;    // 客户端pid
 
     if (skb->len >= NLMSG_SPACE(0)) {
 
@@ -78,10 +78,9 @@ void recvMsgNetlink(struct sk_buff *skb) {
 void sendMsgNetlink(char *message, int pid) {
     // 通过netlink向进程号为pid的用户态进程发送消息message
 
-    struct sk_buff *skb_1;
+    struct sk_buff *skb;
     struct nlmsghdr *nlh;
     int len = NLMSG_SPACE(MAX_MSGSIZE);
-    int slen = 0;
 
     if (!message || !nl_sk) return;
 
@@ -90,15 +89,15 @@ void sendMsgNetlink(char *message, int pid) {
         ERROR("my_net_link:alloc_skb_1 error\n");
     }
 
-    slen = stringlength(message);
-    nlh = nlmsg_put(skb, 0, 0, 0, MAX_MSGSIZE, 0);  // 设置netlink消息头部
+    nlh = nlmsg_put(skb, 0, 0, 0, MAX_MSGSIZE, 0);  // 设置netlink消息头部为nlh
 
     NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
-    // NETLINK_CB(skb).dst_pid = pid;
+    NETLINK_CB(skb).dst_pid = pid;  // 消息接收者的pid
     NETLINK_CB(skb).dst_group = 0;    // 目标为进程时，设置为0
 
-    memcpy(NLMSG_DATA(nlh), message, strlen(message) + 1);  // 设置消息主体
+    memcpy(NLMSG_DATA(nlh), message, strlen(message) + 1);  // 填充nlh为具体消息
     DEBUG("my_net_link:send message '%s'.\n", (char *) NLMSG_DATA(nlh));
 
+    // 发送单播消息，参数分别为nl_sk(内核套接字), skb(内核数据包), pid(目的进程), MSG_DONTWAIT(不阻塞)
     netlink_unicast(nl_sk, skb, pid, MSG_DONTWAIT); // 发送单播消息
 }
