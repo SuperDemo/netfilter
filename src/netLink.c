@@ -20,41 +20,6 @@ static struct sock *nl_sk;  // 内核套接字
 static struct netlink_kernel_cfg cfg;   // netlink内核配置参数
 static int pid;    // 客户端pid
 
-int createNetlink(void) {
-    // 在内核中创建netlink，当用户态传来消息时触发绑定的接收消息函数
-
-    // kernel 2.6
-    // nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, 1, nl_data_ready, NULL, THIS_MODULE);
-
-    // kernel 3.10
-    cfg.groups = 0; // 0表示单播，1表示多播
-    cfg.flags = 0;
-    cfg.input = recvMsgNetlink;    // 回调函数，当收到消息时触发
-    cfg.cb_mutex = NULL;
-
-    // 创建服务，init_net表示网络设备命名空间指针，NETLINK_TEST表示协议类型，cfg指向netlink的配置结构体
-    nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, &cfg);
-    if (!nl_sk) {
-        ERROR("my_net_link: create netlink socket error.\n");
-        return 1;
-    }
-    INFO("my_net_link: create netlink socket ok.\n");
-
-    return 0;  
-}
-
-int deleteNetlink(void) {
-    // 释放netlink
-
-    if (nl_sk) {
-        netlink_kernel_release(nl_sk);  
-    }
-
-    INFO("my_net_link: netlink socket released\n");
-
-    return 0;
-}
-
 static void recvMsgNetlink(struct sk_buff *skb) {
     // 当netlink上接收到消息时触发此函数
 
@@ -92,7 +57,7 @@ void sendMsgNetlink(char *message, int pid) {
 
     nlh = nlmsg_put(skb, 0, 0, 0, MAX_MSGSIZE, 0);  // 设置netlink消息头部为nlh
 
-    NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
+    //NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
     //NETLINK_CB(skb).dst_pid = pid;  // 消息接收者的pid
     NETLINK_CB(skb).dst_group = 0;    // 目标为进程时，设置为0
 
@@ -101,4 +66,39 @@ void sendMsgNetlink(char *message, int pid) {
 
     // 发送单播消息，参数分别为nl_sk(内核套接字), skb(套接字缓冲区), pid(目的进程), MSG_DONTWAIT(不阻塞)
     netlink_unicast(nl_sk, skb, pid, MSG_DONTWAIT); // 发送单播消息
+}
+
+int createNetlink(void) {
+    // 在内核中创建netlink，当用户态传来消息时触发绑定的接收消息函数
+
+    // kernel 2.6
+    // nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, 1, nl_data_ready, NULL, THIS_MODULE);
+
+    // kernel 3.10
+    cfg.groups = 0; // 0表示单播，1表示多播
+    cfg.flags = 0;
+    cfg.input = recvMsgNetlink;    // 回调函数，当收到消息时触发
+    cfg.cb_mutex = NULL;
+
+    // 创建服务，init_net表示网络设备命名空间指针，NETLINK_TEST表示协议类型，cfg指向netlink的配置结构体
+    nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, &cfg);
+    if (!nl_sk) {
+        ERROR("my_net_link: create netlink socket error.\n");
+        return 1;
+    }
+    INFO("my_net_link: create netlink socket ok.\n");
+
+    return 0;
+}
+
+int deleteNetlink(void) {
+    // 释放netlink
+
+    if (nl_sk) {
+        netlink_kernel_release(nl_sk);
+    }
+
+    INFO("my_net_link: netlink socket released\n");
+
+    return 0;
 }
