@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.6)
-project(netfilter)
+project(client)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES gittest)
+set(SOURCE_FILES client/client.c)
 
-add_executable(netfilter ${SOURCE_FILES})
+add_executable(client ${SOURCE_FILES})
