@@ -4,8 +4,8 @@
 
 int createNetlink(void);
 
-void sendMsgNetlink(void);
+void sendMsgNetlink(char *message, int pid);
 
-void recvMsgNetlink(void);
+//void recvMsgNetlink(void);
 
-void deleteNetlink(void);
+int deleteNetlink(void);

@@ -29,9 +29,8 @@ int createNetlink(void) {
     // kernel 3.10
     cfg.groups = 0; // 0表示单播，1表示多播
     cfg.flags = 0;
-    cfg.skb = recvMsgNetlink;    // 回调函数，当收到消息时触发
+    cfg.input = recvMsgNetlink;    // 回调函数，当收到消息时触发
     cfg.cb_mutex = NULL;
-    cfg.group = 0;
 
     // 创建服务，init_net表示网络设备命名空间指针，NETLINK_TEST表示协议类型，cfg指向netlink的配置结构体
     nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, &cfg);
@@ -52,9 +51,11 @@ int deleteNetlink(void) {
     }
 
     INFO("my_net_link: netlink socket released\n");
+
+    return 0;
 }
 
-void recvMsgNetlink(struct sk_buff *skb) {
+static void recvMsgNetlink(struct sk_buff *skb) {
     // 当netlink上接收到消息时触发此函数
 
     struct nlmsghdr *nlh;   // 指向netlink消息首部的指针
@@ -92,7 +93,7 @@ void sendMsgNetlink(char *message, int pid) {
     nlh = nlmsg_put(skb, 0, 0, 0, MAX_MSGSIZE, 0);  // 设置netlink消息头部为nlh
 
     NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
-    NETLINK_CB(skb).dst_pid = pid;  // 消息接收者的pid
+    //NETLINK_CB(skb).dst_pid = pid;  // 消息接收者的pid
     NETLINK_CB(skb).dst_group = 0;    // 目标为进程时，设置为0
 
     memcpy(NLMSG_DATA(nlh), message, strlen(message) + 1);  // 填充nlh为具体消息
