@@ -8,35 +8,40 @@
 #include <asm/types.h>
 #include <linux/netlink.h>
 #include <linux/socket.h>
+#include <errno.h>
 
+#include "../src/netLink.h"
+
+#define MAXMSG 1000
 
 struct netlink_message {
     struct nlmsghdr hdr;    //netlink message header
-    char *my_msg;    //message body
+    char my_msg[MAXMSG];    //message body
 } send_buf, recv_buf;
 
 int main(int argc, char *argv[]) {
 
-    //create connection
+    // 创建客户端原始套接字，协议为NETLINK_TEST
     int sock_fd;
-    if ((sock_fd = sock_fd = socket(PF_NETLINK, SOCK_RAW, NETLINK_TEST)) < 0) {
-        perror("can't create netlink socket!");
+    if ((sock_fd = socket(PF_NETLINK, SOCK_RAW, NETLINK_TEST)) < 0) {
+        perror("can't create netlink socket! %s\n", strerror(errno));
         return 1;
     }
 
-    //create destination address
+    // 创建目标地址数据结构
     struct sockaddr_nl dest_addr;
-    dest_addr.nl_family = AF_NETLINK;
-    dest_addr.nl_pad = 0;
+    memset(&dest_addr, 0, sizeof(dest_addr));   //清空
+    dest_addr.nl_family = AF_NETLINK;   // 设置协议簇
+    //dest_addr.nl_pad = 0;
     dest_addr.nl_pid = 0;
     dest_addr.nl_groups = 0;
 
-    //netlink message
+    // 设置netlink消息
     send_buf.hdr.nlmsg_len = sizeof(struct netlink_message);
     send_buf.hdr.nlmsg_flags = 0;
     send_buf.hdr.nlmsg_type = NLMSG_NOOP;
     send_buf.hdr.nlmsg_pid = getpid();
-    send_buf.my_msg = "testclient";
+    strcpy(send_buf.my_msg, "testclient");
 
     //send message
     if (sendto(sock_fd, &send_buf, sizeof(send_buf), 0, (struct sockaddr *) &dest_addr, sizeof(dest_addr)) < 0) {

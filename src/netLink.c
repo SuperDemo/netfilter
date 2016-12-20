@@ -3,18 +3,13 @@
 #include <linux/timer.h>  
 #include <linux/time.h>  
 #include <linux/types.h>  
-#include <net/sock.h>  
-//#include <net/netlink.h>
-
+#include <net/sock.h>
 #include <linux/netlink.h>
 #include <linux/kernel.h>
 #include <linux/string.h>
 
 #include "log.h"
 #include "netLink.h"
-
-#define NETLINK_TEST 20 // 自定义的netlink协议号
-#define MAX_MSGSIZE 1024
 
 static struct sock *nl_sk;  // 内核套接字
 static struct netlink_kernel_cfg cfg;   // netlink内核配置参数
@@ -25,6 +20,8 @@ static void recvMsgNetlink(struct sk_buff *skb) {
 
     struct nlmsghdr *nlh;   // 指向netlink消息首部的指针
     char str[100];  // 存放消息的缓冲区
+
+    DEBUG("recvMsgNetlink is triggerd\n");
 
     if (skb->len >= NLMSG_SPACE(0)) {
 
@@ -46,7 +43,7 @@ void sendMsgNetlink(char *message, int pid) {
 
     struct sk_buff *skb;    // 定义套接字缓冲区
     struct nlmsghdr *nlh;
-    int len = NLMSG_SPACE(MAX_MSGSIZE);
+    int len = strlen(message) + 1;
 
     if (!message || !nl_sk) return;
 
@@ -55,7 +52,7 @@ void sendMsgNetlink(char *message, int pid) {
         ERROR("my_net_link:alloc_skb_1 error\n");
     }
 
-    nlh = nlmsg_put(skb, 0, 0, 0, MAX_MSGSIZE, 0);  // 设置netlink消息头部为nlh
+    nlh = nlmsg_put(skb, 0, 0, 0, len, 0);  // 设置netlink消息头部为nlh
 
     //NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
     //NETLINK_CB(skb).dst_pid = pid;  // 消息接收者的pid
