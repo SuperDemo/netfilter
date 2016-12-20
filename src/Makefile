@@ -1,6 +1,6 @@
 MODULE_NAME := netfilter
 RESMAN_CORE_OBJS := netFilter.o
-RESMAN_GLUE_OBJS := dealConf.o
+RESMAN_GLUE_OBJS := dealConf.o netLink.o
 $(MODULE_NAME)-objs := $(RESMAN_CORE_OBJS) $(RESMAN_GLUE_OBJS)
 
 obj-m := netfilter.o
