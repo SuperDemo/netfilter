@@ -94,7 +94,7 @@ void extract(char* dest, char* content, char* data, int minlen){
     new_content = (char *) kmalloc(strlen(content) + strlen("</>") + 1, GFP_KERNEL);  // 在内核中分配内存
 
     if (!new_content){
-        printk(KERN_EMERG "kmalloc new_content failed!\n");
+        ERROR("kmalloc new_content failed!\n");
         dest[0] = '\0';     // 分配内存失败则将返回字符串置空
         return;
     }
@@ -107,7 +107,7 @@ void extract(char* dest, char* content, char* data, int minlen){
     start = strstr(data, new_content + 1);
     if (!start){
         // 匹配失败则释放内存并置空字符串返回
-        printk(KERN_EMERG "cannot find %s\n", new_content + 1);
+        ERROR("cannot find %s\n", new_content + 1);
         dest[0] = '\0';
         kfree(new_content);
         return;
@@ -131,7 +131,7 @@ void extract(char* dest, char* content, char* data, int minlen){
 
     if (end - start <= 0){
         // 内容为空的意外情况
-        printk(KERN_EMERG "<%s></%s> is empty!\n", content, content);
+        ERROR("<%s></%s> is empty!\n", content, content);
         dest[0] = '\0';
         kfree(new_content);
         return;

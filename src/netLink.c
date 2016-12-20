@@ -78,7 +78,7 @@ void recvMsgNetlink(struct sk_buff *skb) {
 void sendMsgNetlink(char *message, int pid) {
     // 通过netlink向进程号为pid的用户态进程发送消息message
 
-    struct sk_buff *skb;
+    struct sk_buff *skb;    // 定义套接字缓冲区
     struct nlmsghdr *nlh;
     int len = NLMSG_SPACE(MAX_MSGSIZE);
 
@@ -98,6 +98,6 @@ void sendMsgNetlink(char *message, int pid) {
     memcpy(NLMSG_DATA(nlh), message, strlen(message) + 1);  // 填充nlh为具体消息
     DEBUG("my_net_link:send message '%s'.\n", (char *) NLMSG_DATA(nlh));
 
-    // 发送单播消息，参数分别为nl_sk(内核套接字), skb(内核数据包), pid(目的进程), MSG_DONTWAIT(不阻塞)
+    // 发送单播消息，参数分别为nl_sk(内核套接字), skb(套接字缓冲区), pid(目的进程), MSG_DONTWAIT(不阻塞)
     netlink_unicast(nl_sk, skb, pid, MSG_DONTWAIT); // 发送单播消息
 }
