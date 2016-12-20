@@ -24,17 +24,20 @@ int main(int argc, char *argv[]) {
     // 创建客户端原始套接字，协议为NETLINK_TEST
     int sock_fd;
     if ((sock_fd = socket(PF_NETLINK, SOCK_RAW, NETLINK_TEST)) < 0) {
-        perror("can't create netlink socket! %s\n", strerror(errno));
+        perror("can't create netlink socket!\n");
         return 1;
     }
 
     // 创建目标地址数据结构
     struct sockaddr_nl dest_addr;
+    int dest_addr_len = sizeof(dest_addr);  //该数据结构长度
     memset(&dest_addr, 0, sizeof(dest_addr));   //清空
     dest_addr.nl_family = AF_NETLINK;   // 设置协议簇
     //dest_addr.nl_pad = 0;
     dest_addr.nl_pid = 0;
     dest_addr.nl_groups = 0;
+
+
 
     // 设置netlink消息
     send_buf.hdr.nlmsg_len = sizeof(struct netlink_message);
@@ -51,7 +54,7 @@ int main(int argc, char *argv[]) {
 
     //recv message
     printf("waiting message from kernel!\n");
-    if (recvfrom(sock_fd, &recv_buf, sizeof(recv_buf), 0, (struct sockaddr *) &dest_addr, sizeof(dest_addr)) < 0) {
+    if (recvfrom(sock_fd, &recv_buf, sizeof(recv_buf), 0, (struct sockaddr *) &dest_addr, &dest_addr_len) < 0) {
         printf("recv message from kernel failed!\n");
     } else {
         printf("Get messages:%s\n", recv_buf.my_msg);
