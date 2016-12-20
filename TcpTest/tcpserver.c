@@ -24,12 +24,16 @@ int main() {
     int client;
     char buffer[2000];
     int iDataNum;
+    unsigned int value = 0x1;
 
     // 创建服务端套接字
     if ((serverSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("create socket failed!");
         return 1;
     }
+
+    // 设置地址复用
+    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (void *) &value, sizeof(value));
 
     // 配置服务端地址
     bzero(&server_addr, sizeof(server_addr));
