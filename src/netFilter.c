@@ -42,6 +42,8 @@ char action[50];
 char sourceip[50];
 char targetip[50];
 
+char mymessagebuf[100];
+
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
     // 单向拦截数据的钩子函数
@@ -79,6 +81,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     // 显示捕获的ip数据报的点分10进制形式
     DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    sprintf(mymessagebuf, "%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    sendMsgNetlink(mymessagebuf);
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 

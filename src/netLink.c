@@ -33,12 +33,12 @@ static void recvMsgNetlink(struct sk_buff *skb) {
         pid = nlh->nlmsg_pid;   // 获取消息中客户端进程pid
         INFO("netlink client pid is: %d \n", pid);
 
-        sendMsgNetlink("msg from kernel!", pid);  // 向客户端发送回复消息
+        sendMsgNetlink("msg from kernel!");  // 向客户端发送回复消息
     }
 }
 
 
-void sendMsgNetlink(char *message, int pid) {
+void sendMsgNetlink(char *message) {
     // 通过netlink向进程号为pid的用户态进程发送消息message
 
     struct sk_buff *skb;    // 定义套接字缓冲区
