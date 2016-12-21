@@ -8,6 +8,7 @@
 #include <linux/kernel.h>
 #include <linux/string.h>
 
+#define LOGKERNEL
 #include "log.h"
 #include "netLink.h"
 
@@ -45,8 +46,22 @@ int sendMsgNetlink(char *message) {
     struct nlmsghdr *nlh;
     int len = strlen(message) + 1;
 
-    if (!message || !nl_sk || !pid) {
-        ERROR("send msg failed\n");
+//    if (!message || !nl_sk || !pid) {
+//        ERROR("send msg failed\n");
+//        return 1;
+//    }
+    if (!message) {
+        ERROR("send msg failed! message is null");
+        return 1;
+    }
+
+    if (!nl_sk) {
+        ERROR("send msg failed! nl_sk is null");
+        return 1;
+    }
+
+    if (!pid) {
+        ERROR("send msg failed! pid is null");
         return 1;
     }
 

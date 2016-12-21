@@ -18,31 +18,15 @@
 
 #include<linux/string.h>
 
+#define LOGUSER
 #include "log.h"
 #include "netFilter.h"
 #include "dealConf.h"
 #include "netLink.h"
 
-static struct nf_hook_ops nfho_single;  // netfilter钩子
-
-#define MIN_SIZE 96 //符合给定schema的最小数据包长度
-
-// 钩子函数声明
-unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
-                       const struct net_device *out, int (*okfn)(struct sk_buff *));
-
 unsigned static int count = 0; //记录过滤的数据包数目
 
-char direction[50];
-char titlecontent[50];
-char content_flag[20];
-char isapi[50];
-char content[50];
-char action[50];
-char sourceip[50];
-char targetip[50];
 
-char mymessagebuf[100] = "from netFilter!";
 
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
@@ -73,8 +57,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = iph->tot_len - ip_head_len;   //获得数据部分长度
 
-    sprintf(mymessagebuf, "sprintf test");
-    sendMsgNetlink(mymessagebuf);
+    //printf(mymessagebuf, "sprintf test: %s", in_ntoa(sip, iph->saddr));
+    DEBUG("sprintf test: %s", in_ntoa(sip, iph->saddr));
+    //sendMsgNetlink(mymessagebuf);
 
     if (iph->saddr != in_aton(sourceip)
         || iph->daddr != in_aton(targetip)) {
@@ -178,76 +163,3 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     return NF_ACCEPT;
 }
-
-static int __init init(void){
-    // 插入模块时
-
-    char *readFileData;
-
-    INFO("加载netfilter模块！\n");
-
-    // 从配置文件中读取配置
-    readFileData = readConf();
-    if (!readFileData){
-        WARNING("cannot readConf!\n");
-        return 1;
-    }
-    else{
-        DEBUG("readConf: %s\n", readFileData);
-    }
-
-    // 解析配置
-    extract(direction, "direction", readFileData, 0);
-    extract(content_flag, "content_flag", readFileData, 0);
-    extract(content, "content", readFileData, 0);
-    extract(sourceip, "sourceip", readFileData, 0);
-    extract(targetip, "targetip", readFileData, 0);
-    extract(action, "action", readFileData, 0);
-    extract(titlecontent, "titlecontent", readFileData, 0);
-    extract(isapi, "isapi", readFileData, 0);
-
-    DEBUG("titlecontent:%s, "
-                  "direction:%s, "
-                  "sourceip:%s, "
-                  "targetip:%s, "
-                  "action:%s, "
-                  "content_flag:%s, "
-                  "content:%s, "
-                  "isapi:%s\n",
-          titlecontent, direction, sourceip, targetip, action, content_flag, content, isapi);
-
-    createNetlink();    // 初始化netlink模块
-
-    nfho_single.hook = (nf_hookfn *) hook_func;   // 绑定钩子函数
-    nfho_single.hooknum = NF_INET_PRE_ROUTING;  // 数据流入前触发
-    nfho_single.pf = PF_INET;
-    nfho_single.priority = NF_IP_PRI_FILTER;
-
-    if (strcmp(direction, "=>") == 0) {  // 如果选择单向拦截
-        DEBUG("单向拦截\n");
-        nf_register_hook(&nfho_single); //注册一个netfilter钩子
-    } else if (strcmp(direction, "<=>") == 0) {    //如果选择双向拦截
-        DEBUG("双向拦截\n");
-    }
-
-    return 0;
-}
-
-static void __exit fini(void){
-    // 移除模块时
-
-    INFO("移除netfilter模块！\n");
-
-    deleteNetlink();    // 释放netlink
-
-    if (strcmp(direction, "=>") == 0) {   // 如果选择单向拦截
-        DEBUG("单向拦截\n");
-        nf_unregister_hook(&nfho_single);   // 卸载钩子
-    } else if (strcmp(direction, "<=>") == 0) {     // 如果选择双向拦截
-        DEBUG("双向拦截\n");
-    }
-
-}
-
-module_init(init);  // 模块入口，插入模块后调用绑定函数
-module_exit(fini);  // 模块出口，插入模块后调用绑定函数
