@@ -6,7 +6,7 @@
 
 int createNetlink(void);
 
-void sendMsgNetlink(char *message);
+int sendMsgNetlink(char *message);
 
 //void recvMsgNetlink(void);
 

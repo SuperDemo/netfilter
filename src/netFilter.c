@@ -73,6 +73,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = iph->tot_len - ip_head_len;   //获得数据部分长度
 
+    sendMsgNetlink("from netFilter!");
+
     if (iph->saddr != in_aton(sourceip)
         || iph->daddr != in_aton(targetip)) {
         // 比较配置中ip与获取ip的16进制形式
@@ -81,8 +83,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     // 显示捕获的ip数据报的点分10进制形式
     DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-    sprintf(mymessagebuf, "%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-    sendMsgNetlink(mymessagebuf);
+    //sprintf(mymessagebuf, "%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    //sendMsgNetlink(mymessagebuf);
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
