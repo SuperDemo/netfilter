@@ -51,24 +51,14 @@ int sendMsgNetlink(char *message) {
 //        ERROR("send msg failed\n");
 //        return 1;
 //    }
-    if (!message) {
-        ERROR("send msg failed! message is null");
-        return 1;
-    }
-
-    if (!nl_sk) {
-        ERROR("send msg failed! nl_sk is null");
-        return 1;
-    }
-
-    if (!pid) {
-        ERROR("send msg failed! pid is null");
+    if (!message || !nl_sk || !pid) {
+        INFO("send msg failed!");
         return 1;
     }
 
     skb = alloc_skb(len, GFP_KERNEL); //申请一个skb,长度为len,优先级为GFP_KERNEL
     if (!skb) {
-        ERROR("my_net_link:alloc_skb_1 error\n");
+        WARNING("my_net_link:alloc_skb_1 error\n");
         return 1;
     }
 

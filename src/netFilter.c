@@ -18,11 +18,22 @@
 
 #include<linux/string.h>
 
-//#define LOGUSER
 #include "log_message.h"
 #include "netFilter.h"
 #include "dealConf.h"
 #include "netLink.h"
+
+
+extern char direction[50];
+extern char titlecontent[50];
+extern char content_flag[20];
+extern char isapi[50];
+extern char content[50];
+extern char action[50];
+extern char sourceip[50];
+extern char targetip[50];
+
+extern struct nf_hook_ops nfho_single;  // netfilter钩子
 
 unsigned static int count = 0; //记录过滤的数据包数目
 
@@ -55,9 +66,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = iph->tot_len - ip_head_len;   //获得数据部分长度
 
-    //printf(mymessagebuf, "sprintf test: %s", in_ntoa(sip, iph->saddr));
-    DEBUG("sprintf test: %s", in_ntoa(sip, iph->saddr));
-    //sendMsgNetlink(mymessagebuf);
+    //DEBUG("sprintf test: %s", in_ntoa(sip, iph->saddr));
 
     if (iph->saddr != in_aton(sourceip)
         || iph->daddr != in_aton(targetip)) {
@@ -67,18 +76,13 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     // 显示捕获的ip数据报的点分10进制形式
     DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-//    strcpy(mymessagebuf, in_ntoa(sip, iph->saddr));
-//    strcat(mymessagebuf, " ---> ");
-//    strcat(mymessagebuf, in_ntoa(dip, iph->daddr));
-//    sendMsgNetlink(mymessagebuf);
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
     switch (iph->protocol) {    // 根据TCP还是UDP进行不同的处理
         case IPPROTO_TCP: {
             //获取tcp头，并计算其长度
-            tcphead = ()
-            struct tcphdr *data;
+            tcphead = (struct tcphdr *) data;
             tcp_head_len = tcphead->doff * 4;
             tcp_body_len = ip_body_len - tcp_head_len;
             INFO("tcp_head_len=%d, tcp_body_len=%d\n", tcp_head_len, tcp_body_len);
@@ -106,6 +110,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             return NF_ACCEPT;
         }
     }
+
+    DEBUG("data:%s", data);
 
     // 检查数据部分合法性
     if (isLegal(data)) {
@@ -158,6 +164,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
                 }
             }
         }
+    } else {
+        DEBUG("data is illegal");
     }
 
     return NF_ACCEPT;

@@ -24,6 +24,17 @@
 #include "dealConf.h"
 #include "netLink.h"
 
+char direction[50];
+char titlecontent[50];
+char content_flag[20];
+char isapi[50];
+char content[50];
+char action[50];
+char sourceip[50];
+char targetip[50];
+
+struct nf_hook_ops nfho_single;  // netfilter钩子
+
 static int __initinit(void){
     // 插入模块时
 

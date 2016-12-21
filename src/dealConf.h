@@ -3,7 +3,6 @@
  * @return
  */
 
-
 char* readConf(void);
 
 int isLegal(char* data);

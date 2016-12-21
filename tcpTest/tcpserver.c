@@ -33,7 +33,7 @@ int main() {
     }
 
     // 设置地址复用
-    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (void *) &value, sizeof(value));
+    setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, (void *) &value, sizeof(value));
 
     // 配置服务端地址
     bzero(&server_addr, sizeof(server_addr));
@@ -54,34 +54,34 @@ int main() {
     }
 
     // 循环接收客户端数据
-    while (1) {
-        printf("Listening on port: %d\n", SERVER_PORT);
+    printf("Listening on port: %d\n", SERVER_PORT);
 
-        // 接收客户端请求，建立一个客户端套接字
-        client = accept(serverSocket, (struct sockaddr *) &clientAddr, (socklen_t *) &addr_len);
-        if (client < 0) {
-            perror("accept from client failed!");
+    // 接收客户端请求，建立一个客户端套接字
+    client = accept(serverSocket, (struct sockaddr *) &clientAddr, (socklen_t *) &addr_len);
+    if (client < 0) {
+        perror("accept from client failed!");
+        return 1;
+    }
+    printf("\nrecv client data...n");
+    printf("IP is %s\n", inet_ntoa(clientAddr.sin_addr));
+    printf("Port is %d\n", htons(clientAddr.sin_port));
+
+    // 循环接受当次连接客户端发送给服务端的数据
+    while (1) {
+        iDataNum = recv(client, buffer, 1024, 0);   // 单次接收1024字节
+        if (iDataNum < 0) {
+            perror("recv from client failed!");
             continue;
         }
-        printf("\nrecv client data...n");
-        printf("IP is %s\n", inet_ntoa(clientAddr.sin_addr));
-        printf("Port is %d\n", htons(clientAddr.sin_port));
+        buffer[iDataNum] = '\0';    // 将接收到的字符串收尾
 
-        // 循环接受当次连接客户端发送给服务端的数据
-        while (1) {
-            iDataNum = recv(client, buffer, 1024, 0);   // 单次接收1024字节
-            if (iDataNum < 0) {
-                perror("recv from client failed!");
-                continue;
-            }
-            buffer[iDataNum] = '\0';    // 将接收到的字符串收尾
-            if (strcmp(buffer, "quit") == 0)
-                break;
-            printf("%d recv data is %s\n", iDataNum, buffer);
+        printf("%d recv data is %s\n", iDataNum, buffer);
 
-            // 将接收到的字符串再发回给客户端
-            send(client, buffer, iDataNum, 0);
-        }
+        if (strcmp(buffer, "quit") == 0)
+            break;
+
+        // 将接收到的字符串再发回给客户端
+        send(client, buffer, iDataNum, 0);
     }
     return 0;
 }

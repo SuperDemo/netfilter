@@ -44,7 +44,7 @@ int main() {
 
     // 循环与服务端通信
     while (1) {
-        printf("Input your world:>");
+        printf("Input your word:>");
         scanf("%s", sendbuf);
         printf("\n");
 
