@@ -45,7 +45,9 @@ void sendMsgNetlink(char *message) {
     struct nlmsghdr *nlh;
     int len = strlen(message) + 1;
 
-    if (!message || !nl_sk) return;
+    if (!message || !nl_sk || !pid) {
+        ERROR("send msg failed\n");
+    }
 
     skb = alloc_skb(len, GFP_KERNEL); //申请一个skb,长度为len,优先级为GFP_KERNEL
     if (!skb) {
@@ -67,6 +69,7 @@ void sendMsgNetlink(char *message) {
 
 int createNetlink(void) {
     // 在内核中创建netlink，当用户态传来消息时触发绑定的接收消息函数
+    pid = 0;
 
     // kernel 2.6
     // nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, 1, nl_data_ready, NULL, THIS_MODULE);
