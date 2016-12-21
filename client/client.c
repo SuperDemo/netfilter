@@ -37,8 +37,6 @@ int main(int argc, char *argv[]) {
     dest_addr.nl_pid = 0;
     dest_addr.nl_groups = 0;
 
-
-
     // 设置netlink消息
     send_buf.hdr.nlmsg_len = sizeof(struct netlink_message);
     send_buf.hdr.nlmsg_flags = 0;

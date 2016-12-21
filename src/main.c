@@ -17,7 +17,7 @@
 #include <linux/uaccess.h>
 #include<linux/string.h>
 
-#define LOGKERNEL
+//#define LOGKERNEL
 
 #include "log.h"
 #include "netFilter.h"
@@ -96,4 +96,4 @@ static void __exitfini(void){
 module_init(init);  // 模块入口，插入模块后调用绑定函数
 module_exit(fini);  // 模块出口，插入模块后调用绑定函数
 
-#undef LOGKERNEL
+//#undef LOGKERNEL

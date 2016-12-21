@@ -18,15 +18,13 @@
 
 #include<linux/string.h>
 
-#define LOGUSER
-#include "log.h"
+//#define LOGUSER
+#include "log_message.h"
 #include "netFilter.h"
 #include "dealConf.h"
 #include "netLink.h"
 
 unsigned static int count = 0; //记录过滤的数据包数目
-
-
 
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
@@ -79,7 +77,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     switch (iph->protocol) {    // 根据TCP还是UDP进行不同的处理
         case IPPROTO_TCP: {
             //获取tcp头，并计算其长度
-            tcphead = (struct tcphdr *) data;
+            tcphead = ()
+            struct tcphdr *data;
             tcp_head_len = tcphead->doff * 4;
             tcp_body_len = ip_body_len - tcp_head_len;
             INFO("tcp_head_len=%d, tcp_body_len=%d\n", tcp_head_len, tcp_body_len);

@@ -6,7 +6,7 @@
 #include<linux/string.h>
 #include <linux/slab.h>
 
-#define LOGKERNEL
+//#define LOGKERNEL
 #include "log.h"
 #include "dealConf.h"
 

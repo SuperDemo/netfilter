@@ -7,8 +7,9 @@
 #include <linux/netlink.h>
 #include <linux/kernel.h>
 #include <linux/string.h>
+#include <linux/version.h>
 
-#define LOGKERNEL
+//#define LOGKERNEL
 #include "log.h"
 #include "netLink.h"
 
@@ -89,9 +90,8 @@ int createNetlink(void) {
     // 在内核中创建netlink，当用户态传来消息时触发绑定的接收消息函数
     pid = 0;
 
-    // kernel 2.6
-    // nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, 1, nl_data_ready, NULL, THIS_MODULE);
-
+    // 对不同版本的内核调用不同的函数
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)
     // kernel 3.10
     cfg.groups = 0; // 0表示单播，1表示多播
     cfg.flags = 0;
@@ -100,6 +100,11 @@ int createNetlink(void) {
 
     // 创建服务，init_net表示网络设备命名空间指针，NETLINK_TEST表示协议类型，cfg指向netlink的配置结构体
     nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, &cfg);
+#else
+    // kernel 2.6
+    nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, 1, nl_data_ready, NULL, THIS_MODULE);
+#endif
+
     if (!nl_sk) {
         ERROR("my_net_link: create netlink socket error.\n");
         return 1;
