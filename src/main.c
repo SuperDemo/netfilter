@@ -29,10 +29,7 @@ static int __initinit(void){
 
     char *readFileData;
 
-    //INFO("加载netfilter模块！\n");
-    printk(KERN_EMERG
-    "init netfilter!\n");
-    return 0;
+    INFO("加载netfilter模块！\n");
 
     // 从配置文件中读取配置
     readFileData = readConf();
@@ -84,7 +81,6 @@ static void __exitfini(void){
     // 移除模块时
 
     INFO("移除netfilter模块！\n");
-    return;
 
     deleteNetlink();    // 释放netlink
 
