@@ -33,7 +33,7 @@ static void recvMsgNetlink(struct sk_buff *skb) {
         pid = nlh->nlmsg_pid;   // 获取消息中客户端进程pid
         INFO("netlink client pid is: %d \n", pid);
 
-        //sendMsgNetlink("msg from kernel!");  // 向客户端发送回复消息
+        sendMsgNetlink("you have connected to the kernel!");  // 向客户端发送回复消息
     }
 }
 

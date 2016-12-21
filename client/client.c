@@ -53,11 +53,13 @@ int main(int argc, char *argv[]) {
     }
 
     //recv message
-    printf("waiting message from kernel!\n");
-    if (recvfrom(sock_fd, &recv_buf, sizeof(recv_buf), 0, (struct sockaddr *) &dest_addr, &dest_addr_len) < 0) {
-        printf("recv message from kernel failed!\n");
-    } else {
-        printf("Get messages:%s\n", recv_buf.my_msg);
+    while (1) {
+        // printf("waiting message from kernel!\n");
+        if (recvfrom(sock_fd, &recv_buf, sizeof(recv_buf), 0, (struct sockaddr *) &dest_addr, &dest_addr_len) < 0) {
+            printf("recv message from kernel failed!\n");
+        } else {
+            printf("Get messages:%s\n", recv_buf.my_msg);
+        }
     }
 
     close(sock_fd);
