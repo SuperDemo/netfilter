@@ -22,6 +22,8 @@ int main() {
     char sendbuf[200];
     char recvbuf[200];
     int iDataNum;
+    int i;
+    int j;
 
     // 创建客户端套接字
     if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -43,17 +45,22 @@ int main() {
     printf("connect with destination host...\n");
 
     // 循环与服务端通信
-    while (1) {
-        printf("Input your word:>");
-        scanf("%s", sendbuf);
-        printf("\n");
+    strcpy(sendbuf, "abcdefghijklmnopqrstuvwxyz");
+    for (i = 0; i < 100000; i++) {
+        //printf("Input your word:>");
+        //scanf("%s", sendbuf);
+        //printf("\n");
+        j = i % 26;
+        sendbuf[j] = j + 'a';
+        sendbuf[j + 1] = '\0';
 
         send(clientSocket, sendbuf, strlen(sendbuf), 0);
         if (strcmp(sendbuf, "quit") == 0)
             break;
-        iDataNum = recv(clientSocket, recvbuf, 200, 0);
-        recvbuf[iDataNum] = '\0';
-        printf("recv data of my world is: %s\n", recvbuf);
+        usleep(100000);
+        //iDataNum = recv(clientSocket, recvbuf, 200, 0);
+        //recvbuf[iDataNum] = '\0';
+        //printf("recv data of my world is: %s\n", recvbuf);
     }
     close(clientSocket);
     return 0;
