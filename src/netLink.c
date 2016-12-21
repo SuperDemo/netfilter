@@ -47,6 +47,7 @@ int sendMsgNetlink(char *message) {
 
     if (!message || !nl_sk || !pid) {
         ERROR("send msg failed\n");
+        return 1;
     }
 
     skb = alloc_skb(len, GFP_KERNEL); //申请一个skb,长度为len,优先级为GFP_KERNEL
@@ -66,6 +67,7 @@ int sendMsgNetlink(char *message) {
 
     // 发送单播消息，参数分别为nl_sk(内核套接字), skb(套接字缓冲区), pid(目的进程), MSG_DONTWAIT(不阻塞)
     netlink_unicast(nl_sk, skb, pid, MSG_DONTWAIT); // 发送单播消息
+    return 0;
 }
 
 int createNetlink(void) {
