@@ -33,6 +33,8 @@ extern char action[50];
 extern char sourceip[50];
 extern char targetip[50];
 
+static char TUMessage[1000];
+
 extern struct nf_hook_ops nfho_single;  // netfilter钩子
 
 unsigned static int count = 0; //记录过滤的数据包数目
@@ -75,7 +77,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     // 显示捕获的ip数据报的点分10进制形式
-    DEBUG("%s ---> %s\n", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    DEBUG("\n%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
@@ -85,13 +87,15 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             tcphead = (struct tcphdr *) data;
             tcp_head_len = tcphead->doff * 4;
             tcp_body_len = ip_body_len - tcp_head_len;
-            INFO("tcp_head_len=%d, tcp_body_len=%d\n", tcp_head_len, tcp_body_len);
+            //INFO("tcp_head_len=%d, tcp_body_len=%d\n", tcp_head_len, tcp_body_len);
 
             //tcp body长度小于最小要求长度，直接通过
             if (tcp_body_len < MIN_SIZE)
                 return NF_ACCEPT;
 
             data += tcp_head_len;   // 将data指向TCP数据部分
+
+            //strncpy(TUMessage, data, tcp_body_len);
             break;
         }
         case IPPROTO_UDP: {
@@ -99,9 +103,11 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             udphead = (struct udphdr *) data;
             udp_head_len = sizeof(struct udphdr);
             udp_body_len = udphead->len - udp_head_len;
-            INFO("udp_head_len=%d, udp_body_len=%d\n", udp_head_len, udp_body_len);
+            //INFO("udp_head_len=%d, udp_body_len=%d\n", udp_head_len, udp_body_len);
 
             data += udp_head_len;   // 将data指向UDP数据部分
+
+            //strncpy(TUMessage, data, udp_body_len);
             break;
         }
         default: {  // 如果有其他可能情况，给出提示
@@ -111,10 +117,12 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
         }
     }
 
+    //DEBUG("data:%s", TUMessage);
     DEBUG("data:%s", data);
 
     // 检查数据部分合法性
     if (isLegal(data)) {
+        DEBUG("data is legal");
         extract(title, "title", data, 0);   // 提取出title
 
         INFO("title is:%s\n", title);

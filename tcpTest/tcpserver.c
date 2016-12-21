@@ -81,7 +81,7 @@ int main() {
             break;
 
         // 将接收到的字符串再发回给客户端
-        send(client, buffer, iDataNum, 0);
+        //send(client, buffer, iDataNum, 0);
     }
     return 0;
 }
