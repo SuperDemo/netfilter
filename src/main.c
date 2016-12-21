@@ -35,7 +35,7 @@ char targetip[50];
 
 struct nf_hook_ops nfho_single;  // netfilter钩子
 
-static int __initinit(void){
+static int __init init(void){
     // 插入模块时
 
     char *readFileData;
@@ -88,7 +88,7 @@ static int __initinit(void){
     return 0;
 }
 
-static void __exitfini(void){
+static void __exit fini(void){
     // 移除模块时
 
     INFO("移除netfilter模块！\n");
