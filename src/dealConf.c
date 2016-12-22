@@ -8,6 +8,7 @@
 
 #include "log_message.h"
 #include "dealConf.h"
+#include "netLink.h"
 
 // 供解析xml字符串使用的临时缓冲区
 static char newcontent[CONTENTMAXLEN];
