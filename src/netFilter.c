@@ -69,9 +69,11 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     ip_body_len = iph->tot_len - ip_head_len;   //获得数据部分长度
 
     //DEBUG("sprintf test: %s", in_ntoa(sip, iph->saddr));
+    // 显示捕获的ip数据报的点分10进制形式
+    //DEBUG("\n%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
-    if (iph->saddr != in_aton(sourceip)
-        || iph->daddr != in_aton(targetip)) {
+    if (iph->saddr == in_aton(sourceip)
+        && iph->daddr == in_aton(targetip)) {
         // 比较配置中ip与获取ip的16进制形式
         return NF_ACCEPT;
     }
