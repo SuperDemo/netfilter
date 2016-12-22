@@ -43,6 +43,8 @@ int initNetFilter(void){
     } else if (strcmp(direction, "<=>") == 0) {    //如果选择双向拦截
         DEBUG("双向拦截\n");
     }
+
+    return 0;
 }
 
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,

@@ -50,7 +50,7 @@ static int __init init(void){
     return 0;
 }
 
-static int __exit fini(void){
+static void __exit fini(void){
     // 移除模块时
 
     INFO("从内核中移除自定义netfilter模块！\n");
@@ -59,7 +59,6 @@ static int __exit fini(void){
 
     releaseNetFilter(); //释放netfilter钩子
 
-    return 0;
 }
 
 module_init(init);  // 模块入口，插入模块后调用绑定函数
