@@ -16,6 +16,10 @@ static struct sock *nl_sk;  // 内核套接字
 static int pid;    // 客户端pid
 static char str[100];  // 存放netlink消息的缓冲区
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)
+struct netlink_kernel_cfg cfg;   // netlink内核配置参数
+#endif
+
 static void recvMsgNetlink(struct sk_buff *skb) {
     // 当netlink上接收到消息时触发此函数
 
@@ -80,7 +84,6 @@ int createNetlink(void) {
     // 对不同版本的内核调用不同的函数
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)
     // kernel 3.10
-    struct netlink_kernel_cfg cfg;   // netlink内核配置参数
     cfg.groups = 0; // 0表示单播，1表示多播
     cfg.flags = 0;
     cfg.input = recvMsgNetlink;    // 回调函数，当收到消息时触发
