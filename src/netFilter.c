@@ -23,16 +23,6 @@
 #include "dealConf.h"
 #include "netLink.h"
 
-
-extern char direction[50];
-extern char titlecontent[50];
-extern char content_flag[20];
-extern char isapi[50];
-extern char content[50];
-extern char action[50];
-extern char sourceip[50];
-extern char targetip[50];
-
 static char TUMessage[1000];
 
 extern struct nf_hook_ops nfho_single;  // netfilter钩子
