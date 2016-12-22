@@ -125,14 +125,14 @@ void extract(char* dest, char* content, char* data, int minlen, int maxlen){
 int parseConf(char* data){
     // 解析xml数据
 
-    extract(direction, "direction", readFileData, 0, CONTENTMAXLEN);
-    extract(content_flag, "content_flag", readFileData, 0, CONTENTMAXLEN);
-    extract(content, "content", readFileData, 0, CONTENTMAXLEN);
-    extract(sourceip, "sourceip", readFileData, 0, CONTENTMAXLEN);
-    extract(targetip, "targetip", readFileData, 0, CONTENTMAXLEN);
-    extract(action, "action", readFileData, 0, CONTENTMAXLEN);
-    extract(titlecontent, "titlecontent", readFileData, 0, CONTENTMAXLEN);
-    extract(isapi, "isapi", readFileData, 0, CONTENTMAXLEN);
+    extract(direction, "direction", data, 0, CONTENTMAXLEN);
+    extract(content_flag, "content_flag", data, 0, CONTENTMAXLEN);
+    extract(content, "content", data, 0, CONTENTMAXLEN);
+    extract(sourceip, "sourceip", data, 0, CONTENTMAXLEN);
+    extract(targetip, "targetip", data, 0, CONTENTMAXLEN);
+    extract(action, "action", data, 0, CONTENTMAXLEN);
+    extract(titlecontent, "titlecontent", data, 0, CONTENTMAXLEN);
+    extract(isapi, "isapi", data, 0, CONTENTMAXLEN);
 
     DEBUG("titlecontent:%s, "
                   "direction:%s, "
