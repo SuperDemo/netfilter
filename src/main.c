@@ -1,7 +1,6 @@
 #include<linux/init.h>
 #include<linux/kernel.h>
 #include<linux/module.h>
-#include<linux/init.h>
 #include<linux/netfilter.h>
 #include<linux/netfilter_ipv4.h>
 #include<linux/ip.h>
@@ -17,21 +16,10 @@
 #include <linux/uaccess.h>
 #include<linux/string.h>
 
-//#define LOGKERNEL
-
 #include "log.h"
-#include "netFilter.h"
 #include "dealConf.h"
+#include "netFilter.h"
 #include "netLink.h"
-
-char direction[50];
-char titlecontent[50];
-char content_flag[20];
-char isapi[50];
-char content[50];
-char action[50];
-char sourceip[50];
-char targetip[50];
 
 struct nf_hook_ops nfho_single;  // netfilter钩子
 
@@ -52,14 +40,14 @@ static int __init init(void){
     }
 
     // 解析配置
-    extract(direction, "direction", readFileData, 0);
-    extract(content_flag, "content_flag", readFileData, 0);
-    extract(content, "content", readFileData, 0);
-    extract(sourceip, "sourceip", readFileData, 0);
-    extract(targetip, "targetip", readFileData, 0);
-    extract(action, "action", readFileData, 0);
-    extract(titlecontent, "titlecontent", readFileData, 0);
-    extract(isapi, "isapi", readFileData, 0);
+    extract(direction, "direction", readFileData, 0, CONTENTMAXLEN);
+    extract(content_flag, "content_flag", readFileData, 0, CONTENTMAXLEN);
+    extract(content, "content", readFileData, 0, CONTENTMAXLEN);
+    extract(sourceip, "sourceip", readFileData, 0, CONTENTMAXLEN);
+    extract(targetip, "targetip", readFileData, 0, CONTENTMAXLEN);
+    extract(action, "action", readFileData, 0, CONTENTMAXLEN);
+    extract(titlecontent, "titlecontent", readFileData, 0, CONTENTMAXLEN);
+    extract(isapi, "isapi", readFileData, 0, CONTENTMAXLEN);
 
     DEBUG("titlecontent:%s, "
                   "direction:%s, "
@@ -70,6 +58,7 @@ static int __init init(void){
                   "content:%s, "
                   "isapi:%s\n",
           titlecontent, direction, sourceip, targetip, action, content_flag, content, isapi);
+    return 0;
 
     createNetlink();    // 初始化netlink模块
 
@@ -92,6 +81,7 @@ static void __exit fini(void){
     // 移除模块时
 
     INFO("移除netfilter模块！\n");
+    return ;
 
     deleteNetlink();    // 释放netlink
 
@@ -106,5 +96,3 @@ static void __exit fini(void){
 
 module_init(init);  // 模块入口，插入模块后调用绑定函数
 module_exit(fini);  // 模块出口，插入模块后调用绑定函数
-
-//#undef LOGKERNEL

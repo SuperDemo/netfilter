@@ -2,13 +2,25 @@
 #include <linux/init.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
-#include<linux/kernel.h>
-#include<linux/string.h>
+#include <linux/kernel.h>
+#include <linux/string.h>
 #include <linux/slab.h>
 
-//#define LOGKERNEL
 #include "log.h"
 #include "dealConf.h"
+
+// 供解析xml字符串使用的临时缓冲区
+static char newcontent[CONTENTMAXLEN];
+
+// 对解析结果的变量进行定义
+char direction[CONTENTMAXLEN];
+char titlecontent[CONTENTMAXLEN];
+char content_flag[CONTENTMAXLEN];
+char isapi[CONTENTMAXLEN];
+char content[CONTENTMAXLEN];
+char action[CONTENTMAXLEN];
+char sourceip[CONTENTMAXLEN];
+char targetip[CONTENTMAXLEN];
 
 #define MINAL_SIZE 97   //数据包的最小长度
 
@@ -33,7 +45,7 @@ char *readConf(void) {
     }
 
     fs = get_fs();
-    set_fs(KERNEL_DS);
+    set_fs(KERNEL_DS);  // 确保内核能进行系统调用，使访问文件
     pos = 0;
     vfs_read(fp, data, sizeof(data), &pos); // 读取配置文件
 
@@ -63,7 +75,7 @@ int isLegal(char* data){
     if ((data = strstr(data, "<title>")) == NULL) {  // 不包含title不合法
         return 0;
     }
-    data += strlen("<title>0");
+    data += strlen("<title>");
 
     if ((data = strstr(data, "</title>")) == NULL){
         return 0;
@@ -87,61 +99,70 @@ int isLegal(char* data){
     return 1;
 }
 
-void extract(char* dest, char* content, char* data, int minlen){
+void extract(char* dest, char* content, char* data, int minlen, int maxlen){
     // 从数据包data中提取content形式的数据保存在dest中，要求数据长度不小于minlen
 
     char *new_content, *start, *end;
 
-    new_content = (char *) kmalloc(strlen(content) + strlen("</>") + 1, GFP_KERNEL);  // 在内核中分配内存
+//    new_content = (char *) kmalloc(strlen(content) + strlen("</>") + 1, GFP_KERNEL);  // 在内核中分配内存
+//
+//    if (!new_content){
+//        ERROR("kmalloc new_content failed!\n");
+//        dest[0] = '\0';     // 分配内存失败则将返回字符串置空
+//        return;
+//    }
 
-    if (!new_content){
-        ERROR("kmalloc new_content failed!\n");
-        dest[0] = '\0';     // 分配内存失败则将返回字符串置空
+    // 对content长度检查，防止缓冲区溢出
+    if (strlen(content) + 3 > CONTENTMAXLEN){
+        WARNING("content \"%s\" is too long", content);
+        dest[0] = '\0';
         return;
     }
+    sprintf(new_content, "<%s>", content);
 
-    strcpy(new_content, " <");
-    strcat(new_content, content);
-    strcat(new_content, ">");
+//    strcpy(new_content, " <");
+//    strcat(new_content, content);
+//    strcat(new_content, ">");
 
     // 先匹配<content>这样的标签头
-    start = strstr(data, new_content + 1);
+    start = strstr(data, new_content);
     if (!start){
-        // 匹配失败则释放内存并置空字符串返回
-        ERROR("cannot find %s\n", new_content + 1);
+        // 匹配失败则置空字符串返回
+        WARNING("cannot find %s", new_content);
         dest[0] = '\0';
-        kfree(new_content);
+//        kfree(new_content);
         return;
     }
     // 匹配成功则从后面继续往后匹配
-    start += strlen(new_content + 1);
+    start += strlen(new_content);
     data = start;
 
-    new_content[0] = '<';
-    new_content[1] = '/';
+    sprintf(new_content, "</%s>", content);
+//    new_content[0] = '<';
+//    new_content[1] = '/';
 
     // 然后匹配</content>这样的标签尾
     end = strstr(data + minlen, new_content);
     if (!end){
-        // 匹配失败则释放内存并置空字符串返回
-        printk(KERN_EMERG "cannot find %s\n", new_content);
+        // 匹配失败则置空字符串返回
+        WARNING("cannot find %s\n", new_content);
         dest[0] = '\0';
-        kfree(new_content);
+//        kfree(new_content);
         return;
     }
 
     if (end - start <= 0){
         // 内容为空的意外情况
-        ERROR("<%s></%s> is empty!\n", content, content);
+        INFO("<%s></%s> is empty!\n", content, content);
         dest[0] = '\0';
-        kfree(new_content);
+//        kfree(new_content);
         return;
     }
-    // 一切正常则将标签内内容复制到dest中
-    strncpy(dest, start, end - start);
+    // 一切正常则将标签内内容复制到dest中,如果数据过多，采取按maxlen截断策略
+    strncpy(dest, start, end - start >= maxlen ? (maxlen - 1) : (end - start));
     dest[end - start] = '\0';
 
-    kfree(new_content); //释放分配的内存
+//    kfree(new_content); //释放分配的内存
 }
 
 char *in_ntoa(char *sip, __u32 in) {
