@@ -56,6 +56,72 @@ char *readConf(void) {
     return data;
 }
 
+void extract(char* dest, char* content, char* data, int minlen, int maxlen){
+    // 从数据包data中提取content形式的数据保存在dest中，要求数据长度不小于minlen
+
+    char *start, *end;
+
+//    new_content = (char *) kmalloc(strlen(content) + strlen("</>") + 1, GFP_KERNEL);  // 在内核中分配内存
+//
+//    if (!new_content){
+//        ERROR("kmalloc new_content failed!\n");
+//        dest[0] = '\0';     // 分配内存失败则将返回字符串置空
+//        return;
+//    }
+
+    // 对content长度检查，防止缓冲区溢出
+    if (strlen(content) + 3 > CONTENTMAXLEN){
+        WARNING("content \"%s\" is too long", content);
+        dest[0] = '\0';
+        return;
+    }
+    sprintf(newcontent, "<%s>", content);
+
+//    strcpy(new_content, " <");
+//    strcat(new_content, content);
+//    strcat(new_content, ">");
+
+    // 先匹配<content>这样的标签头
+    start = strstr(data, newcontent);
+    if (!start){
+        // 匹配失败则置空字符串返回
+        WARNING("cannot find %s", newcontent);
+        dest[0] = '\0';
+//        kfree(new_content);
+        return;
+    }
+    // 匹配成功则从后面继续往后匹配
+    start += strlen(newcontent);
+    data = start;
+
+    sprintf(newcontent, "</%s>", content);
+//    new_content[0] = '<';
+//    new_content[1] = '/';
+
+    // 然后匹配</content>这样的标签尾
+    end = strstr(data + minlen, newcontent);
+    if (!end){
+        // 匹配失败则置空字符串返回
+        WARNING("cannot find %s\n", newcontent);
+        dest[0] = '\0';
+//        kfree(new_content);
+        return;
+    }
+
+    if (end - start <= 0){
+        // 内容为空的意外情况
+        INFO("<%s></%s> is empty!\n", content, content);
+        dest[0] = '\0';
+//        kfree(new_content);
+        return;
+    }
+    // 一切正常则将标签内内容复制到dest中,如果数据过多，采取按maxlen截断策略
+    strncpy(dest, start, end - start >= maxlen ? (maxlen - 1) : (end - start));
+    dest[end - start] = '\0';
+
+//    kfree(new_content); //释放分配的内存
+}
+
 int parseConf(char* data){
     // 解析xml数据
 
@@ -123,72 +189,6 @@ int isLegal(char* data){
     }
 
     return 1;
-}
-
-void extract(char* dest, char* content, char* data, int minlen, int maxlen){
-    // 从数据包data中提取content形式的数据保存在dest中，要求数据长度不小于minlen
-
-    char *start, *end;
-
-//    new_content = (char *) kmalloc(strlen(content) + strlen("</>") + 1, GFP_KERNEL);  // 在内核中分配内存
-//
-//    if (!new_content){
-//        ERROR("kmalloc new_content failed!\n");
-//        dest[0] = '\0';     // 分配内存失败则将返回字符串置空
-//        return;
-//    }
-
-    // 对content长度检查，防止缓冲区溢出
-    if (strlen(content) + 3 > CONTENTMAXLEN){
-        WARNING("content \"%s\" is too long", content);
-        dest[0] = '\0';
-        return;
-    }
-    sprintf(newcontent, "<%s>", content);
-
-//    strcpy(new_content, " <");
-//    strcat(new_content, content);
-//    strcat(new_content, ">");
-
-    // 先匹配<content>这样的标签头
-    start = strstr(data, newcontent);
-    if (!start){
-        // 匹配失败则置空字符串返回
-        WARNING("cannot find %s", newcontent);
-        dest[0] = '\0';
-//        kfree(new_content);
-        return;
-    }
-    // 匹配成功则从后面继续往后匹配
-    start += strlen(newcontent);
-    data = start;
-
-    sprintf(newcontent, "</%s>", content);
-//    new_content[0] = '<';
-//    new_content[1] = '/';
-
-    // 然后匹配</content>这样的标签尾
-    end = strstr(data + minlen, newcontent);
-    if (!end){
-        // 匹配失败则置空字符串返回
-        WARNING("cannot find %s\n", newcontent);
-        dest[0] = '\0';
-//        kfree(new_content);
-        return;
-    }
-
-    if (end - start <= 0){
-        // 内容为空的意外情况
-        INFO("<%s></%s> is empty!\n", content, content);
-        dest[0] = '\0';
-//        kfree(new_content);
-        return;
-    }
-    // 一切正常则将标签内内容复制到dest中,如果数据过多，采取按maxlen截断策略
-    strncpy(dest, start, end - start >= maxlen ? (maxlen - 1) : (end - start));
-    dest[end - start] = '\0';
-
-//    kfree(new_content); //释放分配的内存
 }
 
 char *in_ntoa(char *sip, __u32 in) {
