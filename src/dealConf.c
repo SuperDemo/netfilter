@@ -56,6 +56,31 @@ char *readConf(void) {
     return data;
 }
 
+int parseConf(char* data){
+    // 解析xml数据
+
+    extract(direction, "direction", readFileData, 0, CONTENTMAXLEN);
+    extract(content_flag, "content_flag", readFileData, 0, CONTENTMAXLEN);
+    extract(content, "content", readFileData, 0, CONTENTMAXLEN);
+    extract(sourceip, "sourceip", readFileData, 0, CONTENTMAXLEN);
+    extract(targetip, "targetip", readFileData, 0, CONTENTMAXLEN);
+    extract(action, "action", readFileData, 0, CONTENTMAXLEN);
+    extract(titlecontent, "titlecontent", readFileData, 0, CONTENTMAXLEN);
+    extract(isapi, "isapi", readFileData, 0, CONTENTMAXLEN);
+
+    DEBUG("titlecontent:%s, "
+                  "direction:%s, "
+                  "sourceip:%s, "
+                  "targetip:%s, "
+                  "action:%s, "
+                  "content_flag:%s, "
+                  "content:%s, "
+                  "isapi:%s\n",
+          titlecontent, direction, sourceip, targetip, action, content_flag, content, isapi);
+
+    return 0;
+}
+
 int isLegal(char* data){
     // 检查数据包data合法性
 

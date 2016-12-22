@@ -18,6 +18,9 @@ extern char targetip[CONTENTMAXLEN];
 // 读取配置文件
 char* readConf(void);
 
+// 解析xml数据
+int parseConf(char* data);
+
 // 判断字符串是否符合要求格式
 int isLegal(char* data);
 

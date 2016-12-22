@@ -1,7 +1,6 @@
 #include<linux/init.h>
 #include<linux/kernel.h>
 #include<linux/module.h>
-#include<linux/init.h>
 #include<linux/netfilter.h>
 #include<linux/netfilter_ipv4.h>
 #include<linux/ip.h>
@@ -15,7 +14,6 @@
 #include <linux/rtc.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
-
 #include<linux/string.h>
 
 #include "log_message.h"
@@ -23,11 +21,29 @@
 #include "dealConf.h"
 #include "netLink.h"
 
+#define MIN_SIZE 96 //符合给定schema的最小数据包长度
+
 static char TUMessage[1000];
 
-extern struct nf_hook_ops nfho_single;  // netfilter钩子
+static struct nf_hook_ops nfho_single;  // netfilter钩子
 
-unsigned static int count = 0; //记录过滤的数据包数目
+static unsigned int count = 0; //记录过滤的数据包数目
+
+int initNetFilter(void){
+    // 初始化netfilter
+
+    nfho_single.hook = (nf_hookfn *) hook_func;   // 绑定钩子函数
+    nfho_single.hooknum = NF_INET_PRE_ROUTING;  // 数据流入前触发
+    nfho_single.pf = PF_INET;
+    nfho_single.priority = NF_IP_PRI_FILTER;
+
+    if (strcmp(direction, "=>") == 0) {  // 如果选择单向拦截
+        DEBUG("单向拦截\n");
+        nf_register_hook(&nfho_single); //注册一个netfilter钩子
+    } else if (strcmp(direction, "<=>") == 0) {    //如果选择双向拦截
+        DEBUG("双向拦截\n");
+    }
+}
 
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
@@ -110,7 +126,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     //DEBUG("data:%s", TUMessage);
-    DEBUG("data:%s", data);
+    //DEBUG("data:%s", data);
 
     // 检查数据部分合法性
     if (isLegal(data)) {
@@ -169,4 +185,16 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     return NF_ACCEPT;
+}
+
+int releaseNetFilter(void){
+    // 释放netfilter钩子
+
+    if (strcmp(direction, "=>") == 0) {   // 如果选择单向拦截
+        DEBUG("单向拦截\n");
+        nf_unregister_hook(&nfho_single);   // 卸载钩子
+    } else if (strcmp(direction, "<=>") == 0) {     // 如果选择双向拦截
+        DEBUG("双向拦截\n");
+    }
+    return 0;
 }
