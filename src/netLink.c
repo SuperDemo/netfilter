@@ -76,7 +76,6 @@ int sendMsgNetlink(char *message) {
 
 int createNetlink(void) {
     // 在内核中创建netlink，当用户态传来消息时触发绑定的接收消息函数
-    pid = 0;
 
     // 对不同版本的内核调用不同的函数
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)
@@ -100,6 +99,9 @@ int createNetlink(void) {
         return 1;
     }
     INFO("my_net_link: create netlink socket ok.\n");
+
+    // 初始时将客户端pid置0
+    pid = 0;
 
     return 0;
 }
