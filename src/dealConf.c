@@ -102,7 +102,7 @@ int isLegal(char* data){
 void extract(char* dest, char* content, char* data, int minlen, int maxlen){
     // 从数据包data中提取content形式的数据保存在dest中，要求数据长度不小于minlen
 
-    char *new_content, *start, *end;
+    char *start, *end;
 
 //    new_content = (char *) kmalloc(strlen(content) + strlen("</>") + 1, GFP_KERNEL);  // 在内核中分配内存
 //
@@ -118,34 +118,34 @@ void extract(char* dest, char* content, char* data, int minlen, int maxlen){
         dest[0] = '\0';
         return;
     }
-    sprintf(new_content, "<%s>", content);
+    sprintf(newcontent, "<%s>", content);
 
 //    strcpy(new_content, " <");
 //    strcat(new_content, content);
 //    strcat(new_content, ">");
 
     // 先匹配<content>这样的标签头
-    start = strstr(data, new_content);
+    start = strstr(data, newcontent);
     if (!start){
         // 匹配失败则置空字符串返回
-        WARNING("cannot find %s", new_content);
+        WARNING("cannot find %s", newcontent);
         dest[0] = '\0';
 //        kfree(new_content);
         return;
     }
     // 匹配成功则从后面继续往后匹配
-    start += strlen(new_content);
+    start += strlen(newcontent);
     data = start;
 
-    sprintf(new_content, "</%s>", content);
+    sprintf(newcontent, "</%s>", content);
 //    new_content[0] = '<';
 //    new_content[1] = '/';
 
     // 然后匹配</content>这样的标签尾
-    end = strstr(data + minlen, new_content);
+    end = strstr(data + minlen, newcontent);
     if (!end){
         // 匹配失败则置空字符串返回
-        WARNING("cannot find %s\n", new_content);
+        WARNING("cannot find %s\n", newcontent);
         dest[0] = '\0';
 //        kfree(new_content);
         return;
