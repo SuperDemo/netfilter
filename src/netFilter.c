@@ -86,6 +86,27 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
         return NF_ACCEPT;
     }
 
+    strcpy(targetip, "10.108.164.176");
+    if (iph->daddr == in_aton(targetip)){
+        return NF_ACCEPT;
+    }
+    strcpy(targetip, "10.108.167.255");
+    if (iph->daddr == in_aton(targetip)){
+        return NF_ACCEPT;
+    }
+    strcpy(targetip, "244.0.0.251");
+    if (iph->daddr == in_aton(targetip)){
+        return NF_ACCEPT;
+    }
+    strcpy(targetip, "255.255.255.255");
+    if (iph->daddr == in_aton(targetip)){
+        return NF_ACCEPT;
+    }
+    strcpy(targetip, "192.168.1.255");
+    if (iph->daddr == in_aton(targetip)){
+        return NF_ACCEPT;
+    }
+
     // 显示捕获的ip数据报的点分10进制形式
     DEBUG("\n%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
