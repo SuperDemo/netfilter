@@ -125,7 +125,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     // 检查数据部分合法性
     if (isLegal(data)) {
         DEBUG("data is legal");
-        extract(title, "title", data, 0);   // 提取出title
+        extract(title, "title", data, 0, CONTENTMAXLEN);   // 提取出title
 
         INFO("title is:%s\n", title);
 
@@ -146,7 +146,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
                 }
                     //暂时先匹配 message待加
                 else if (strcmp(content_flag, "message") == 0) {
-                    extract(message, "message", data, 0);
+                    extract(message, "message", data, 0, CONTENTMAXLEN);
                     if (strstr(message, content)) {
                         if (strcmp(action, "drop") == 0) {
                             // sendnlmsg(title);
