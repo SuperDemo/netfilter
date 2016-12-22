@@ -22,6 +22,7 @@
 #include "netLink.h"
 
 struct nf_hook_ops nfho_single;  // netfilter钩子
+char mymessagebuf[100];     // 缓冲区定义
 
 static int __init init(void){
     // 插入模块时
