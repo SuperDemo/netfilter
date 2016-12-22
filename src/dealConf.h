@@ -6,14 +6,14 @@
 # define CONTENTMAXLEN 100
 
 // 全局变量声明
-extern char direction[50];
-extern char titlecontent[50];
-extern char content_flag[20];
-extern char isapi[50];
-extern char content[50];
-extern char action[50];
-extern char sourceip[50];
-extern char targetip[50];
+extern char direction[CONTENTMAXLEN];
+extern char titlecontent[CONTENTMAXLEN];
+extern char content_flag[CONTENTMAXLEN];
+extern char isapi[CONTENTMAXLEN];
+extern char content[CONTENTMAXLEN];
+extern char action[CONTENTMAXLEN];
+extern char sourceip[CONTENTMAXLEN];
+extern char targetip[CONTENTMAXLEN];
 
 // 读取配置文件
 char* readConf(void);
