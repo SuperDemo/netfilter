@@ -80,35 +80,41 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     // 显示捕获的ip数据报的点分10进制形式
     //DEBUG("\n%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
-    if (iph->saddr == in_aton(sourceip)
-        && iph->daddr == in_aton(targetip)) {
-        // 比较配置中ip与获取ip的16进制形式
-        return NF_ACCEPT;
-    }
+//    if (iph->saddr == in_aton(sourceip)
+//        && iph->daddr == in_aton(targetip)) {
+//        // 比较配置中ip与获取ip的16进制形式
+//        return NF_ACCEPT;
+//    }
 
-    strcpy(targetip, "10.108.164.176");
-    if (iph->daddr == in_aton(targetip)){
-        return NF_ACCEPT;
-    }
-    strcpy(targetip, "10.108.167.255");
-    if (iph->daddr == in_aton(targetip)){
-        return NF_ACCEPT;
-    }
-    strcpy(targetip, "244.0.0.251");
-    if (iph->daddr == in_aton(targetip)){
-        return NF_ACCEPT;
-    }
-    strcpy(targetip, "255.255.255.255");
-    if (iph->daddr == in_aton(targetip)){
-        return NF_ACCEPT;
-    }
-    strcpy(targetip, "192.168.1.255");
-    if (iph->daddr == in_aton(targetip)){
-        return NF_ACCEPT;
-    }
+//    strcpy(sourceip, "10.108.164.217");
+//    strcpy(targetip, "10.108.164.176");
+//    if (iph->daddr == in_aton(targetip) && iph->saddr == in_aton(sourceip)){
+//        return NF_ACCEPT;
+//    }
+//    strcpy(targetip, "10.108.167.255");
+//    if (iph->daddr == in_aton(targetip)){
+//        return NF_ACCEPT;
+//    }
+//    strcpy(targetip, "244.0.0.251");
+//    if (iph->daddr == in_aton(targetip)){
+//        return NF_ACCEPT;
+//    }
+//    strcpy(targetip, "255.255.255.255");
+//    if (iph->daddr == in_aton(targetip)){
+//        return NF_ACCEPT;
+//    }
+//    strcpy(targetip, "192.168.1.255");
+//    if (iph->daddr == in_aton(targetip)){
+//        return NF_ACCEPT;
+//    }
+//    strcpy(sourceip, "10.108.167.250");
+//    strcpy(targetip, "10.108.167.250");
+//    if (iph->daddr != in_aton(sourceip) && iph->saddr != in_aton(targetip)){
+//        return NF_ACCEPT;
+//    }
 
     // 显示捕获的ip数据报的点分10进制形式
-    DEBUG("\n%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
@@ -142,7 +148,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             break;
         }
         default: {  // 如果有其他可能情况，给出提示
-            DEBUG("Other TranLayer proto=%d, with IPPROTO_TCP=%d, with IPPROTO_UDP=%d\n", iph->protocol, IPPROTO_TCP,
+            DEBUG("Other TranLayer proto=%d, with IPPROTO_TCP=%d, with IPPROTO_UDP=%d", iph->protocol, IPPROTO_TCP,
                   IPPROTO_UDP);
             return NF_ACCEPT;
         }
@@ -204,7 +210,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             }
         }
     } else {
-        DEBUG("data is illegal");
+        //DEBUG("data is illegal");
     }
 
     return NF_ACCEPT;
