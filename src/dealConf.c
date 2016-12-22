@@ -6,7 +6,7 @@
 #include <linux/string.h>
 #include <linux/slab.h>
 
-#include "log.h"
+#include "log_message.h"
 #include "dealConf.h"
 
 // 供解析xml字符串使用的临时缓冲区

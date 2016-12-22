@@ -28,6 +28,8 @@ static int __init init(void){
 
     char *readFileData;
 
+    createNetlink();    // 初始化netlink模块
+
     INFO("加载netfilter模块！\n");
 
     // 从配置文件中读取配置
@@ -58,9 +60,8 @@ static int __init init(void){
                   "content:%s, "
                   "isapi:%s\n",
           titlecontent, direction, sourceip, targetip, action, content_flag, content, isapi);
-    return 0;
 
-    createNetlink();    // 初始化netlink模块
+    return 0;
 
     nfho_single.hook = (nf_hookfn *) hook_func;   // 绑定钩子函数
     nfho_single.hooknum = NF_INET_PRE_ROUTING;  // 数据流入前触发
@@ -81,9 +82,9 @@ static void __exit fini(void){
     // 移除模块时
 
     INFO("移除netfilter模块！\n");
-    return ;
 
     deleteNetlink();    // 释放netlink
+    return ;
 
     if (strcmp(direction, "=>") == 0) {   // 如果选择单向拦截
         DEBUG("单向拦截\n");

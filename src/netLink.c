@@ -9,19 +9,17 @@
 #include <linux/string.h>
 #include <linux/version.h>
 
-//#define LOGKERNEL
 #include "log.h"
 #include "netLink.h"
 
 static struct sock *nl_sk;  // 内核套接字
-static struct netlink_kernel_cfg cfg;   // netlink内核配置参数
 static int pid;    // 客户端pid
+static char str[100];  // 存放netlink消息的缓冲区
 
 static void recvMsgNetlink(struct sk_buff *skb) {
     // 当netlink上接收到消息时触发此函数
 
     struct nlmsghdr *nlh;   // 指向netlink消息首部的指针
-    char str[100];  // 存放消息的缓冲区
 
     DEBUG("recvMsgNetlink is triggerd\n");
 
@@ -83,6 +81,7 @@ int createNetlink(void) {
     // 对不同版本的内核调用不同的函数
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)
     // kernel 3.10
+    struct netlink_kernel_cfg cfg;   // netlink内核配置参数
     cfg.groups = 0; // 0表示单播，1表示多播
     cfg.flags = 0;
     cfg.input = recvMsgNetlink;    // 回调函数，当收到消息时触发
@@ -92,10 +91,11 @@ int createNetlink(void) {
     nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, &cfg);
 #else
     // kernel 2.6
-    nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, 1, nl_data_ready, NULL, THIS_MODULE);
+    nl_sk = netlink_kernel_create(&init_net, NETLINK_TEST, 1, recvMsgNetlink, NULL, THIS_MODULE);
 #endif
 
     if (!nl_sk) {
+        // netlink创建失败
         ERROR("my_net_link: create netlink socket error.\n");
         return 1;
     }
