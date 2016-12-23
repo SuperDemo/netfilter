@@ -19,6 +19,7 @@
 int main() {
     int clientSocket;
     struct sockaddr_in serverAddr;
+    char rawbuf[200];
     char sendbuf[200];
     char recvbuf[200];
     int iDataNum;
@@ -45,14 +46,14 @@ int main() {
     printf("connect with destination host...\n");
 
     // 循环与服务端通信
-    strcpy(sendbuf, "abcdefghijklmnopqrstuvwxyz");
+    strcpy(rawbuf, "abcdefghijklmnopqrstuvwxyz");
     for (i = 0; i < 100000; i++) {
         //printf("Input your word:>");
         //scanf("%s", sendbuf);
         //printf("\n");
         j = i % 26;
-        sendbuf[j] = j + 'a';
-        sendbuf[j + 1] = '\0';
+        memset(sendbuf, 0, sizeof(sendbuf));
+        strncpy(sendbuf, rawbuf, j + 1);
 
         send(clientSocket, sendbuf, strlen(sendbuf), 0);
         if (strcmp(sendbuf, "quit") == 0)
