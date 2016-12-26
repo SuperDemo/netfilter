@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 
     // 设置待发送的netlink消息
     struct nlmsghdr message;
-    memset(&message, 0, sizeof(struct message));   // 清空该消息
+    memset(&message, 0, sizeof(message));   // 清空该消息
     message.nlmsg_len = NLMSG_LENGTH(0);    // netlink消息的总长度,仅需提供发送数据的长度，由该宏自动计算对齐后的总长度
     message.nlmsg_flags = 0;   // 用户应用内部定义消息的类型，大部分情况下设置为0
     message.nlmsg_type = NETLINK_TEST_CONNECT;   // 设置消息标志，这里设置为连接时标志
