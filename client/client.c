@@ -9,6 +9,7 @@
 #include <linux/netlink.h>
 #include <linux/socket.h>
 #include <errno.h>
+#include <signal.h>
 
 #include "../src/netLink.h"
 
@@ -21,6 +22,26 @@ struct netlink_message {
 
 static int sock_fd;     // 客户端套接字
 static struct sockaddr_nl dest_addr;    // 内核目标地址数据结构
+
+static void quit(int signum){
+    // 退出netlink客户端不仅要关闭套接字，还需要先往内核发送消息表示应用程序即将关闭
+
+    // 设置待发送的netlink消息
+    struct nlmsghdr message;
+    memset(&message, 0, sizeof(message));
+    message.nlmsg_len = NLMSG_LENGTH(0);    // netlink消息的总长度,仅需提供发送数据的长度，由该宏自动计算对齐后的总长度
+    message.nlmsg_flags = 0;   // 用户应用内部定义消息的类型，大部分情况下设置为0
+    message.nlmsg_type = NETLINK_TEST_DISCONNECT;   // 设置消息标志，此处设置为断开连接时标志
+    message.nlmsg_pid = getpid();
+
+    // 向内核发消息，由nlmsg_type表明，应用程序即将关闭
+    if (sendto(sock_fd, &message, message.nlmsg_len, 0, (struct sockaddr*)&dest_addr, sizeof(dest_addr)) < 0){
+        printf("send disconnect message to kernel failed!\n");
+    }
+
+    close(sock_fd); // 关闭套接字
+    exit(0);
+}
 
 int main(int argc, char *argv[]) {
 
@@ -79,22 +100,3 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-static void quit(int signum){
-    // 退出netlink客户端不仅要关闭套接字，还需要先往内核发送消息表示应用程序即将关闭
-
-    // 设置待发送的netlink消息
-    struct nlmsghdr message;
-    memset(&message, 0, sizeof(message));
-    message.nlmsg_len = NLMSG_LENGTH(0);    // netlink消息的总长度,仅需提供发送数据的长度，由该宏自动计算对齐后的总长度
-    message.nlmsg_flags = 0;   // 用户应用内部定义消息的类型，大部分情况下设置为0
-    message.nlmsg_type = NETLINK_TEST_DISCONNECT;   // 设置消息标志，此处设置为断开连接时标志
-    message.nlmsg_pid = getpid();
-
-    // 向内核发消息，由nlmsg_type表明，应用程序即将关闭
-    if (sendto(sock_fd, &message, message.nlmsg_len, 0, (struct sockaddr*)&dest_addr, sizeof(dest_addr)) < 0){
-        printf("send disconnect message to kernel failed!\n");
-    }
-
-    close(sock_fd); // 关闭套接字
-    exit(0);
-}
