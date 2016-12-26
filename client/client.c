@@ -16,7 +16,7 @@
 
 struct netlink_message {
     struct nlmsghdr hdr;    // netlink的消息首部
-    struct packet_info mymessage    // 额外消息内容
+    struct packet_info mymessage;    // 额外消息内容
 } recv_buf;
 
 static int sock_fd;     // 客户端套接字
