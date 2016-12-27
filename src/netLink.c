@@ -68,7 +68,7 @@ int sendMsgNetlink(char *message) {
     int message_size;   // 表示消息的长度
     int total_size;   // 表示netlink消息首部加载荷的长度
     struct nlmsghdr *nlh;   // netlink首部
-    unsigned char *old_tail;    // 记录填充消息前skb的尾部
+    sk_buff_data_t old_tail;    // 记录填充消息前skb的尾部，sk_buff_data_t类型表示偏移量或者指针
     int ret;    // 单播消息发送的返回值
 
     if (!message || !nl_sk) {
@@ -89,7 +89,7 @@ int sendMsgNetlink(char *message) {
         WARNING("my_net_link:alloc_skb error");
         return -1;
     }
-    old_tail = (char*)skb->tail;   // 记录填充消息前skb的尾部位置
+    old_tail = skb->tail;   // 记录填充消息前skb的尾部偏移量或指针
 
     // 先获取skb中消息的首部地址，根据内核版本变动
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 16)
@@ -103,7 +103,7 @@ int sendMsgNetlink(char *message) {
     strcpy(NLMSG_DATA(nlh), message);
     DEBUG("my_net_link:send message '%s'.\n", (char *) NLMSG_DATA(nlh));
 
-    nlh->nlmsg_len = (char*)skb->tail - old_tail;  // 获取当前skb中填充消息的长度
+    nlh->nlmsg_len = skb->tail - old_tail;  // 获取当前skb中填充消息的长度
 
     // 设置控制字段
     //NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
