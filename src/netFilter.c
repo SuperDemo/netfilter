@@ -16,14 +16,12 @@
 #include <linux/uaccess.h>
 #include<linux/string.h>
 
-#include "log_message.h"
+#include "log.h"
 #include "netFilter.h"
 #include "dealConf.h"
 #include "netLink.h"
 
 #define MIN_SIZE 96 //符合给定schema的最小数据包长度
-
-static char TUMessage[1000];
 
 static struct nf_hook_ops nfho_single;  // netfilter钩子
 
@@ -127,8 +125,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             //INFO("tcp_head_len=%d, tcp_body_len=%d\n", tcp_head_len, tcp_body_len);
 
             //tcp body长度小于最小要求长度，直接通过
-            if (tcp_body_len < MIN_SIZE)
-                return NF_ACCEPT;
+//            if (tcp_body_len < MIN_SIZE)
+//                return NF_ACCEPT;
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
