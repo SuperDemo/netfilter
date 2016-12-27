@@ -45,6 +45,7 @@ int initNetFilter(void){
     return 0;
 }
 
+#define LOGUSER // 将消息发往用户
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
     // 单向拦截数据的钩子函数
@@ -112,10 +113,10 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //    }
 
     // 显示捕获的ip数据报的点分10进制形式
-    sprintf(mymessagebuf, "%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-    sendMsgNetlink(mymessagebuf);
+//    sprintf(mymessagebuf, "%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+//    sendMsgNetlink(mymessagebuf);
 
-    //DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
     return NF_ACCEPT;
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
@@ -223,6 +224,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     return NF_ACCEPT;
 }
+
+#undef LOGUSER  // 取消将消息发给用户
 
 int releaseNetFilter(void){
     // 释放netfilter钩子

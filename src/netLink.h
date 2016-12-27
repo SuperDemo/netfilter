@@ -12,6 +12,4 @@ int createNetlink(void);
 
 int sendMsgNetlink(char *message);
 
-//void recvMsgNetlink(void);
-
 int deleteNetlink(void);

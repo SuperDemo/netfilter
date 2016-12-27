@@ -1,7 +1,5 @@
 
 
-
-
 // 初始化netfilter
 int initNetFilter(void);
 
