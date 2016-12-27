@@ -129,11 +129,6 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
-            DEBUG("data:");
-            for (i = 0; i < tcp_body_len; i++){
-                DEBUG("data[%d]=%x", i, data[i]);
-            }
-
             break;
         }
         case IPPROTO_UDP: {
@@ -160,7 +155,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     //DEBUG("data:%s", TUMessage);
-//    DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
+    DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
 
 
 
