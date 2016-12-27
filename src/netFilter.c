@@ -45,7 +45,33 @@ int initNetFilter(void){
     return 0;
 }
 
-#define LOGUSER // 将消息发往用户
+int releaseNetFilter(void){
+    // 释放netfilter钩子
+
+    if (strcmp(direction, "=>") == 0) {   // 如果选择单向拦截
+        DEBUG("one way intercept\n");
+        nf_unregister_hook(&nfho_single);   // 卸载钩子
+    } else if (strcmp(direction, "<=>") == 0) {     // 如果选择双向拦截
+        DEBUG("two way intercept\n");
+    }
+
+    return 0;
+}
+
+// 在这里取消定义前面展开的宏，并给予新的定义
+#undef DEBUG
+#undef INFO
+#undef WARNING
+#undef ERROR
+
+#include <linux/string.h>
+extern char mymessagebuf[1000];  // 放置缓冲区声明
+
+#define DEBUG(...) sprintf(mymessagebuf, "DEBUG:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define INFO(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define WARNING(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define ERROR(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);
+
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
     // 单向拦截数据的钩子函数
@@ -223,19 +249,4 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     return NF_ACCEPT;
-}
-
-#undef LOGUSER  // 取消将消息发给用户
-
-int releaseNetFilter(void){
-    // 释放netfilter钩子
-
-    if (strcmp(direction, "=>") == 0) {   // 如果选择单向拦截
-        DEBUG("one way intercept\n");
-        nf_unregister_hook(&nfho_single);   // 卸载钩子
-    } else if (strcmp(direction, "<=>") == 0) {     // 如果选择双向拦截
-        DEBUG("two way intercept\n");
-    }
-
-    return 0;
 }
