@@ -11,9 +11,7 @@
 #include <errno.h>
 #include <signal.h>
 
-#include "../src/netLink.h"
-
-#define MAXMSG 1000
+#include "netlink_client.h"
 
 struct netlink_message {
     struct nlmsghdr hdr;    // netlink的消息首部

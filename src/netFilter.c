@@ -147,6 +147,10 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             //strncpy(TUMessage, data, udp_body_len);
             break;
         }
+        case IPPROTO_ICMP:{
+            // icmp协议
+            INFO(" icmp protocol");
+        }
         default: {  // 如果有其他可能情况，给出提示
             DEBUG("Other TranLayer proto=%d, with IPPROTO_TCP=%d, with IPPROTO_UDP=%d", iph->protocol, IPPROTO_TCP,
                   IPPROTO_UDP);
@@ -156,6 +160,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     //DEBUG("data:%s", TUMessage);
     //DEBUG("data:%s", data);
+
+    return NF_ACCEPT;
 
     // 检查数据部分合法性
     if (isLegal(data)) {
