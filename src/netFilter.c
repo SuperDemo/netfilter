@@ -16,7 +16,7 @@
 #include <linux/uaccess.h>
 #include<linux/string.h>
 
-#include "log_message.h"
+#include "log.h"
 #include "netFilter.h"
 #include "dealConf.h"
 #include "netLink.h"
