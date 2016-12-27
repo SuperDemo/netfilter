@@ -13,7 +13,6 @@
 #include "netLink.h"
 
 static struct sock *nl_sk;  // 内核套接字
-static int pid;    // 客户端pid
 static struct{
     __u32 pid;  // 客户端pid
     rwlock_t lock;  // 读写锁，用来控制pid的访问
@@ -118,6 +117,7 @@ int sendMsgNetlink(char *message) {
     read_lock_bh(&user_proc.lock);  // 获取读锁
     if (!user_proc.pid) return -1; // 如果客户端断开了连接，直接返回
     // 发送单播消息，参数分别为nl_sk(内核套接字), skb(套接字缓冲区), pid(目的进程), MSG_DONTWAIT(不阻塞)
+    INFO("ready to send unicast message");
     ret = netlink_unicast(nl_sk, skb, user_proc.pid, MSG_DONTWAIT); // 发送单播消息
     read_unlock_bh(&user_proc.lock);    // 释放读锁
 
@@ -168,7 +168,7 @@ int createNetlink(void) {
 
     write_lock_bh(&user_proc.lock);     // 获取写锁
     // 初始时将客户端pid置0
-    pid = 0;
+    user_proc.pid = 0;
     write_unlock_bh(&user_proc.lock);   // 释放写锁
 
     return 0;

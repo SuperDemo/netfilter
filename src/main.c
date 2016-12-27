@@ -30,7 +30,7 @@ static int __init init(void){
 
     char *readFileData;
 
-    INFO("插入自定义netfilter模块到内核！\n");
+    INFO("insert netfilter module to kernel!\n");
 
     createNetlink();    // 初始化netlink模块
 
@@ -55,7 +55,7 @@ static int __init init(void){
 static void __exit fini(void){
     // 移除模块时
 
-    INFO("从内核中移除自定义netfilter模块！\n");
+    INFO("remove netfilter module from kernel!\n");
 
     deleteNetlink();    // 释放netlink
 

@@ -48,6 +48,7 @@ int initNetFilter(void){
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
     // 单向拦截数据的钩子函数
+    return NF_ACCEPT;
 
     char *data; // data是数据指针游标，从skb->data表示的ip数据报开始
 
