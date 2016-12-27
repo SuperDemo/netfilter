@@ -6,7 +6,7 @@
 #include <linux/string.h>
 #include <linux/slab.h>
 
-#include "log_message.h"
+#include "log.h"
 #include "dealConf.h"
 #include "netLink.h"
 
@@ -41,7 +41,7 @@ char *readConf(void) {
     // 打开配置文件
     fp = filp_open("../conf/netfilter.conf", O_RDONLY | O_CREAT, 0644);
     if (IS_ERR(fp)) {
-        WARNING("打开配置文件失败！");
+        WARNING("open netfilter.conf failed!");
         return NULL;
     }
 
