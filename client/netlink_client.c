@@ -90,17 +90,19 @@ int main(int argc, char *argv[]) {
 
     // 接收来自内核的netlink消息
     while (1) {
+        printf("wait message from kernel!\n");
         int dest_addr_len = sizeof(struct sockaddr_nl);
         if (recvfrom(sock_fd, &recv_buf, sizeof(recv_buf), 0, (struct sockaddr *) &dest_addr, &dest_addr_len) < 0) {
             printf("recv message from kernel failed!\n");
         } else {
             //printf("Get messages from kernel success!\n");
             printf("Get messages from kernel :%s\n", recv_buf.mymessage.data);
-
-            message.nlmsg_type = NETLINK_TEST_COMMAND;
-            sendto(sock_fd, &message, message.nlmsg_len, 0, (struct sockaddr*)&dest_addr, sizeof(dest_addr_len));
         }
+
+        message.nlmsg_type = NETLINK_TEST_COMMAND;
+        sendto(sock_fd, &message, message.nlmsg_len, 0, (struct sockaddr*)&dest_addr, sizeof(dest_addr));
     }
+
 
     return 0;
 }
