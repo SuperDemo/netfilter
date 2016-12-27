@@ -68,9 +68,9 @@ int releaseNetFilter(void){
 extern char mymessagebuf[1000];  // 放置缓冲区声明
 
 #define DEBUG(...) sprintf(mymessagebuf, "DEBUG:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
-#define INFO(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);
-#define WARNING(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);
-#define ERROR(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define INFO(...) sprintf(mymessagebuf, "INFO"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define WARNING(...) sprintf(mymessagebuf, "WARNING"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define ERROR(...) sprintf(mymessagebuf, "ERROR"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
 
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
@@ -100,10 +100,6 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     iph = (struct iphdr *) data;    // 获得ip数据报首部指针
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = iph->tot_len - ip_head_len;   //获得数据部分长度
-
-    //DEBUG("sprintf test: %s", in_ntoa(sip, iph->saddr));
-    // 显示捕获的ip数据报的点分10进制形式
-    //DEBUG("\n%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
 //    if (iph->saddr == in_aton(sourceip)
 //        && iph->daddr == in_aton(targetip)) {
@@ -152,7 +148,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             tcphead = (struct tcphdr *) data;
             tcp_head_len = tcphead->doff * 4;
             tcp_body_len = ip_body_len - tcp_head_len;
-            //INFO("tcp_head_len=%d, tcp_body_len=%d\n", tcp_head_len, tcp_body_len);
+            INFO("tcp_head_len=%d, tcp_body_len=%d\n", tcp_head_len, tcp_body_len);
 
             //tcp body长度小于最小要求长度，直接通过
 //            if (tcp_body_len < MIN_SIZE)
@@ -168,7 +164,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             udphead = (struct udphdr *) data;
             udp_head_len = sizeof(struct udphdr);
             udp_body_len = udphead->len - udp_head_len;
-            //INFO("udp_head_len=%d, udp_body_len=%d\n", udp_head_len, udp_body_len);
+            INFO("udp_head_len=%d, udp_body_len=%d\n", udp_head_len, udp_body_len);
 
             data += udp_head_len;   // 将data指向UDP数据部分
 
@@ -187,7 +183,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     //DEBUG("data:%s", TUMessage);
-    DEBUG("data:%s", data);
+    DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
 
     return NF_ACCEPT;
 
