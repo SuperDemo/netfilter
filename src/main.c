@@ -47,7 +47,7 @@ static int __init init(void){
     parseConf(readFileData);
 
     // 初始化netfilter
-    //initNetFilter();
+    initNetFilter();
 
     return 0;
 }
@@ -59,7 +59,7 @@ static void __exit fini(void){
 
     deleteNetlink();    // 释放netlink
 
-    //releaseNetFilter(); //释放netfilter钩子
+    releaseNetFilter(); //释放netfilter钩子
 
 }
 

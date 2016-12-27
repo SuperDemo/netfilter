@@ -98,9 +98,8 @@ int main(int argc, char *argv[]) {
             //printf("Get messages from kernel success!\n");
             printf("Get messages from kernel :%s\n", recv_buf.mymessage.data);
         }
-
-        message.nlmsg_type = NETLINK_TEST_COMMAND;
-        sendto(sock_fd, &message, message.nlmsg_len, 0, (struct sockaddr*)&dest_addr, sizeof(dest_addr));
+//        message.nlmsg_type = NETLINK_TEST_COMMAND;
+//        sendto(sock_fd, &message, message.nlmsg_len, 0, (struct sockaddr*)&dest_addr, sizeof(dest_addr));
     }
 
 

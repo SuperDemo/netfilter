@@ -16,7 +16,7 @@
 #include <linux/uaccess.h>
 #include<linux/string.h>
 
-#include "log_message.h"
+#include "log.h"
 #include "netFilter.h"
 #include "dealConf.h"
 #include "netLink.h"
@@ -230,5 +230,6 @@ int releaseNetFilter(void){
     } else if (strcmp(direction, "<=>") == 0) {     // 如果选择双向拦截
         DEBUG("two way intercept\n");
     }
+
     return 0;
 }
