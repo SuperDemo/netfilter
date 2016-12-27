@@ -118,7 +118,7 @@ int sendMsgNetlink(char *message) {
     read_lock_bh(&user_proc.lock);  // 获取读锁
     if (!user_proc.pid) return -1; // 如果客户端断开了连接，直接返回
     // 发送单播消息，参数分别为nl_sk(内核套接字), skb(套接字缓冲区), pid(目的进程), MSG_DONTWAIT(不阻塞)
-    INFO("ready to send unicast message: %s", message);
+    INFO("my_net_link:ready to send unicast message: '%s'", message);
     ret = netlink_unicast(nl_sk, skb, user_proc.pid, MSG_DONTWAIT); // 发送单播消息
     read_unlock_bh(&user_proc.lock);    // 释放读锁
 
