@@ -21,6 +21,8 @@
 #include "netFilter.h"
 #include "netLink.h"
 
+MODULE_LICENSE("GPL");
+
 char mymessagebuf[100];     // 缓冲区定义
 
 static int __init init(void){
