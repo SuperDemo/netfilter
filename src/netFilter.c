@@ -68,9 +68,9 @@ int releaseNetFilter(void){
 extern char mymessagebuf[1000];  // 放置缓冲区声明
 
 #define DEBUG(...) sprintf(mymessagebuf, "DEBUG:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
-#define INFO(...) sprintf(mymessagebuf, "INFO"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
-#define WARNING(...) sprintf(mymessagebuf, "WARNING"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
-#define ERROR(...) sprintf(mymessagebuf, "ERROR"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define INFO(...) sprintf(mymessagebuf, "INFO:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define WARNING(...) sprintf(mymessagebuf, "WARNING:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
+#define ERROR(...) sprintf(mymessagebuf, "ERROR:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
 
 unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct net_device *in,
                        const struct net_device *out, int (*okfn)(struct sk_buff *)) {
@@ -101,42 +101,13 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = iph->tot_len - ip_head_len;   //获得数据部分长度
 
+    DEBUG("ip_head_len=%d,ip_body_len=%d", ip_head_len, ip_body_len);
+
 //    if (iph->saddr == in_aton(sourceip)
 //        && iph->daddr == in_aton(targetip)) {
 //        // 比较配置中ip与获取ip的16进制形式
 //        return NF_ACCEPT;
 //    }
-
-//    strcpy(sourceip, "10.108.164.217");
-//    strcpy(targetip, "10.108.164.176");
-//    if (iph->daddr == in_aton(targetip) && iph->saddr == in_aton(sourceip)){
-//        return NF_ACCEPT;
-//    }
-//    strcpy(targetip, "10.108.167.255");
-//    if (iph->daddr == in_aton(targetip)){
-//        return NF_ACCEPT;
-//    }
-//    strcpy(targetip, "244.0.0.251");
-//    if (iph->daddr == in_aton(targetip)){
-//        return NF_ACCEPT;
-//    }
-//    strcpy(targetip, "255.255.255.255");
-//    if (iph->daddr == in_aton(targetip)){
-//        return NF_ACCEPT;
-//    }
-//    strcpy(targetip, "192.168.1.255");
-//    if (iph->daddr == in_aton(targetip)){
-//        return NF_ACCEPT;
-//    }
-//    strcpy(sourceip, "10.108.167.250");
-//    strcpy(targetip, "10.108.167.250");
-//    if (iph->daddr != in_aton(sourceip) && iph->saddr != in_aton(targetip)){
-//        return NF_ACCEPT;
-//    }
-
-    // 显示捕获的ip数据报的点分10进制形式
-//    sprintf(mymessagebuf, "%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-//    sendMsgNetlink(mymessagebuf);
 
     DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
