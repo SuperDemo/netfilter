@@ -18,7 +18,6 @@ static struct{
     __u32 pid;  // 客户端pid
     rwlock_t lock;  // 读写锁，用来控制pid的访问
 }user_proc;
-static char str[100];  // 存放netlink消息的缓冲区
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)
 struct netlink_kernel_cfg cfg;   // netlink内核配置参数
@@ -90,7 +89,7 @@ int sendMsgNetlink(char *message) {
         WARNING("my_net_link:alloc_skb error");
         return -1;
     }
-    old_tail = skb->tail;   // 记录填充消息前skb的尾部位置
+    old_tail = (char*)skb->tail;   // 记录填充消息前skb的尾部位置
 
     // 先获取skb中消息的首部地址，根据内核版本变动
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 16)
@@ -104,10 +103,10 @@ int sendMsgNetlink(char *message) {
     strcpy(NLMSG_DATA(nlh), message);
     DEBUG("my_net_link:send message '%s'.\n", (char *) NLMSG_DATA(nlh));
 
-    nlh->nlmsg_len = skb->tail - old_tail;  // 获取当前skb中填充消息的长度
+    nlh->nlmsg_len = (char*)skb->tail - old_tail;  // 获取当前skb中填充消息的长度
 
     // 设置控制字段
-    NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
+    //NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
     //NETLINK_CB(skb).dst_pid = pid;  // 消息接收者的pid
     NETLINK_CB(skb).dst_group = 0;    // 目标为进程时，设置为0
 
@@ -117,7 +116,7 @@ int sendMsgNetlink(char *message) {
     ret = netlink_unicast(nl_sk, skb, user_proc.pid, MSG_DONTWAIT); // 发送单播消息
     read_unlock_bh(&user_proc.lock);    // 释放读锁
 
-#if LINUX_VERSION < KERNEL_VERSION(2, 6, 16)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 16)
     // 如果内核版本过小，需要做一个出错时跳转标签
     nlmsg_failure:
 #endif
@@ -162,8 +161,10 @@ int createNetlink(void) {
     }
     INFO("my_net_link: create netlink socket ok.\n");
 
+    write_lock_bh(&user_proc.lock);     // 获取写锁
     // 初始时将客户端pid置0
     pid = 0;
+    write_unlock_bh(&user_proc.lock);   // 释放写锁
 
     return 0;
 }
