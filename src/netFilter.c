@@ -36,10 +36,10 @@ int initNetFilter(void){
     nfho_single.priority = NF_IP_PRI_FILTER;
 
     if (strcmp(direction, "=>") == 0) {  // 如果选择单向拦截
-        DEBUG("单向拦截\n");
+        DEBUG("one way intercept\n");
         nf_register_hook(&nfho_single); //注册一个netfilter钩子
     } else if (strcmp(direction, "<=>") == 0) {    //如果选择双向拦截
-        DEBUG("双向拦截\n");
+        DEBUG("two way intercept\n");
     }
 
     return 0;
@@ -225,10 +225,10 @@ int releaseNetFilter(void){
     // 释放netfilter钩子
 
     if (strcmp(direction, "=>") == 0) {   // 如果选择单向拦截
-        DEBUG("单向拦截\n");
+        DEBUG("one way intercept\n");
         nf_unregister_hook(&nfho_single);   // 卸载钩子
     } else if (strcmp(direction, "<=>") == 0) {     // 如果选择双向拦截
-        DEBUG("双向拦截\n");
+        DEBUG("two way intercept\n");
     }
     return 0;
 }
