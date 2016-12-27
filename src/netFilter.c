@@ -143,7 +143,6 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //    sendMsgNetlink(mymessagebuf);
 
     DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-    return NF_ACCEPT;
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
@@ -188,7 +187,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     //DEBUG("data:%s", TUMessage);
-    //DEBUG("data:%s", data);
+    DEBUG("data:%s", data);
 
     return NF_ACCEPT;
 
