@@ -1,6 +1,6 @@
 
 #include <linux/string.h>
-extern char mymessagebuf[100];  // 放置缓冲区声明
+extern char mymessagebuf[1000];  // 放置缓冲区声明
 
 #define DEBUG(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);
 #define INFO(...) sprintf(mymessagebuf, __VA_ARGS__);sendMsgNetlink(mymessagebuf);

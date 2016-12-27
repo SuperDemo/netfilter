@@ -53,6 +53,7 @@ static void recvMsgNetlink(struct sk_buff *skb) {
             }
             else if (nlh->nlmsg_type == NETLINK_TEST_COMMAND){
                 // 如果消息类型为具体指令,有待操作
+                sendMsgNetlink("other command!");
             }
         }
         else{
