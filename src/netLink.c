@@ -83,7 +83,10 @@ int sendMsgNetlink(char *message) {
 
     // 先判断有无netlink客户端连接
     read_lock_bh(&user_proc.lock);  // 获取读锁
-    if (!user_proc.pid) return -1;  // 如果pid=0,直接返回
+    if (!user_proc.pid){
+        read_unlock_bh(&user_proc.lock);    // 释放读锁
+        return -1;  // 如果pid=0,直接返回
+    }
     read_unlock_bh(&user_proc.lock);    // 释放读锁
 
     message_size = strlen(message) + 1; // 获取字符串消息长度
@@ -116,7 +119,10 @@ int sendMsgNetlink(char *message) {
     NETLINK_CB(skb).dst_group = 0;    // 目标为进程时，设置为0
 
     read_lock_bh(&user_proc.lock);  // 获取读锁
-    if (!user_proc.pid) return -1; // 如果客户端断开了连接，直接返回
+    if (!user_proc.pid){
+        read_unlock_bh(&user_proc.lock);    // 释放读锁
+        return -1; // 如果客户端断开了连接，直接返回
+    }
     // 发送单播消息，参数分别为nl_sk(内核套接字), skb(套接字缓冲区), pid(目的进程), MSG_DONTWAIT(不阻塞)
     ret = netlink_unicast(nl_sk, skb, user_proc.pid, MSG_DONTWAIT); // 发送单播消息
     read_unlock_bh(&user_proc.lock);    // 释放读锁
