@@ -81,9 +81,9 @@ int sendMsgNetlink(char *message) {
     }
 
     // 先判断有无netlink客户端连接
-//    read_lock_bh(&user_proc.lock);  // 获取读锁
-//    if (!user_proc.pid) return -1;  // 如果pid=0,直接返回
-//    read_unlock_bh(&user_proc.lock);    // 释放读锁
+    read_lock_bh(&user_proc.lock);  // 获取读锁
+    if (!user_proc.pid) return -1;  // 如果pid=0,直接返回
+    read_unlock_bh(&user_proc.lock);    // 释放读锁
 
     message_size = strlen(message) + 1; // 获取字符串消息长度
     total_size = NLMSG_SPACE(message_size);    // 获取总长度，NLMSG_SPACE宏会计算消息加上首部再对齐后的长度
