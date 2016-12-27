@@ -38,18 +38,18 @@ static void recvMsgNetlink(struct sk_buff *skb) {
                 // 如果消息类型为请求连接
                 INFO("netlink client connect");
                 INFO("netlink client pid is %d", nlh->nlmsg_pid);
-                write_lock_bh(&user_proc.lock);     // 获取写锁
+                write_lock(&user_proc.lock);     // 获取写锁
                 user_proc.pid = nlh->nlmsg_pid;
-                write_unlock_bh(&user_proc.lock);   // 释放写锁
+                write_unlock(&user_proc.lock);   // 释放写锁
                 sendMsgNetlink("you have connected to the kernel!");  // 向客户端发送回复消息
             }
             else if (nlh->nlmsg_type == NETLINK_TEST_DISCONNECT){
                 // 如果消息类型为释放连接
                 INFO("netlink client disconnect");
                 sendMsgNetlink("you have disconnected to the kernel!");  // 向客户端发送回复消息
-                write_lock_bh(&user_proc.lock);     // 获取写锁
+                write_lock(&user_proc.lock);     // 获取写锁
                 user_proc.pid = 0;  // 将pid置0
-                write_unlock_bh(&user_proc.lock);   // 释放写锁
+                write_unlock(&user_proc.lock);   // 释放写锁
             }
             else if (nlh->nlmsg_type == NETLINK_TEST_COMMAND){
                 // 如果消息类型为具体指令,有待操作
@@ -82,9 +82,9 @@ int sendMsgNetlink(char *message) {
     }
 
     // 先判断有无netlink客户端连接
-    read_lock_bh(&user_proc.lock);  // 获取读锁
+    read_lock(&user_proc.lock);  // 获取读锁
     if (!user_proc.pid) return -1;  // 如果pid=0,直接返回
-    read_unlock_bh(&user_proc.lock);    // 释放读锁
+    read_unlock(&user_proc.lock);    // 释放读锁
 
     message_size = strlen(message) + 1; // 获取字符串消息长度
     total_size = NLMSG_SPACE(message_size);    // 获取总长度，NLMSG_SPACE宏会计算消息加上首部再对齐后的长度
@@ -115,11 +115,11 @@ int sendMsgNetlink(char *message) {
     //NETLINK_CB(skb).dst_pid = pid;  // 消息接收者的pid
     NETLINK_CB(skb).dst_group = 0;    // 目标为进程时，设置为0
 
-    read_lock_bh(&user_proc.lock);  // 获取读锁
+    read_lock(&user_proc.lock);  // 获取读锁
     if (!user_proc.pid) return -1; // 如果客户端断开了连接，直接返回
     // 发送单播消息，参数分别为nl_sk(内核套接字), skb(套接字缓冲区), pid(目的进程), MSG_DONTWAIT(不阻塞)
     ret = netlink_unicast(nl_sk, skb, user_proc.pid, MSG_DONTWAIT); // 发送单播消息
-    read_unlock_bh(&user_proc.lock);    // 释放读锁
+    read_unlock(&user_proc.lock);    // 释放读锁
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 16)
     // 如果内核版本过小，需要做一个出错时跳转标签
@@ -166,10 +166,10 @@ int createNetlink(void) {
     }
     INFO("my_net_link: create netlink socket ok.\n");
 
-    write_lock_bh(&user_proc.lock);     // 获取写锁
+    write_lock(&user_proc.lock);     // 获取写锁
     // 初始时将客户端pid置0
     user_proc.pid = 0;
-    write_unlock_bh(&user_proc.lock);   // 释放写锁
+    write_unlock(&user_proc.lock);   // 释放写锁
 
     return 0;
 }
