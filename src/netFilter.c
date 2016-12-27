@@ -94,6 +94,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     char message[50]; // 记录message
     char title[50]; // 记录抽象事件——主题
 
+    int i;
+
     if (!skb || !skb->data) return NF_ACCEPT;
     data = skb->data;   // 将data指向ip数据报首部
 
@@ -127,7 +129,11 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
-            //strncpy(TUMessage, data, tcp_body_len);
+            DEBUG("data:");
+            for (i = 0; i < tcp_body_len; i++){
+                DEBUG("data[%d]=%x", i, data[i]);
+            }
+
             break;
         }
         case IPPROTO_UDP: {
@@ -154,7 +160,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     }
 
     //DEBUG("data:%s", TUMessage);
-    DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
+//    DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
+
+
 
     return NF_ACCEPT;
 
