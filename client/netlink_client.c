@@ -81,6 +81,9 @@ int main(int argc, char *argv[]) {
         printf("send connect message to kernel failed!\n");
         return -1;
     }
+    else{
+        printf("send connect message to kernel success!\n");
+    }
 
     // 先设置信号函数，用于退出死循环
     signal(SIGINT, quit);
@@ -91,7 +94,7 @@ int main(int argc, char *argv[]) {
         if (recvfrom(sock_fd, &recv_buf, sizeof(recv_buf), 0, (struct sockaddr *) &dest_addr, &dest_addr_len) < 0) {
             printf("recv message from kernel failed!\n");
         } else {
-            printf("Get messages:\n");
+            printf("Get messages from kernel success!\n");
             //printf("Get messages:%d\n", recv_buf.mymessage.data);
         }
     }
