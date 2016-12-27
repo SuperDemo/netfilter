@@ -1,5 +1,5 @@
 
-#ifdef __NETLINK_HEADER__
+#ifndef __NETLINK_HEADER__
 #define __NETLINK_HEADER__
 
 #define NETLINK_TEST 20 // 自定义的netlink协议号
