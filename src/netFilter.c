@@ -112,7 +112,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //    }
 
     // 显示捕获的ip数据报的点分10进制形式
-    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    //DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 

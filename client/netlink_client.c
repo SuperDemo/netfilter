@@ -91,7 +91,8 @@ int main(int argc, char *argv[]) {
         if (recvfrom(sock_fd, &recv_buf, sizeof(recv_buf), 0, (struct sockaddr *) &dest_addr, &dest_addr_len) < 0) {
             printf("recv message from kernel failed!\n");
         } else {
-            printf("Get messages:%d\n", recv_buf.mymessage.data);
+            printf("Get messages:\n");
+            //printf("Get messages:%d\n", recv_buf.mymessage.data);
         }
     }
 

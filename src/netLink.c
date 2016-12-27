@@ -37,14 +37,16 @@ static void recvMsgNetlink(struct sk_buff *skb) {
             // 如果首部完整
             if (nlh->nlmsg_type == NETLINK_TEST_CONNECT){
                 // 如果消息类型为请求连接
+                INFO("netlink client connect");
+                INFO("netlink client pid is %d", nlh->nlmsg_pid);
                 write_lock_bh(&user_proc.lock);     // 获取写锁
                 user_proc.pid = nlh->nlmsg_pid;
-                INFO("netlink client pid is %d", nlh->nlmsg_pid);
                 write_unlock_bh(&user_proc.lock);   // 释放写锁
                 //sendMsgNetlink("you have connected to the kernel!");  // 向客户端发送回复消息
             }
             else if (nlh->nlmsg_type == NETLINK_TEST_DISCONNECT){
                 // 如果消息类型为释放连接
+                INFO("netlink client disconnect");
                 write_lock_bh(&user_proc.lock);     // 获取写锁
                 user_proc.pid = 0;  // 将pid置0
                 write_unlock_bh(&user_proc.lock);   // 释放写锁
@@ -53,6 +55,9 @@ static void recvMsgNetlink(struct sk_buff *skb) {
             else if (nlh->nlmsg_type == NETLINK_TEST_COMMAND){
                 // 如果消息类型为具体指令,有待操作
             }
+        }
+        else{
+            INFO("netlink message too short");
         }
 
 //        memcpy(str, NLMSG_DATA(nlh), sizeof(str));  // 获取netlink消息主体
