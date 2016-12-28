@@ -55,7 +55,7 @@ int main() {
         memset(sendbuf, 0, sizeof(sendbuf));
         strncpy(sendbuf, rawbuf, j + 1);
 
-        send(clientSocket, sendbuf, strlen(sendbuf), 0);
+        send(clientSocket, sendbuf, sizeof(sendbuf), 0);
         if (strcmp(sendbuf, "quit") == 0)
             break;
         usleep(100000);
