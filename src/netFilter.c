@@ -134,8 +134,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
-            strncpy(tcp_udp_body, data, 10);
-            tcp_udp_body[10] = '\0';
+            strncpy(tcp_udp_body, data, tcp_head_len);
+            tcp_udp_body[tcp_head_len] = '\0';
             DEBUG("tcpdata:%s\n", tcp_udp_body);
 
             break;
