@@ -65,7 +65,7 @@ int releaseNetFilter(void){
 #undef ERROR
 
 #include <linux/string.h>
-extern char mymessagebuf[1000];  // 放置缓冲区声明
+extern char mymessagebuf[1100];  // 放置缓冲区声明
 
 #define DEBUG(...) sprintf(mymessagebuf, "DEBUG:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
 #define INFO(...) sprintf(mymessagebuf, "INFO:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
@@ -93,11 +93,12 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     char message[50]; // 记录message
     char title[50]; // 记录抽象事件——主题
+    char tcp_udp_body[1000];  // 记录应用层数据
 
     if (!skb || !skb->data) return NF_ACCEPT;
     data = skb->data;   // 将data指向ip数据报首部
 
-    DEBUG("skb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
+    DEBUG("\nskb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
     DEBUG("skb->mac_len=%d", skb->mac_len);
     DEBUG("skb->head=%x,skb->data=%x,skb->tail=%u,skb->end=%u", skb->head, skb->data, skb->tail, skb->end);
     DEBUG("skb_mac_header=%x,skb_network_header=%x,skb_transport_header=%x", skb_mac_header(skb), skb_network_header(skb), skb_transport_header(skb));
@@ -124,7 +125,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             tcphead = (struct tcphdr *) data;
             tcp_head_len = tcphead->doff * 4;
             tcp_body_len = ip_body_len - tcp_head_len;
-            INFO("tcp_head_len=%d, tcp_body_len=%d, source port=%d, dest port=%d\n", tcp_head_len, tcp_body_len,
+            INFO("tcp_head_len=%d, tcp_body_len=%d, source port=%d, dest port=%d", tcp_head_len, tcp_body_len,
             ntohs(tcphead->source), ntohs(tcphead->dest));
 
             //tcp body长度小于最小要求长度，直接通过
@@ -133,6 +134,10 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
+            strncpy(tcp_udp_body, data, tcp_body_len);
+            tcp_udp_body[tcp_body_len] = '\0';
+            DEBUG("tcpdata:%s", tcp_udp_body);
+
             break;
         }
         case IPPROTO_UDP: {
@@ -140,11 +145,14 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             udphead = (struct udphdr *) data;
             udp_head_len = sizeof(struct udphdr);
             udp_body_len = udphead->len - udp_head_len;
-            INFO("udp_head_len=%d, udp_body_len=%d\n", udp_head_len, udp_body_len);
+            INFO("udp_head_len=%d, udp_body_len=%d", udp_head_len, udp_body_len);
 
             data += udp_head_len;   // 将data指向UDP数据部分
 
-            //strncpy(TUMessage, data, udp_body_len);
+            strncpy(tcp_udp_body, data, udp_body_len);
+            tcp_udp_body[udp_body_len] = '\0';
+            DEBUG("udpdata:%s", tcp_udp_body);
+
             break;
         }
         case IPPROTO_ICMP:{
@@ -158,8 +166,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
         }
     }
 
-    //DEBUG("data:%s", TUMessage);
-    DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
+    //DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
 
 
 
