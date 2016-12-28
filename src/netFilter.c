@@ -115,7 +115,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //        return NF_ACCEPT;
 //    }
 
-    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+//    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
@@ -134,8 +134,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
-            strncpy(tcp_udp_body, data, tcp_head_len);
-            tcp_udp_body[tcp_head_len] = '\0';
+            strncpy(tcp_udp_body, data, tcp_body_len);
+            tcp_udp_body[tcp_body_len] = '\0';
+
             DEBUG("tcpdata:%s\n", tcp_udp_body);
 
             break;
@@ -161,16 +162,17 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
         }
         case IPPROTO_ICMP:{
             // icmp协议
-            INFO(" icmp protocol");
+//            INFO(" icmp protocol");
         }
         default: {  // 如果有其他可能情况，给出提示
-            DEBUG("Other TranLayer proto=%d, with IPPROTO_TCP=%d, with IPPROTO_UDP=%d", iph->protocol, IPPROTO_TCP,
-                  IPPROTO_UDP);
+//            DEBUG("Other TranLayer proto=%d, with IPPROTO_TCP=%d, with IPPROTO_UDP=%d", iph->protocol, IPPROTO_TCP,
+//                  IPPROTO_UDP);
             return NF_ACCEPT;
         }
     }
 
     //DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
+
 
 
 
