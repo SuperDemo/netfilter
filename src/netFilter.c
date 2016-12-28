@@ -98,16 +98,16 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     if (!skb || !skb->data) return NF_ACCEPT;
     data = skb->data;   // 将data指向ip数据报首部
 
-    DEBUG("skb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
-    DEBUG("skb->mac_len=%d", skb->mac_len);
-    DEBUG("skb->head=%x,skb->data=%x,skb->tail=%u,skb->end=%u", skb->head, skb->data, skb->tail, skb->end);
-    DEBUG("skb_mac_header=%x,skb_network_header=%x,skb_transport_header=%x", skb_mac_header(skb), skb_network_header(skb), skb_transport_header(skb));
+//    DEBUG("skb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
+//    DEBUG("skb->mac_len=%d", skb->mac_len);
+//    DEBUG("skb->head=%x,skb->data=%x,skb->tail=%u,skb->end=%u", skb->head, skb->data, skb->tail, skb->end);
+//    DEBUG("skb_mac_header=%x,skb_network_header=%x,skb_transport_header=%x", skb_mac_header(skb), skb_network_header(skb), skb_transport_header(skb));
 
     iph = (struct iphdr *) data;    // 获得ip数据报首部指针
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = ntohs(iph->tot_len) - ip_head_len;   //获得数据部分长度,注意总长度为网络大端序，需转成小端序
 
-    DEBUG("ip_head_len=%d,ip_body_len=%d", ip_head_len, ip_body_len);
+//    DEBUG("ip_head_len=%d,ip_body_len=%d", ip_head_len, ip_body_len);
 
 //    if (iph->saddr == in_aton(sourceip)
 //        && iph->daddr == in_aton(targetip)) {
@@ -125,8 +125,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             tcphead = (struct tcphdr *) data;
             tcp_head_len = tcphead->doff * 4;
             tcp_body_len = ip_body_len - tcp_head_len;
-            INFO("tcp_head_len=%d, tcp_body_len=%d, source port=%d, dest port=%d", tcp_head_len, tcp_body_len,
-            ntohs(tcphead->source), ntohs(tcphead->dest));
+//            INFO("tcp_head_len=%d, tcp_body_len=%d, source port=%d, dest port=%d", tcp_head_len, tcp_body_len,
+//            ntohs(tcphead->source), ntohs(tcphead->dest));
 
             //tcp body长度小于最小要求长度，直接通过
             if (tcp_body_len < MIN_SIZE)
@@ -145,7 +145,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             udphead = (struct udphdr *) data;
             udp_head_len = sizeof(struct udphdr);
             udp_body_len = ntohs(udphead->len) - udp_head_len;
-            INFO("udp_head_len=%d, udp_body_len=%d", udp_head_len, udp_body_len);
+//            INFO("udp_head_len=%d, udp_body_len=%d", udp_head_len, udp_body_len);
 
             // udp body长度小于最小要求长度，直接通过
             if (udp_body_len < MIN_SIZE)
