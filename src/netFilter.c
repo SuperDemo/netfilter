@@ -15,7 +15,6 @@
 #include <linux/fs.h>
 #include <linux/uaccess.h>
 #include <linux/string.h>
-#include <linux/byteorder.h>
 
 #include "log.h"
 #include "netFilter.h"
