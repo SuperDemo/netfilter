@@ -137,10 +137,13 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             strncpy(tcp_udp_body, data, tcp_body_len);
             tcp_udp_body[tcp_body_len] = '\0';
 
-            if (strstr(data, "mno"))
+            if (strstr(data, "mno")){
+                DEBUG("DROP:tcpdata:%s", tcp_udp_body);
                 return NF_DROP;
-
-            DEBUG("tcpdata:%s", tcp_udp_body);
+            }
+            else {
+                DEBUG("ACCEPT:tcpdata:%s", tcp_udp_body);
+            }
 
             break;
         }
