@@ -65,7 +65,8 @@ int releaseNetFilter(void){
 #undef ERROR
 
 #include <linux/string.h>
-extern char mymessagebuf[1100];  // 放置缓冲区声明
+char mymessagebuf[1100];  // 放置缓冲区定义
+char tcp_udp_body[1000];  // 记录应用层数据
 
 #define DEBUG(...) sprintf(mymessagebuf, "DEBUG:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
 #define INFO(...) sprintf(mymessagebuf, "INFO:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
@@ -93,7 +94,6 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     char message[50]; // 记录message
     char title[50]; // 记录抽象事件——主题
-    char tcp_udp_body[1000];  // 记录应用层数据
 
     if (!skb || !skb->data) return NF_ACCEPT;
     data = skb->data;   // 将data指向ip数据报首部

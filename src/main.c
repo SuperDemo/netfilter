@@ -23,8 +23,6 @@
 
 MODULE_LICENSE("GPL");
 
-char mymessagebuf[1000];     // 缓冲区定义
-
 static int __init init(void){
     // 插入模块时
 
