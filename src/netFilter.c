@@ -160,9 +160,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += udp_head_len;   // 将data指向UDP数据部分
 
-//            strncpy(tcp_udp_body, data, 10);
-//            tcp_udp_body[10] = '\0';
-//            DEBUG("udpdata:%s", tcp_udp_body);
+            strncpy(tcp_udp_body, data, udp_body_len);
+            tcp_udp_body[udp_body_len] = '\0';
+            DEBUG("udpdata:%s", tcp_udp_body);
 
             break;
         }
