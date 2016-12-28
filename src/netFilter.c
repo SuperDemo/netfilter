@@ -14,7 +14,8 @@
 #include <linux/rtc.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
-#include<linux/string.h>
+#include <linux/string.h>
+#include <linux/byteorder.h>
 
 #include "log.h"
 #include "netFilter.h"
@@ -101,7 +102,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     iph = (struct iphdr *) data;    // 获得ip数据报首部指针
     ip_head_len = iph->ihl * 4;     // 获得首部长度
-    ip_body_len = iph->tot_len / 256 - ip_head_len;   //获得数据部分长度
+    ip_body_len = ntohs(iph->tot_len) - ip_head_len;   //获得数据部分长度,注意总长度为网络大端序，需转成小端序
 
     DEBUG("ip_head_len=%d,ip_body_len=%d", ip_head_len, ip_body_len);
 
