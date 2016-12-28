@@ -98,7 +98,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     if (!skb || !skb->data) return NF_ACCEPT;
     data = skb->data;   // 将data指向ip数据报首部
 
-    DEBUG("\nskb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
+    DEBUG("skb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
     DEBUG("skb->mac_len=%d", skb->mac_len);
     DEBUG("skb->head=%x,skb->data=%x,skb->tail=%u,skb->end=%u", skb->head, skb->data, skb->tail, skb->end);
     DEBUG("skb_mac_header=%x,skb_network_header=%x,skb_transport_header=%x", skb_mac_header(skb), skb_network_header(skb), skb_transport_header(skb));
@@ -136,7 +136,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             strncpy(tcp_udp_body, data, 10);
             tcp_udp_body[10] = '\0';
-            DEBUG("tcpdata:%s", tcp_udp_body);
+            DEBUG("tcpdata:%s\n", tcp_udp_body);
 
             break;
         }
@@ -144,7 +144,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             //获取udp头部，并计算其长度
             udphead = (struct udphdr *) data;
             udp_head_len = sizeof(struct udphdr);
-            udp_body_len = udphead->len - udp_head_len;
+            udp_body_len = ntohs(udphead->len) - udp_head_len;
             INFO("udp_head_len=%d, udp_body_len=%d", udp_head_len, udp_body_len);
 
             // udp body长度小于最小要求长度，直接通过
@@ -153,9 +153,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += udp_head_len;   // 将data指向UDP数据部分
 
-            strncpy(tcp_udp_body, data, 10);
-            tcp_udp_body[10] = '\0';
-            DEBUG("udpdata:%s", tcp_udp_body);
+//            strncpy(tcp_udp_body, data, 10);
+//            tcp_udp_body[10] = '\0';
+//            DEBUG("udpdata:%s", tcp_udp_body);
 
             break;
         }
