@@ -94,13 +94,13 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     char message[50]; // 记录message
     char title[50]; // 记录抽象事件——主题
 
-    int i;
-
     if (!skb || !skb->data) return NF_ACCEPT;
     data = skb->data;   // 将data指向ip数据报首部
 
     DEBUG("skb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
     DEBUG("skb->mac_len=%d", skb->mac_len);
+    DEBUG("skb->head=%x,skb->data=%x,skb->tail=%x,skb->end=%x", skb->head, skb->data, skb->tail, skb->end);
+    DEBUG("skb_mac_header=%x,skb_network_header=%x,skb_transport_header=%x", skb_mac_header(skb), skb_network_header(skb), skb_transport_header(skb));
 
     iph = (struct iphdr *) data;    // 获得ip数据报首部指针
     ip_head_len = iph->ihl * 4;     // 获得首部长度
