@@ -129,8 +129,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             ntohs(tcphead->source), ntohs(tcphead->dest));
 
             //tcp body长度小于最小要求长度，直接通过
-//            if (tcp_body_len < MIN_SIZE)
-//                return NF_ACCEPT;
+            if (tcp_body_len < MIN_SIZE)
+                return NF_ACCEPT;
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
@@ -146,6 +146,10 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             udp_head_len = sizeof(struct udphdr);
             udp_body_len = udphead->len - udp_head_len;
             INFO("udp_head_len=%d, udp_body_len=%d", udp_head_len, udp_body_len);
+
+            // udp body长度小于最小要求长度，直接通过
+            if (udp_body_len < MIN_SIZE)
+                return NF_ACCEPT;
 
             data += udp_head_len;   // 将data指向UDP数据部分
 
