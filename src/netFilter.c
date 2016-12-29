@@ -109,13 +109,13 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
 //    DEBUG("ip_head_len=%d,ip_body_len=%d", ip_head_len, ip_body_len);
 
-//    if (iph->saddr == in_aton(sourceip)
-//        && iph->daddr == in_aton(targetip)) {
-//        // 比较配置中ip与获取ip的16进制形式
-//        return NF_ACCEPT;
-//    }
+    if (iph->saddr == in_aton(sourceip)
+        && iph->daddr == in_aton(targetip)) {
+        // 比较配置中ip与获取ip的16进制形式
+        return NF_ACCEPT;
+    }
 
-//    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
@@ -136,7 +136,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             strncpy(tcp_udp_body, data, tcp_body_len);
             tcp_udp_body[tcp_body_len] = '\0';
-            DEBUG("tcpdata:%s", tcp_udp_body);
+//            DEBUG("tcpdata:%s", tcp_udp_body);
 //
 //            if (strstr(data, "mno")){
 //                DEBUG("DROP:tcpdata:%s", tcp_udp_body);
@@ -177,10 +177,6 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             return NF_ACCEPT;
         }
     }
-
-    //DEBUG("data:%c%c%c%c", data[0], data[1], data[2], data[3]);
-
-
 
 
     return NF_ACCEPT;
