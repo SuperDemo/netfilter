@@ -180,20 +180,12 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             DEBUG("IGMP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
             break;
         }
-        case IPPROTO_GGP:{
-            DEBUG("GGP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-            break;
-        }
         case IPPROTO_PUP:{
             DEBUG("PUP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
             break;
         }
         case IPPROTO_IDP:{
             DEBUG("IDP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-            break;
-        }
-        case IPPROTO_ND:{
-            DEBUG("ND:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
             break;
         }
         case IPPROTO_IP:{
