@@ -134,8 +134,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += tcp_head_len;   // 将data指向TCP数据部分
 
-//            strncpy(tcp_udp_body, data, tcp_body_len);
-//            tcp_udp_body[tcp_body_len] = '\0';
+            strncpy(tcp_udp_body, data, tcp_body_len);
+            tcp_udp_body[tcp_body_len] = '\0';
+            DEBUG("tcpdata:%s", tcp_udp_body);
 //
 //            if (strstr(data, "mno")){
 //                DEBUG("DROP:tcpdata:%s", tcp_udp_body);
@@ -160,9 +161,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             data += udp_head_len;   // 将data指向UDP数据部分
 
-            strncpy(tcp_udp_body, data, udp_body_len);
-            tcp_udp_body[udp_body_len] = '\0';
-            DEBUG("udpdata:%s", tcp_udp_body);
+//            strncpy(tcp_udp_body, data, udp_body_len);
+//            tcp_udp_body[udp_body_len] = '\0';
+//            DEBUG("udpdata:%s", tcp_udp_body);
 
             break;
         }
