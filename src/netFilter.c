@@ -167,7 +167,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //            tcp_udp_body[udp_body_len] = '\0';
 //            DEBUG("udpdata:%s", tcp_udp_body);
 
-            DEBUG("UDP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+//            DEBUG("UDP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
             break;
         }
