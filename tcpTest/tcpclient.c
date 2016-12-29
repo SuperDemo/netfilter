@@ -25,6 +25,7 @@ int main() {
     int iDataNum;
     int i;
     int j;
+    int count;
 
     // 创建客户端套接字
     if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -35,7 +36,7 @@ int main() {
     // 配置客户端套接字
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(SERVER_PORT);
-    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    serverAddr.sin_addr.s_addr = inet_addr("10.108.167.106");
 
     // 连接服务端
     if (connect(clientSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr)) < 0) {
@@ -46,8 +47,9 @@ int main() {
     printf("connect with destination host...\n");
 
     // 循环与服务端通信
+    count = 0;
     strcpy(rawbuf, "abcdefghijklmnopqrstuvwxyz");
-    for (i = 0; i < 100000; i++) {
+    for (i = 0; i < 10000000; i++) {
         //printf("Input your word:>");
         //scanf("%s", sendbuf);
         //printf("\n");
@@ -62,6 +64,7 @@ int main() {
         //iDataNum = recv(clientSocket, recvbuf, 200, 0);
         //recvbuf[iDataNum] = '\0';
         //printf("recv data of my world is: %s\n", recvbuf);
+        printf("send packet to server %d times\n", ++count);
     }
     close(clientSocket);
     return 0;

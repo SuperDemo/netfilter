@@ -25,6 +25,7 @@ int main() {
     char buffer[2000];
     int iDataNum;
     unsigned int value = 0x1;
+    int count;
 
     // 创建服务端套接字
     if ((serverSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -66,6 +67,7 @@ int main() {
     printf("IP is %s\n", inet_ntoa(clientAddr.sin_addr));
     printf("Port is %d\n", htons(clientAddr.sin_port));
 
+    count = 1;
     // 循环接受当次连接客户端发送给服务端的数据
     while (1) {
         iDataNum = recv(client, buffer, 1024, 0);   // 单次接收1024字节
@@ -75,7 +77,7 @@ int main() {
         }
         buffer[iDataNum] = '\0';    // 将接收到的字符串收尾
 
-        printf("%d recv data is %s\n", iDataNum, buffer);
+        printf("count=%8d, recv data is %s\n", ++count, buffer);
 
         if (strcmp(buffer, "quit") == 0)
             break;
