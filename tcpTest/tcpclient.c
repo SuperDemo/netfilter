@@ -60,7 +60,7 @@ int main() {
         send(clientSocket, sendbuf, sizeof(sendbuf), 0);
         if (strcmp(sendbuf, "quit") == 0)
             break;
-        usleep(100000);
+        usleep(10000);
         //iDataNum = recv(clientSocket, recvbuf, 200, 0);
         //recvbuf[iDataNum] = '\0';
         //printf("recv data of my world is: %s\n", recvbuf);
