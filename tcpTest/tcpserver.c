@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <time.h>
 #define SERVER_PORT 5555
 
 int main() {
@@ -68,6 +68,8 @@ int main() {
     printf("Port is %d\n", htons(clientAddr.sin_port));
 
     count = 1;
+    clock_t start,end;
+    start = clock();
     // 循环接受当次连接客户端发送给服务端的数据
     while (1) {
         iDataNum = recv(client, buffer, 1024, 0);   // 单次接收1024字节
@@ -85,5 +87,8 @@ int main() {
         // 将接收到的字符串再发回给客户端
         //send(client, buffer, iDataNum, 0);
     }
+    end = clock();
+    printf("total time:%lf\n",(double)(end-start)/CLOCKS_PER_SEC);
+    printf("total count=%8d\n", count);
     return 0;
 }

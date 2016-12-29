@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <time.h>
 #define SERVER_PORT 5555
 
 int main() {
@@ -48,8 +48,10 @@ int main() {
 
     // 循环与服务端通信
     count = 0;
+    clock_t start,end;
+    start = clock();
     strcpy(rawbuf, "abcdefghijklmnopqrstuvwxyz");
-    for (i = 0; i < 10000000; i++) {
+    for (i = 0; i < 100000; i++) {
         //printf("Input your word:>");
         //scanf("%s", sendbuf);
         //printf("\n");
@@ -60,12 +62,15 @@ int main() {
         send(clientSocket, sendbuf, sizeof(sendbuf), 0);
         if (strcmp(sendbuf, "quit") == 0)
             break;
-        usleep(10000);
+        usleep(100);
         //iDataNum = recv(clientSocket, recvbuf, 200, 0);
         //recvbuf[iDataNum] = '\0';
         //printf("recv data of my world is: %s\n", recvbuf);
         printf("send packet to server %d times\n", ++count);
     }
+    end = clock();
+    printf("total time:%lf\n",(double)(end-start)/CLOCKS_PER_SEC);
+    send(clientSocket, "quit", sizeof("quit"), 0);
     close(clientSocket);
     return 0;
 }
