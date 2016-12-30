@@ -31,9 +31,12 @@ int initNetFilter(void){
     // 初始化netfilter
 
     nfho_single.hook = (nf_hookfn *) hook_func;   // 绑定钩子函数
-    nfho_single.hooknum = NF_INET_PRE_ROUTING;  // 数据流入前触发
-    nfho_single.pf = PF_INET;
-    nfho_single.priority = NF_IP_PRI_FILTER;
+    //nfho_single.hooknum = NF_INET_PRE_ROUTING;  // 数据流入前触发
+    nfho_single.hooknum = NF_BR_PRE_ROUTING;    // 数据流入网桥前触发
+    //nfho_single.pf = PF_INET;
+    nfho_single.pf = PF_BRIDGE;
+    //nfho_single.priority = NF_IP_PRI_FILTER;
+    nfho_single.priority = NF_BR_PRI_FIRST;
 
     if (strcmp(direction, "=>") == 0) {  // 如果选择单向拦截
         DEBUG("one way intercept\n");
@@ -79,6 +82,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     char *data; // data是数据指针游标，从skb->data表示的ip数据报开始
 
+    struct ethhdr *eth; // 以太网帧首部指针
+
     struct iphdr *iph;  // ip数据报首部指针
     int ip_head_len;    // 首部长度
     int ip_body_len;    // 数据长度
@@ -95,7 +100,16 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     char message[50]; // 记录message
     char title[50]; // 记录抽象事件——主题
 
-    if (!skb || !skb->data) return NF_ACCEPT;
+    eth = eth_hdr(skb); // 获得以太网帧首部指针
+    iph = ip_hdr(skb);  // 获得ip数据报首部指针，或者iph = (struct iphdr *) data;
+
+    if(!skb || !iph || !eth || !skb->data)
+        return NF_ACCEPT;
+
+    // 过滤掉广播数据
+    if(skb->pkt_type==PACKET_BROADCAST)
+        return NF_ACCEPT;
+
     data = skb->data;   // 将data指向ip数据报首部
 
 //    DEBUG("skb->len=%d, skb->data_len=%d", skb->len, skb->data_len);
@@ -120,6 +134,10 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
     switch (iph->protocol) {    // 根据TCP还是UDP进行不同的处理
+        case IPPROTO_ESP:
+        case IPPROTO_AH:
+            DEBUG("ESP AND AH:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+            break;
         case IPPROTO_TCP: {
             //获取tcp头，并计算其长度
             tcphead = (struct tcphdr *) data;
@@ -136,7 +154,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
             strncpy(tcp_udp_body, data, tcp_body_len);
             tcp_udp_body[tcp_body_len] = '\0';
-//            DEBUG("tcpdata:%s", tcp_udp_body);
+            DEBUG("tcpdata:%s", tcp_udp_body);
 //
 //            if (strstr(data, "mno")){
 //                DEBUG("DROP:tcpdata:%s", tcp_udp_body);
@@ -167,7 +185,7 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //            tcp_udp_body[udp_body_len] = '\0';
 //            DEBUG("udpdata:%s", tcp_udp_body);
 
-//            DEBUG("UDP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+            DEBUG("UDP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
             break;
         }
@@ -194,6 +212,10 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
         }
         case IPPROTO_RAW:{
             DEBUG("RAW:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
+            break;
+        }
+        case IPPROTO_GRE: {
+            DEBUG("GRE:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
             break;
         }
         default: {  // 如果有其他可能情况，给出提示
@@ -265,3 +287,5 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
     return NF_ACCEPT;
 }
+
+
