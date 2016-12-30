@@ -19,21 +19,19 @@
 int main() {
     int clientSocket;
     struct sockaddr_in serverAddr;
-    char rawbuf[200];
-    char sendbuf[200];
-    char recvbuf[200];
-    int iDataNum;
-    int i;
-    int j;
-    int count;
+    char* alphabet = "abcdefghijklmnopqrstuvwxyz";
+    char sendbuf[100];
+    clock_t start, end;
+    int index;
 
     // 创建客户端套接字
     if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("create client socket failed!");
-        return 1;
+        return -1;
     }
 
-    // 配置客户端套接字
+    // 配置服务端套接字
+    bzero(&serverAddr, sizeof(serverAddr));
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(SERVER_PORT);
     serverAddr.sin_addr.s_addr = inet_addr("10.108.167.106");
@@ -41,36 +39,42 @@ int main() {
     // 连接服务端
     if (connect(clientSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr)) < 0) {
         perror("connect to server failed!");
-        return 1;
+        return -1;
     }
 
     printf("connect with destination host...\n");
 
     // 循环与服务端通信
-    count = 0;
-    clock_t start,end;
-    start = clock();
-    strcpy(rawbuf, "abcdefghijklmnopqrstuvwxyz");
-    for (i = 0; i < 100000; i++) {
-        //printf("Input your word:>");
-        //scanf("%s", sendbuf);
-        //printf("\n");
-        j = i % 26;
-        memset(sendbuf, 0, sizeof(sendbuf));
-        strncpy(sendbuf, rawbuf, j + 1);
+    int count = 0;
 
-        send(clientSocket, sendbuf, sizeof(sendbuf), 0);
-        if (strcmp(sendbuf, "quit") == 0)
+    start = clock();
+    while(1) {
+        index = count % 26 + 1;     // 1--26
+        strncpy(sendbuf, alphabet, index);  // a, ab, ..., a-z
+
+        send(clientSocket, sendbuf, index, 0);
+
+        count++;
+        if (count % 1000 == 0){
+            sendbuf[index] = '\0';
+            printf("count=%8d, send data is %s\n", count, sendbuf);
+        }
+
+        if (count == 10000000){
+            send(clientSocket, "quit", strlen("quit"), 0);
             break;
-        usleep(100);
+        }
+
         //iDataNum = recv(clientSocket, recvbuf, 200, 0);
         //recvbuf[iDataNum] = '\0';
         //printf("recv data of my world is: %s\n", recvbuf);
-        printf("send packet to server %d times\n", ++count);
     }
     end = clock();
+
     printf("total time:%lf\n",(double)(end-start)/CLOCKS_PER_SEC);
-    send(clientSocket, "quit", sizeof("quit"), 0);
+    printf("total count=%8d\n", count);
+
     close(clientSocket);
+
     return 0;
 }
