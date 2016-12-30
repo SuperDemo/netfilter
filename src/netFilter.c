@@ -104,12 +104,14 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     eth = eth_hdr(skb); // 获得以太网帧首部指针
     iph = ip_hdr(skb);  // 获得ip数据报首部指针，或者iph = (struct iphdr *) data;
 
+    DEBUG("netfilter trigerd");
+
     if(!skb || !iph || !eth || !skb->data)
         return NF_ACCEPT;
 
-    // 过滤掉广播数据
-    if(skb->pkt_type==PACKET_BROADCAST)
-        return NF_ACCEPT;
+//    // 过滤掉广播数据
+//    if(skb->pkt_type==PACKET_BROADCAST)
+//        return NF_ACCEPT;
 
     data = skb->data;   // 将data指向ip数据报首部
 
