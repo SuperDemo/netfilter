@@ -26,13 +26,14 @@ def main():
     nlmsg_len = sys.getsizeof(nlmsg_len) + sys.getsizeof(nlmsg_type) +\
         sys.getsizeof(nlmsg_flags) + sys.getsizeof(nlmsg_seq) +\
         sys.getsizeof(nlmsg_pid)
+    print "nlmsg_len" + nlmsg_len
 
 
     # 打包参数，int or long,
     # nlmsg = struct.pack('IHHII%ds' % len(nlmsg_mymsg), nlmsg_len, nlmsg_type, nlmsg_flags, nlmsg_seq, nlmsg_pid, str(nlmsg_mymsg))
     nlmsg = struct.pack('IHHII', nlmsg_len, nlmsg_type, nlmsg_flags, nlmsg_seq, nlmsg_pid)
     # print type(nlmsg)
-    # print ":".join("{:02x}".format(ord(c)) for c in nlmsg)
+    print ":".join("{:02x}".format(ord(c)) for c in nlmsg)
     sock.send(nlmsg)
 
     while True:
