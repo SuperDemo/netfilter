@@ -23,10 +23,12 @@ def main():
     nlmsg_mymsg = "testpyclien\0"    # 用户消息
 
     # 重新设置长度
-    nlmsg_len = sys.getsizeof(nlmsg_len) + sys.getsizeof(nlmsg_type) +\
-        sys.getsizeof(nlmsg_flags) + sys.getsizeof(nlmsg_seq) +\
-        sys.getsizeof(nlmsg_pid)
-    print "nlmsg_len" + nlmsg_len
+    # nlmsg_len = sys.getsizeof(nlmsg_len) + sys.getsizeof(nlmsg_type) +\
+    #     sys.getsizeof(nlmsg_flags) + sys.getsizeof(nlmsg_seq) +\
+    #     sys.getsizeof(nlmsg_pid)
+    # print "nlmsg_len=" + str(nlmsg_len)
+
+    nlmsg_len = 16
 
 
     # 打包参数，int or long,
