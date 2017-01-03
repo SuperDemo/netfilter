@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-#define SERVER_PORT 5555
+#define SERVER_PORT 21001
 
 int main() {
     int clientSocket;
