@@ -78,15 +78,15 @@ int main() {
             printf("recv from client failed:%s\n",strerror(errno));
             continue;
         }
+        if (iDataNum == 0){
+            break;
+        }
         buffer[iDataNum] = '\0';    // 将接收到的字符串收尾
         count++;
 
         if (count % 10000 == 0){
             printf("count=%8d, recv data is \n", count);
         }
-
-        if (strcmp(buffer, "quit") == 0)
-            break;
 
         // 将接收到的字符串再发回给客户端
         //send(clientSocket, buffer, iDataNum, 0);

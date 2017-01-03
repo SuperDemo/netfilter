@@ -56,7 +56,7 @@ int main() {
         send(clientSocket, sendbuf, index, 0);
 
         count++;
-        if (count % 1000 == 0){
+        if (count % 10000 == 0){
             sendbuf[index] = '\0';
             printf("count=%8d, send data is %s\n", count, sendbuf);
         }
@@ -65,8 +65,6 @@ int main() {
         //recvbuf[iDataNum] = '\0';
         //printf("recv data of my world is: %s\n", recvbuf);
     }
-    for (i = 0; i < 10; i++)
-        send(clientSocket, "quit", strlen("quit"), 0);
     end = clock();
 
     printf("total time:%lf\n",(double)(end-start)/CLOCKS_PER_SEC);
