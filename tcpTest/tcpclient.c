@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-#define SERVER_PORT 21001
+#define SERVER_PORT 5555
 
 int main() {
     int clientSocket;
@@ -49,7 +49,7 @@ int main() {
     int count = 0;
 
     start = clock();
-    for (i = 0; i < 100000; i++) {
+    for (i = 0; i < 200000; i++) {
         index = count % 26 + 1;     // 1--26
         strncpy(sendbuf, alphabet, index);  // a, ab, ..., a-z
 
