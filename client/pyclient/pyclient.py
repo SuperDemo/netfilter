@@ -40,8 +40,10 @@ def main():
 
     while True:
         data = sock.recv(1024)
+        msglen = data[0]
+        print msglen
         print ":".join("{:02x}".format(ord(c)) for c in data)
-        print data[4:-4]
+        print data[16:]
 
 if __name__ == '__main__':
     main()
