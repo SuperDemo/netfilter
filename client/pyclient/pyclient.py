@@ -41,7 +41,7 @@ def main():
     while True:
         data = sock.recv(1024)
         print ":".join("{:02x}".format(ord(c)) for c in data)
-        print data[2:-2]
+        print data[4:-4]
 
 if __name__ == '__main__':
     main()
