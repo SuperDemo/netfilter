@@ -58,8 +58,8 @@ int main() {
         count++;
 
         sendbuf[index] = '\0';
-        printf("count=%8d, send data is %s\n", count, sendbuf);
-//        usleep(1000);
+//        printf("count=%8d, send data is %s\n", count, sendbuf);
+        usleep(100);
 
 //        if (count % 10000 == 0){
 //            sendbuf[index] = '\0';
