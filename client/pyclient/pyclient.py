@@ -42,7 +42,7 @@ def main():
     while True:
         data = sock.recv(1024)
         # data的第一位为nlmsg_len，表示消息的长度，data前16字节为nlmsg的消息头
-        print data[16:int(data[0])]
+        print data[16:ord(data[0])]
 
 if __name__ == '__main__':
     main()
