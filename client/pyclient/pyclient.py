@@ -28,6 +28,7 @@ def main():
     #     sys.getsizeof(nlmsg_pid)
     # print "nlmsg_len=" + str(nlmsg_len)
 
+    # 消息头长度为16
     nlmsg_len = 16
 
 
@@ -40,10 +41,8 @@ def main():
 
     while True:
         data = sock.recv(1024)
-        msglen = data[0]
-        print msglen
-        print ":".join("{:02x}".format(ord(c)) for c in data)
-        print data[16:]
+        # data的第一位为nlmsg_len，表示消息的长度，data前16字节为nlmsg的消息头
+        print data[16:int(data[0])]
 
 if __name__ == '__main__':
     main()
