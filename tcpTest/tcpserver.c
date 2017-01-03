@@ -82,9 +82,9 @@ int main() {
             printf("client closed connection\n");
             break;
         }
-        else {
-            printf("recv %d bytes from client\n", iDataNum);
-        }
+//        else {
+//            printf("recv %d bytes from client\n", iDataNum);
+//        }
         buffer[iDataNum] = '\0';    // 将接收到的字符串收尾
         count++;
 
