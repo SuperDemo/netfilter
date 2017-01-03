@@ -57,14 +57,14 @@ int main() {
 
         count++;
 
-        sendbuf[index] = '\0';
-        printf("count=%8d, send data is %s\n", count, sendbuf);
+//        sendbuf[index] = '\0';
+//        printf("count=%8d, send data is %s\n", count, sendbuf);
         usleep(100);
 
-//        if (count % 10000 == 0){
-//            sendbuf[index] = '\0';
-//            printf("count=%8d, send data is %s\n", count, sendbuf);
-//        }
+        if (count % 1000 == 0){
+            sendbuf[index] = '\0';
+            printf("count=%8d, send data is %s\n", count, sendbuf);
+        }
 
         //iDataNum = recv(clientSocket, recvbuf, 200, 0);
         //recvbuf[iDataNum] = '\0';
