@@ -78,15 +78,21 @@ int main() {
             printf("recv from client failed:%s\n",strerror(errno));
             continue;
         }
-        if (iDataNum == 0){
+        else if (iDataNum == 0){
+            printf("client closed connection\n");
             break;
+        }
+        else {
+            printf("recv %d bytes from client\n", iDataNum);
         }
         buffer[iDataNum] = '\0';    // 将接收到的字符串收尾
         count++;
 
-        if (count % 10000 == 0){
-            printf("count=%8d, recv data is \n", count);
-        }
+        printf("count=%8d, recv data is %s\n", count, buffer);
+
+//        if (count % 10000 == 0){
+//            printf("count=%8d, recv data is \n", count);
+//        }
 
         // 将接收到的字符串再发回给客户端
         //send(clientSocket, buffer, iDataNum, 0);
@@ -94,7 +100,7 @@ int main() {
 
     end = clock();  // 循环结束时记录时间
 
-    printf("total time:%lf\n",(double)(end-start)/CLOCKS_PER_SEC);
+    printf("total time:%lf\n", (double)(end - start) / CLOCKS_PER_SEC);
     printf("total count=%8d\n", count);
 
     close(clientSocket);

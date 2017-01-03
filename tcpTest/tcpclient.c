@@ -56,10 +56,14 @@ int main() {
         send(clientSocket, sendbuf, index, 0);
 
         count++;
-        if (count % 10000 == 0){
-            sendbuf[index] = '\0';
-            printf("count=%8d, send data is %s\n", count, sendbuf);
-        }
+
+        printf("count=%8d, send data is %s\n", count, sendbuf);
+        usleep(500000);
+
+//        if (count % 10000 == 0){
+//            sendbuf[index] = '\0';
+//            printf("count=%8d, send data is %s\n", count, sendbuf);
+//        }
 
         //iDataNum = recv(clientSocket, recvbuf, 200, 0);
         //recvbuf[iDataNum] = '\0';
@@ -67,7 +71,7 @@ int main() {
     }
     end = clock();
 
-    printf("total time:%lf\n",(double)(end-start)/CLOCKS_PER_SEC);
+    printf("total time:%lf\n", (double)(end - start) / CLOCKS_PER_SEC);
     printf("total count=%8d\n", count);
 
     close(clientSocket);
