@@ -23,6 +23,7 @@ int main() {
     char sendbuf[100];
     clock_t start, end;
     int index;
+    int i;
 
     // 创建客户端套接字
     if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -48,7 +49,7 @@ int main() {
     int count = 0;
 
     start = clock();
-    for (int i = 0; i < 10000000; i++) {
+    for (i = 0; i < 10000000; i++) {
         index = count % 26 + 1;     // 1--26
         strncpy(sendbuf, alphabet, index);  // a, ab, ..., a-z
 
@@ -64,7 +65,7 @@ int main() {
         //recvbuf[iDataNum] = '\0';
         //printf("recv data of my world is: %s\n", recvbuf);
     }
-    for (int i = 0; i < 10; i++)
+    for (i = 0; i < 10; i++)
         send(clientSocket, "quit", strlen("quit"), 0);
     end = clock();
 
