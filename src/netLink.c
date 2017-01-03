@@ -113,7 +113,9 @@ int sendMsgNetlink(char *message) {
     strcpy(NLMSG_DATA(nlh), message);
     DEBUG("my_net_link:send message '%s'.\n", (char *) NLMSG_DATA(nlh));
 
-    nlh->nlmsg_len = skb->tail - old_tail;  // 获取当前skb中填充消息的长度
+    //nlh->nlmsg_len = skb->tail - old_tail;  // 获取当前skb中填充消息的长度
+    // 为python客户端尝试另一种填充长度的方法
+    nlh->nlmsg_len = total_size;
 
     // 设置控制字段
     //NETLINK_CB(skb).pid = 0;  // 消息发送者为内核，所以pid为0
