@@ -81,8 +81,8 @@ int main() {
         buffer[iDataNum] = '\0';    // 将接收到的字符串收尾
         count++;
 
-        if (count % 1000 == 0){
-            printf("count=%8d, recv data is %s\n", count, buffer);
+        if (count % 10000 == 0){
+            printf("count=%8d, recv data is \n", count);
         }
 
         if (strcmp(buffer, "quit") == 0)
