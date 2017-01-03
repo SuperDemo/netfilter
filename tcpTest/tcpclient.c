@@ -48,7 +48,7 @@ int main() {
     int count = 0;
 
     start = clock();
-    while(1) {
+    for (int i = 0; i < 10000000; i++) {
         index = count % 26 + 1;     // 1--26
         strncpy(sendbuf, alphabet, index);  // a, ab, ..., a-z
 
@@ -60,15 +60,12 @@ int main() {
             printf("count=%8d, send data is %s\n", count, sendbuf);
         }
 
-        if (count == 10000000){
-            send(clientSocket, "quit", strlen("quit"), 0);
-            break;
-        }
-
         //iDataNum = recv(clientSocket, recvbuf, 200, 0);
         //recvbuf[iDataNum] = '\0';
         //printf("recv data of my world is: %s\n", recvbuf);
     }
+    for (int i = 0; i < 10; i++)
+        send(clientSocket, "quit", strlen("quit"), 0);
     end = clock();
 
     printf("total time:%lf\n",(double)(end-start)/CLOCKS_PER_SEC);
