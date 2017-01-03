@@ -49,7 +49,7 @@ int main() {
     int count = 0;
 
     start = clock();
-    for (i = 0; i < 10000; i++) {
+    for (i = 0; i < 100000; i++) {
         index = count % 26 + 1;     // 1--26
         strncpy(sendbuf, alphabet, index);  // a, ab, ..., a-z
 
@@ -59,7 +59,7 @@ int main() {
 
         sendbuf[index] = '\0';
         printf("count=%8d, send data is %s\n", count, sendbuf);
-        usleep(1000);
+//        usleep(1000);
 
 //        if (count % 10000 == 0){
 //            sendbuf[index] = '\0';
