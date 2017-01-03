@@ -91,7 +91,7 @@ int main() {
 //        printf("count=%8d, recv data is %s\n", count, buffer);
 
         if (count % 1000 == 0){
-            printf("count=%8d, recv data is \n", count);
+            printf("count=%8d, recv data is %s\n", count, buffer);
         }
 
         // 将接收到的字符串再发回给客户端
