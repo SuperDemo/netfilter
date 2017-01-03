@@ -60,7 +60,7 @@ int main() {
     printf("Listening on port: %d\n", SERVER_PORT);
 
     // 接收客户端请求，建立一个客户端套接字
-    if((clientSocket = accept(serverSocket, (struct sockaddr *) &clientAddr, (socklen_t *) &addr_len) < 0)){
+    if((clientSocket = accept(serverSocket, (struct sockaddr *) &clientAddr, (socklen_t *) &addr_len)) < 0){
         printf("accept from client failed:%s\n",strerror(errno));
         return -1;
     }
