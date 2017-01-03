@@ -57,6 +57,7 @@ int main() {
 
         count++;
 
+        sendbuf[index] = '\0';
         printf("count=%8d, send data is %s\n", count, sendbuf);
         usleep(500000);
 
