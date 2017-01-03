@@ -32,6 +32,8 @@ static void recvMsgNetlink(struct sk_buff *skb) {
     if (skb->len >= NLMSG_SPACE(0)) {
 
         nlh = nlmsg_hdr(skb);   // 获取netlink消息首部指针
+        DEBUG("nlh->nlmsg_len = %d, sizeof(struct nlmsghdr=%d, skb-len=%d, nlh->nlmsg_len=%d",
+        nlh->nlmsg_len, sizeof(struct nlmsghdr), skb->len, nlh->nlmsg_len);
         if ((nlh->nlmsg_len >= sizeof(struct nlmsghdr)) && (skb->len >= nlh->nlmsg_len)){
             // 如果首部完整
             if (nlh->nlmsg_type == NETLINK_TEST_CONNECT){
