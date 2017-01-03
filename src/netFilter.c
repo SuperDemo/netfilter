@@ -32,12 +32,12 @@ int initNetFilter(void){
     // 初始化netfilter
 
     nfho_single.hook = (nf_hookfn *) hook_func;   // 绑定钩子函数
-    //nfho_single.hooknum = NF_INET_PRE_ROUTING;  // 数据流入前触发
-    nfho_single.hooknum = NF_BR_PRE_ROUTING;    // 数据流入网桥前触发
-    //nfho_single.pf = PF_INET;
-    nfho_single.pf = PF_BRIDGE;
-    //nfho_single.priority = NF_IP_PRI_FILTER;
-    nfho_single.priority = NF_BR_PRI_FIRST;
+    nfho_single.hooknum = NF_INET_PRE_ROUTING;  // 数据流入前触发
+    //nfho_single.hooknum = NF_BR_PRE_ROUTING;    // 数据流入网桥前触发
+    nfho_single.pf = PF_INET;
+    //nfho_single.pf = PF_BRIDGE;
+    nfho_single.priority = NF_IP_PRI_FILTER;
+    //nfho_single.priority = NF_BR_PRI_FIRST;
 
     if (strcmp(direction, "=>") == 0) {  // 如果选择单向拦截
         DEBUG("one way intercept\n");
