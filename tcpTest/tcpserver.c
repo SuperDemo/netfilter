@@ -15,7 +15,7 @@
 #include <errno.h>
 #include <time.h>
 
-#define SERVER_PORT 5555
+#define SERVER_PORT 21001
 
 int main() {
     int serverSocket;   // 服务端套接字
