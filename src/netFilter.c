@@ -107,9 +107,9 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     if(!skb || !iph || !eth || !skb->data)
         return NF_ACCEPT;
 
-//    // 过滤掉广播数据
-//    if(skb->pkt_type==PACKET_BROADCAST)
-//        return NF_ACCEPT;
+    // 过滤掉广播数据
+    if(skb->pkt_type==PACKET_BROADCAST)
+        return NF_ACCEPT;
 
     data = skb->data;   // 将data指向ip数据报首部
 
@@ -118,19 +118,14 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 //    DEBUG("skb->head=%x,skb->data=%x,skb->tail=%u,skb->end=%u", skb->head, skb->data, skb->tail, skb->end);
 //    DEBUG("skb_mac_header=%x,skb_network_header=%x,skb_transport_header=%x", skb_mac_header(skb), skb_network_header(skb), skb_transport_header(skb));
 
-    iph = (struct iphdr *) data;    // 获得ip数据报首部指针
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = ntohs(iph->tot_len) - ip_head_len;   //获得数据部分长度,注意总长度为网络大端序，需转成小端序
 
-//    DEBUG("ip_head_len=%d,ip_body_len=%d", ip_head_len, ip_body_len);
-
-    if (iph->saddr == in_aton(sourceip)
-        && iph->daddr == in_aton(targetip)) {
+    if (iph->saddr != in_aton(sourceip)
+        || iph->daddr != in_aton(targetip)) {
         // 比较配置中ip与获取ip的16进制形式
         return NF_ACCEPT;
     }
-
-//    DEBUG("%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
@@ -144,29 +139,17 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             tcphead = (struct tcphdr *) data;
             tcp_head_len = tcphead->doff * 4;
             tcp_body_len = ip_body_len - tcp_head_len;
-//            INFO("tcp_head_len=%d, tcp_body_len=%d, source port=%d, dest port=%d", tcp_head_len, tcp_body_len,
-//            ntohs(tcphead->source), ntohs(tcphead->dest));
+
+            data += tcp_head_len;   // 将data指向TCP数据部分
+            strncpy(tcp_udp_body, data, tcp_body_len);
+            tcp_udp_body[tcp_body_len] = '\0';
+
+            DEBUG("TCP:%s:%d ---> %s:%d::%s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr),
+                  ntohs(tcphead->source), ntohs(tcphead->dest), tcp_udp_body);
 
             //tcp body长度小于最小要求长度，直接通过
             if (tcp_body_len < MIN_SIZE)
                 return NF_ACCEPT;
-
-            data += tcp_head_len;   // 将data指向TCP数据部分
-
-            strncpy(tcp_udp_body, data, tcp_body_len);
-            tcp_udp_body[tcp_body_len] = '\0';
-            DEBUG("tcpdata:%s", tcp_udp_body);
-//
-//            if (strstr(data, "mno")){
-//                DEBUG("DROP:tcpdata:%s", tcp_udp_body);
-//                return NF_DROP;
-//            }
-//            else {
-//                DEBUG("ACCEPT:tcpdata:%s", tcp_udp_body);
-//            }
-
-            DEBUG("TCP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-
             break;
         }
         case IPPROTO_UDP: {
@@ -174,20 +157,16 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             udphead = (struct udphdr *) data;
             udp_head_len = sizeof(struct udphdr);
             udp_body_len = ntohs(udphead->len) - udp_head_len;
-//            INFO("udp_head_len=%d, udp_body_len=%d", udp_head_len, udp_body_len);
+
+            data += udp_head_len;   // 将data指向UDP数据部分
+            strncpy(tcp_udp_body, data, udp_body_len);
+            tcp_udp_body[udp_body_len] = '\0';
+
+            DEBUG("UDP:%s ---> %s::%s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr), tcp_udp_body);
 
             // udp body长度小于最小要求长度，直接通过
             if (udp_body_len < MIN_SIZE)
                 return NF_ACCEPT;
-
-            data += udp_head_len;   // 将data指向UDP数据部分
-
-//            strncpy(tcp_udp_body, data, udp_body_len);
-//            tcp_udp_body[udp_body_len] = '\0';
-//            DEBUG("udpdata:%s", tcp_udp_body);
-
-            DEBUG("UDP:%s ---> %s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
-
             break;
         }
         case IPPROTO_ICMP:{
