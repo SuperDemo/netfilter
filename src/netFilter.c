@@ -229,64 +229,6 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
 
 
     return NF_ACCEPT;
-
-    // 检查数据部分合法性
-    if (isLegal(data)) {
-        DEBUG("data is legal");
-        extract(title, "title", data, 0, CONTENTMAXLEN);   // 提取出title
-
-        INFO("title is:%s\n", title);
-
-        count++;
-
-        if (strcmp(isapi, "no") == 0) {
-            if (strcmp(content, "") != 0) {
-                if (strcmp(content_flag, "all") == 0) {
-                    if (strstr(data, content)) {
-                        if (strcmp(action, "drop") == 0) {
-                            return NF_DROP;
-                        } else if (strcmp(action, "alert") == 0) {
-                            return NF_ACCEPT;
-                        } else {
-                            return NF_ACCEPT;
-                        }
-                    }
-                }
-                    //暂时先匹配 message待加
-                else if (strcmp(content_flag, "message") == 0) {
-                    extract(message, "message", data, 0, CONTENTMAXLEN);
-                    if (strstr(message, content)) {
-                        if (strcmp(action, "drop") == 0) {
-                            // sendnlmsg(title);
-                            return NF_DROP;
-                        } else if (strcmp(action, "alert") == 0) {
-                            // sendnlmsg(title);
-                            return NF_ACCEPT;
-                        } else {
-                            return NF_ACCEPT;
-                        }
-                    }
-                }
-            }
-            if (strcmp(titlecontent, "") != 0) {
-                if (strstr(title, titlecontent)) {
-                    if (strcmp(action, "drop") == 0) {
-                        // sendnlmsg(title);
-                        return NF_DROP;
-                    } else if (strcmp(action, "alert") == 0) {
-                        // sendnlmsg(title);
-                        return NF_ACCEPT;
-                    } else {
-                        return NF_ACCEPT;
-                    }
-                }
-            }
-        }
-    } else {
-        //DEBUG("data is illegal");
-    }
-
-    return NF_ACCEPT;
 }
 
 
