@@ -69,8 +69,8 @@ int releaseNetFilter(void){
 #undef ERROR
 
 #include <linux/string.h>
-char mymessagebuf[1100];  // 放置缓冲区定义
-char tcp_udp_body[1000];  // 记录应用层数据
+char mymessagebuf[100000];  // 放置缓冲区定义
+char tcp_udp_body[100000];  // 记录应用层数据
 
 #define DEBUG(...) sprintf(mymessagebuf, "DEBUG:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
 #define INFO(...) sprintf(mymessagebuf, "INFO:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
@@ -121,11 +121,11 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
     ip_head_len = iph->ihl * 4;     // 获得首部长度
     ip_body_len = ntohs(iph->tot_len) - ip_head_len;   //获得数据部分长度,注意总长度为网络大端序，需转成小端序
 
-    if (iph->saddr != in_aton(sourceip)
-        || iph->daddr != in_aton(targetip)) {
-        // 比较配置中ip与获取ip的16进制形式
-        return NF_ACCEPT;
-    }
+//    if (iph->saddr != in_aton(sourceip)
+//        || iph->daddr != in_aton(targetip)) {
+//        // 比较配置中ip与获取ip的16进制形式
+//        return NF_ACCEPT;
+//    }
 
     data += ip_head_len;    // 将data指向TCP/UDP报文首部
 
@@ -144,8 +144,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             strncpy(tcp_udp_body, data, tcp_body_len);
             tcp_udp_body[tcp_body_len] = '\0';
 
-            DEBUG("TCP:%s:%d ---> %s:%d::%s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr),
-                  ntohs(tcphead->source), ntohs(tcphead->dest), tcp_udp_body);
+            DEBUG("TCP:%s:%d ---> %s:%d::%s", in_ntoa(sip, iph->saddr), ntohs(tcphead->source),
+                  in_ntoa(dip, iph->daddr), ntohs(tcphead->dest), tcp_udp_body);
 
             //tcp body长度小于最小要求长度，直接通过
             if (tcp_body_len < MIN_SIZE)
@@ -162,7 +162,8 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             strncpy(tcp_udp_body, data, udp_body_len);
             tcp_udp_body[udp_body_len] = '\0';
 
-            DEBUG("UDP:%s ---> %s::%s", in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr), tcp_udp_body);
+            DEBUG("UDP:%s:%d ---> %s:%d::%s", in_ntoa(sip, iph->saddr), ntohs(udphead->source),
+                  in_ntoa(dip, iph->daddr), ntohs(udphead->dest),tcp_udp_body);
 
             // udp body长度小于最小要求长度，直接通过
             if (udp_body_len < MIN_SIZE)
@@ -199,13 +200,10 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             break;
         }
         default: {  // 如果有其他可能情况，给出提示
-//            DEBUG("Other TranLayer proto=%d, with IPPROTO_TCP=%d, with IPPROTO_UDP=%d", iph->protocol, IPPROTO_TCP,
-//                  IPPROTO_UDP);
             DEBUG("Other Protocol=%d, %s ---> %s", iph->protocol, in_ntoa(sip, iph->saddr), in_ntoa(dip, iph->daddr));
             break;
         }
     }
-
 
     return NF_ACCEPT;
 }
