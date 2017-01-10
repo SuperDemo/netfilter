@@ -30,7 +30,7 @@ int main() {
     // 配置服务端套接字
     bzero(&serverAddr, sizeof(serverAddr));
     serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");//htonl(INADDR_ANY);
     serverAddr.sin_port = htons(SERVER_PORT);
 
 

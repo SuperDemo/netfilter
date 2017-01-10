@@ -35,7 +35,7 @@ int main() {
     bzero(&serverAddr, sizeof(serverAddr));
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(SERVER_PORT);
-    serverAddr.sin_addr.s_addr = inet_addr("10.108.167.106");
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     // 连接服务端
     if (connect(clientSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr)) < 0) {
