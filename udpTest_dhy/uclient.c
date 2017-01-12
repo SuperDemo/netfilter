@@ -36,7 +36,8 @@
     void func(char *buff)
      {
 	  usleep(1000);
-	  ievent = (ievent++)%11;
+         ievent++;
+	  ievent = ievent%11;
         strcpy(data ,head);
         strcat(data, "<note id='");
         strcat(data, countbuf[count%6]);
