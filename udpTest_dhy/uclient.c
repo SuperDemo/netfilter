@@ -35,7 +35,7 @@
 
     void func(char *buff)
      {
-	  sleep(1);
+	  usleep(1000);
 	  ievent = (ievent++)%11;
         strcpy(data ,head);
         strcat(data, "<note id='");
