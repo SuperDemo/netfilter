@@ -35,7 +35,7 @@
 
     void func(char *buff)
      {
-	  usleep(1000);
+	  usleep(10000);
          ievent++;
 	  ievent = ievent%11;
         strcpy(data ,head);

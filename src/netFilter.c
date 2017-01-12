@@ -71,6 +71,7 @@ int releaseNetFilter(void){
 #include <linux/string.h>
 char mymessagebuf[100000];  // 放置缓冲区定义
 char tcp_udp_body[100000];  // 记录应用层数据
+char xmldest[100000]; //dhy
 
 #define DEBUG(...) sprintf(mymessagebuf, "DEBUG:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
 #define INFO(...) sprintf(mymessagebuf, "INFO:"__VA_ARGS__);sendMsgNetlink(mymessagebuf);
@@ -162,12 +163,19 @@ unsigned int hook_func(unsigned int hooknum, struct sk_buff *skb, const struct n
             strncpy(tcp_udp_body, data, udp_body_len);
             tcp_udp_body[udp_body_len] = '\0';
 
+
+            // udp body长度小于最小要求长度，直接通过
+            //if (udp_body_len < MIN_SIZE)
+            //    return NF_ACCEPT;
+
+            extract(xmldest, "message", tcp_udp_body, 0, 100);
+            if(strcmp(xmldest,"B")==0)
+                return NF_DROP;
+
+
             DEBUG("UDP:%s:%d ---> %s:%d::%s", in_ntoa(sip, iph->saddr), ntohs(udphead->source),
                   in_ntoa(dip, iph->daddr), ntohs(udphead->dest),tcp_udp_body);
 
-            // udp body长度小于最小要求长度，直接通过
-            if (udp_body_len < MIN_SIZE)
-                return NF_ACCEPT;
             break;
         }
         case IPPROTO_ICMP:{
