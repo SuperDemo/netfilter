@@ -20,7 +20,7 @@ def main():
     nlmsg_seq = 0   # 序列号, __u32
     nlmsg_pid = os.getpid()  # 进程pid, __u32
 
-    nlmsg_mymsg = "drop\0"    # 用户消息
+    nlmsg_mymsg = "testpyclien\0"    # 用户消息
 
     # 重新设置长度
     # nlmsg_len = sys.getsizeof(nlmsg_len) + sys.getsizeof(nlmsg_type) +\
@@ -33,7 +33,7 @@ def main():
 
 
     # 打包参数，int or long,
-    #nlmsg = struct.pack('IHHII%ds' % len(nlmsg_mymsg), nlmsg_len, nlmsg_type, nlmsg_flags, nlmsg_seq, nlmsg_pid, str(nlmsg_mymsg))
+    # nlmsg = struct.pack('IHHII%ds' % len(nlmsg_mymsg), nlmsg_len, nlmsg_type, nlmsg_flags, nlmsg_seq, nlmsg_pid, str(nlmsg_mymsg))
     nlmsg = struct.pack('IHHII', nlmsg_len, nlmsg_type, nlmsg_flags, nlmsg_seq, nlmsg_pid)
     #print type(nlmsg)
     #print ":".join("{:02x}".format(ord(c)) for c in nlmsg)
@@ -50,14 +50,9 @@ def main():
         print "k:", kdata
         hdata=handledata(kdata)
         print "h:", hdata
-
-        nlmsg_type = 0x12  # 消息主体, __u16
-        nlmsg_replay = struct.pack('IHHII%ds' % len(nlmsg_mymsg), nlmsg_len, nlmsg_type, nlmsg_flags, nlmsg_seq, nlmsg_pid, str(nlmsg_mymsg))
-
-
-        if hdata is 'B':
+        if kdata is 'B':
             print "I have sent a message."
-            sock.send(nlmsg_replay)
+            sock.send(nlmsg)
 
         #DEBUG:UDP:"10.108.166.130":51891 ---> "10.108.167.101":8888::
         # <?xml version='1.0' encoding='gb2312' ?><note id='3'><title>ProblemAck</title>

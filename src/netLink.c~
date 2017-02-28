@@ -68,10 +68,6 @@ static void recvMsgNetlink(struct sk_buff *skb) {
 			printk("drop\n");
 			operatorflag = 2;     //舍弃消息
 			}
-		else{
-			printk("pass\n");
-			operatorflag = 1; // 通过消息
-			}
                  //sendMsgNetlink("other command!");
             }
         }
